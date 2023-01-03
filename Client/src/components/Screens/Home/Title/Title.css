@@ -1,0 +1,49 @@
+.HomeTitle{
+    float: left;
+    font-size: 70px;
+    font-weight: 600;
+    color: #ebebeb;
+    margin: 40px;
+    margin-top: 60px;
+}
+
+.HomeTitle h1{
+    font-size: 200px;
+    font-weight: 600;
+    color: #fdfdfe;
+    text-shadow: 0px 0px 5px #b393d3, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3, 0px 0px 20px #b393d3;
+    transition: all 0.8s ease-in-out;
+}
+
+.HomeTitle h1 span {
+    transition: color text-shadow 0.8s ease-in;
+    position: static;
+}
+
+.Heading{
+    height: 220px;
+    width: 580px;
+}
+
+.HomeIntro{
+    font-family: 'Caramel';
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 0px 5px #777676;
+    height: 100px;
+    font-size: 60px;
+    font-weight: 1 !important;
+    width: max-content;
+    padding: 15px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3); 
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, .08);
+    backdrop-filter: blur(1px);
+    margin-top: 40px;
+}
+
+@media screen and (max-width: 960px) {
+    .HomeIntro{
+        font-size: 43px;
+        height: 80px;
+    }
+}

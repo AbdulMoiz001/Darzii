@@ -1,0 +1,13 @@
+.Slideshow{
+    float: right;
+    height: 500px;
+    width: 300px;
+    margin: 20px;
+    margin-top: 30px;
+    border-radius: 30px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 10px #fff;
+    cursor: pointer;
+}
