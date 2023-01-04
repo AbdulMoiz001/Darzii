@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Main.css';
+import axios from 'axios';
 
 function LoginForm() {
   const [formData, setFormData] = useState({
@@ -12,9 +13,17 @@ function LoginForm() {
     setFormData({ ...formData, [name]: value });
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // submit the form data (contained in formData) to the server
+    try {
+        const res = await axios.post(
+          "http://localhost:5000/auth/loginUser", 
+           formData);
+          console.log(res);
+      } catch (err) {
+        console.log(err);
+        
+      }
   }
 
 

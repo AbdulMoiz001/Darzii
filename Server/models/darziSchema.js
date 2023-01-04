@@ -5,9 +5,6 @@ const DarziSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    username: {
-        type: String,
-    },
     firstName: {
         type: String,
         required: true,
@@ -26,37 +23,27 @@ const DarziSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    CNIC: {
+    phone: {
         type: String,
         required: true,
     },
-    DOB: {
-        type: Date,
+    cnic: {
+        type: String,
+        required: true,
     },
-//Orders
+    //Orders
     measurementOrders: [
         { type: mongoose.Schema.Types.ObjectId, ref: "measurementOrder" }
     ],
 
     skill:
     {
-        type:Number,
-        $lt: 11
+        type: String,
     },
 
     address:
     {
-        address_name: {
-            type: String,
-        },
-        city: {
-            type: String,
-        },
-        area: { type: String },
-        address: {
-            type: String,
-        },
-
+        type: String,
     },
 
     updated: {

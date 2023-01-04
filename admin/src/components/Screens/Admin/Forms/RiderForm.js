@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './Form.css';
+import axios from 'axios';
 
 const RiderForm = () => {
+    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjA4NDNlYjFhZjhlYTIxMzJkMTA0YyIsInJvbGVzIjpbInVzZXIiLCJhZG1pbiJdLCJpYXQiOjE2NzI3NTg4NDMsImV4cCI6MTY3MjkzMTY0M30.l2nqHDaDaHY9tBSNy2jeHlKSX_ONHoOOnxXr69DBpvY";
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -23,9 +25,24 @@ const RiderForm = () => {
         }));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // submit formData to backend or do something else with it
+        console.log(formData);
+        try {
+            const res = await axios.post(
+              "http://localhost:5000/auth/registerRider", 
+               formData,
+               {
+                headers:{
+                    token: "Bearer " + accessToken
+                }
+               }
+               );
+              console.log(res);
+          } catch (err) {
+            console.log(err);
+            
+          }
     };
 
     return (

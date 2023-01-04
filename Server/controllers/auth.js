@@ -8,11 +8,16 @@ import userCart from "../models/userCart.js";
 
 //Register a User
 export const registerUser = async (req, res) => {
+    console.log(req.body);
+
     const newUser = new userSchemaMsg({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username,
         email: req.body.email,
+        area: req.body.area,
+        phone: req.body.phone,
+        dob: req.body.dob,
         password: CryptoJS.AES.encrypt(
             req.body.password,
             process.env.SECRET_KEY
@@ -47,8 +52,11 @@ export const registerWarehouseUsers = async (req, res) => {
         const newUser = new userSchemaMsg({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            username: req.body.username,
             email: req.body.email,
+            phone: req.body.phone,
+            cnic: req.body.cnic,
+            dob: req.body.dob,
+
             password: CryptoJS.AES.encrypt(
                 req.body.password,
                 process.env.SECRET_KEY
@@ -105,16 +113,15 @@ export const registerDarzi = async (req, res) => {
             ({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
-                username: req.body.username,
                 email: req.body.email,
+                phone: req.body.phone,
                 password: CryptoJS.AES.encrypt(
                     req.body.password,
                     process.env.SECRET_KEY
                 ).toString(),
-                CNIC: req.body.CNIC,
-                DOB: req.body.DOB,
+                cnic: req.body.cnic,
+                address: req.body.address,
                 skill: req.body.skill,
-                address: req.body.address
             });
         try {
             const user = await newUser.save();
@@ -139,10 +146,12 @@ export const registerRider = async (req, res) => {
                     req.body.password,
                     process.env.SECRET_KEY
                 ).toString(),
-                CNIC: req.body.CNIC,
-                DOB: req.body.DOB,
-                vehicle: req.body.vehicle,
-                numberPlate: req.body.numberPlate,
+                cnic: req.body.cnic,
+                vehicleModel: req.body.vehicleModel,
+                vehicleMake: req.body.vehicleMake,
+                vehicleReg: req.body.vehicleReg,
+
+                phone: req.body.phone,
             });
         try {
             const user = await newUser.save();

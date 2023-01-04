@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
   },
   firstName: {
     type: String,
+    required: true,
   },
   lastName: {
     type: String,
@@ -21,19 +22,30 @@ const UserSchema = new mongoose.Schema({
     unique: true,
   },
 
+  phone:
+  {
+    type: String,
+    required: true,
+  },
   password: {
     type: String,
     required: true,
   },
 
+  cnic: 
+  {
+    type: String,
+  },
+
   gender:
   {
     type: String,
-    enum:["male", "female"]
+    enum:["male", "female"],
+    // required: true,
   },
-  DOB:
+  dob:
   {
-    type: Date
+    type: Date,
   },
   roles: {
     type: [

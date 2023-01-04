@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './Main.css';
 import AreaDropdown from './Areas';
+import axios from 'axios';
 
 function SignupForm() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
+    username: '',
     dob: '',
     gender: '',
     email: '',
@@ -19,9 +21,17 @@ function SignupForm() {
     setFormData({ ...formData, [name]: value });
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // submit the form data (contained in formData) to the server
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/auth/registerUser", 
+         formData);
+        console.log(res);
+    } catch (err) {
+      console.log(err);
+      
+    }
   }
 
 

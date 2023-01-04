@@ -5,9 +5,6 @@ const RiderSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    username: {
-        type: String,
-    },
     firstName: {
         type: String,
         required: true,
@@ -26,12 +23,19 @@ const RiderSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    CNIC: {
+    phone: {
         type: String,
         required: true,
     },
-    DOB: {
-        type: Date,
+    cnic: {
+        type: String,
+        required: true,
+    },
+
+    address:
+    {
+        type: String,
+        default: " "
     },
 
     measurementOrders:[
@@ -53,13 +57,17 @@ const RiderSchema = new mongoose.Schema({
         }
     ],
 
-    vehicle: {
+    vehicleMake: {
         type: String,
-        enum: ["bike", "car", "van"],
         required: true,
-        default: "bike",
     },
-    numberPlate: {
+
+    vehicleModel: {
+        type: String,
+        required: true,
+    },
+
+    vehicleReg: {
         type: String,
         required: true,
     },

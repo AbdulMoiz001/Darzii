@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { AreaDropdownBlack } from '../../Signup/Areas';
 import './Form.css';
+import axios from 'axios';
 
-const DarziiForm = () => {
+const WHManagerForm = () => {
+    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjA4NDNlYjFhZjhlYTIxMzJkMTA0YyIsInJvbGVzIjpbInVzZXIiLCJhZG1pbiJdLCJpYXQiOjE2NzI3NTg4NDMsImV4cCI6MTY3MjkzMTY0M30.l2nqHDaDaHY9tBSNy2jeHlKSX_ONHoOOnxXr69DBpvY";
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -11,7 +12,6 @@ const DarziiForm = () => {
         password: '',
         cinc: '',
         address: '',
-        skill: '',
     });
 
     const handleChange = (event) => {
@@ -22,15 +22,29 @@ const DarziiForm = () => {
         }));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // submit formData to backend or do something else with it
+        try {
+            const res = await axios.post(
+              "http://localhost:5000/auth/registerWarehouseUsers", 
+               formData,
+               {
+                headers:{
+                    token: "Bearer " + accessToken
+                }
+               }
+               );
+              console.log(res);
+          } catch (err) {
+            console.log(err);
+            
+          }
     };
 
     return (
-        <div className='formCard D'>
+        <div className='formCard WHM'>
             <form onSubmit={handleSubmit}>
-            <h1>Darzii Registration Form</h1>
+            <h1>Warehouse Manager Registration Form</h1>
                 <table>
                 <tr>
                 <td>
@@ -123,26 +137,6 @@ const DarziiForm = () => {
                     onChange={handleChange}
                 />
                 </td>
-                <td>
-                <label htmlFor="skill">Skill</label>
-                </td>
-                <td>
-                <input
-                    type="text"
-                    name="skill"
-                    id="skill"
-                    value={formData.skill}
-                    onChange={handleChange}
-                />
-                </td>
-                </tr>
-                <tr>
-                <td>
-                <label htmlFor="area">Area</label>
-                </td>
-                <td>
-                <AreaDropdownBlack/>
-                </td>
                 </tr>
                 <tr>
                 <button type="submit">Submit</button>
@@ -154,4 +148,4 @@ const DarziiForm = () => {
 
 };
 
-export default DarziiForm;
+export default WHManagerForm;
