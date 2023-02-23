@@ -14,7 +14,7 @@ function ClothUi() {
             </div>
         </>
 
-    )
+    );
 }
 
 export default ClothUi
