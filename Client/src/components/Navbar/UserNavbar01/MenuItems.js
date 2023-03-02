@@ -11,7 +11,7 @@ export const MenuItems = [
     },
     {
         title: 'ClothUI',
-        url: '#',
+        url: 'ClothUI',
         cName: 'nav-links'
     },
     {
