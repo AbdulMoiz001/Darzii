@@ -1,37 +1,34 @@
 import React, { useState } from 'react';
-import './Main.css';
 import axios from 'axios';
+import './Main.css';
 
 function LoginForm() {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  }
+    const handleSubmit = async (event) => {
+        const formData = {
+            email,
+            password
+        };
+        event.preventDefault();
+        try {
+            const res = await axios.post(
+            "http://localhost:5000/auth/loginUser", 
+            formData);
+            const AccessToken = res.data.accessToken;
+        } catch (err) {
+            console.log(err);
+            
+        }
+    };
+      
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-        const res = await axios.post(
-          "http://localhost:5000/auth/loginUser", 
-           formData);
-          console.log(res);
-      } catch (err) {
-        console.log(err);
-        
-      }
-  }
-
-
-  return (
-            <div className="loginCard">
-                <h2 className="title">Login to Darzii <span className='tagline'>Or instead</span> </h2> 
-                <form onSubmit={handleSubmit}>
-                    <div className="row">
+    return (
+        <div className="loginCard">
+            <h2 className="title">Login to Darzii <span className='tagline'>Or instead</span> </h2>
+            <form onSubmit={handleSubmit}>
+                <div className="row">
                     <div className="col">
                         <div className="group">
                             <label className="formLabel" >Email</label>
@@ -39,8 +36,8 @@ function LoginForm() {
                                 className="inputStyle"
                                 type="email"
                                 name="email"
-                                value={formData.email}
-                                onChange={handleChange}
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
                             />
                         </div>
                     </div>
@@ -51,18 +48,18 @@ function LoginForm() {
                                 className="inputStyle"
                                 type="password"
                                 name="password"
-                                value={formData.password}
-                                onChange={handleChange}
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
                             />
                         </div>
                     </div>
-                    </div>
-                    <div className="buttonDiv">
-                        <button className="btn-form changeColor" type="submit">Login</button>
-                    </div>
-                </form>
-            </div>
-  );
+                </div>
+                <div className="buttonDiv">
+                    <button className="btn-form changeColor" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    );
 }
 
 export default LoginForm;

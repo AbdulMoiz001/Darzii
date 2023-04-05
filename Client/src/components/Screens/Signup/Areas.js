@@ -1,6 +1,3 @@
-import React, { useState } from 'react';
-import Select from 'react-select';
-
 const Areas = [
     {
         value: 1000,
@@ -2068,73 +2065,4 @@ const Areas = [
     }
 ];
 
-const AreaDropdownBlack = () => {
-    const [selectedOption, setSelectedOption] = useState(null);
-
-    const handleChange = (selectedOption) => {
-        setSelectedOption(selectedOption);
-        console.log(selectedOption);
-    };
-
-    return (
-        <Select
-            value={selectedOption}
-            onChange={handleChange}
-            options={Areas}
-            placeholder="Select an Area"
-            styles={{
-                control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    height: '50px',
-                    width: '100%',
-                    boxShadow: 'inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08)',
-                    borderRadius: '5px',
-                    fontSize: '16px',
-                    background: 'rgba(255, 255, 255, .08)',
-                    border: '#000000'
-                }),
-                singleValue: (provided, state) => ({
-                    ...provided,
-                    color: 'black'
-                })
-            }}
-        />
-    );
-};
-
-const AreaDropdown = () => {
-    const [selectedOption, setSelectedOption] = useState(null);
-
-    const handleChange = (selectedOption) => {
-        setSelectedOption(selectedOption);
-        console.log(selectedOption);
-    };
-
-    return (
-        <Select
-            value={selectedOption}
-            onChange={handleChange}
-            options={Areas}
-            placeholder="Select an Area"
-            styles={{
-                control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    height: '50px',
-                    width: '100%',
-                    boxShadow: 'inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08)',
-                    borderRadius: '5px',
-                    fontSize: '16px',
-                    background: 'rgba(255, 255, 255, .08)',
-                    border: '#000000'
-                }),
-                singleValue: (provided, state) => ({
-                    ...provided,
-                    color: 'rgb(255, 255, 255)'
-                })
-            }}
-        />
-    );
-};
-
-export default AreaDropdown;
-export {AreaDropdownBlack};
+export default Areas;
