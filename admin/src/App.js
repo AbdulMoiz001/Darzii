@@ -5,7 +5,7 @@ import SignInAdmin from "./components/Screens/SignIn/SignInAdmin";
 
 function App() {
   return (
-    <Darzii />
+    // <Darzii />
     // <Admin />
     // <SignInAdmin />
   );
