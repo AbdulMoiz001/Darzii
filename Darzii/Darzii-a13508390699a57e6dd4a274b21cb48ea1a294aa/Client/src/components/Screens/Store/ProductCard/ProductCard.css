@@ -1,0 +1,149 @@
+.ProductCard {
+    height: 400px;
+    width: 300px;
+    cursor: pointer;
+    border-radius: 15px;
+    float: left;
+    margin: 10px;
+}
+
+.ProductImage {
+    height: 300px;
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ProductImage:hover {
+    cursor: grab;
+    opacity: 0.8;
+}
+
+.ProductCardDetails {
+    height: 94px;
+    width: 100%;
+    border-radius: 0px 0px 15px 15px;
+    font-weight: bold;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3); 
+    background-color: rgba(255, 255, 255, .08);
+    backdrop-filter: blur(1px);
+}
+
+.ProductCardDetails:hover {
+    background: rgb(48, 51, 51);
+    background: linear-gradient(90deg, rgba(48, 51, 51, 1) 0%, rgba(38, 38, 42, 1) 46%, rgba(36, 41, 42, 1) 100%);
+    text-shadow: 1px 1px 4px rgb(0, 0, 0);
+}
+
+.ProductCard .ProductTitle {
+    width: 100%;
+    height: 34px;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.Availability {
+    width: 50%;
+    height: 60px;
+    float: left;
+    text-shadow: none;
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: 14px;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+}
+
+.Ratings {
+    float: right;
+    width: 50%;
+    height: 60px;
+    text-shadow: none;
+    padding-top: 5px;
+    font-size: 14px;
+    padding-left: 5px;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+}
+
+.unavailable {
+    color: rgb(255, 255, 255);
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.available {
+    color: rgb(255, 255, 255);
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ProductCardDetails:hover .unavailable{
+    color: red;
+}
+
+.ProductCardDetails:hover .available{
+    color: green;
+}
+
+.checked {
+    color: #D4AF37;
+}
+
+.card-price {
+    float: right;
+    width: auto;
+    height: 38px;
+    background-color: #D4AF37;
+    -webkit-border-radius: 3px 4px 4px 3px;
+    -moz-border-radius: 3px 4px 4px 3px;
+    border-radius: 3px 4px 4px 3px;
+    font-family:'Courier New', Courier, monospace;
+    border-left: 1px solid #D4AF37;
+
+    /* This makes room for the triangle */
+    margin-left: 19px;
+
+    position: relative;
+
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 38px;
+    margin-top: 262px;
+    padding: 0 10px 0 10px;
+}
+
+/* Makes the triangle */
+.card-price:before {
+    content: "";
+    position: absolute;
+    display: block;
+    left: -19px;
+    width: 0;
+    height: 0;
+    border-top: 19px solid transparent;
+    border-bottom: 19px solid transparent;
+    border-right: 19px solid #D4AF37;
+}
+
+/* Makes the circle */
+.card-price:after {
+    content: "";
+    background-color: white;
+    border-radius: 50%;
+    width: 4px;
+    height: 4px;
+    display: block;
+    position: absolute;
+    left: -9px;
+    top: 17px;
+}
