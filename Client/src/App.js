@@ -29,8 +29,8 @@ function App() {
           <Route path='/ClothUI' element={<ClothUI />} />
           <Route path='/MeasurementForm' element={<MeasurementForm />} />
           {user ? <Route path='/blank' element={<Blank />} /> : <></>}
-          <Route path='Tailor' element={<Tailor/>}/>
-          <Route path='OrderCreation' element={<OrderCreation/>}/>
+          <Route path='Tailor' element={<Tailor />} />
+          <Route path='OrderCreation' element={<OrderCreation />} />
         </Routes>
       </AuthContextProvider>
     </div >
