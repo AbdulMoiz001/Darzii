@@ -17,6 +17,7 @@ function LoginForm() {
             "http://localhost:5000/auth/loginUser", 
             formData);
             const AccessToken = res.data.accessToken;
+            console.log(AccessToken);
         } catch (err) {
             console.log(err);
             

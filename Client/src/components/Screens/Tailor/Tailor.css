@@ -1,0 +1,141 @@
+.Tailor {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.tailor-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tailor-card {
+    margin: 10px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, .08);
+    backdrop-filter: blur(1px);
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-out;
+    width: 250px;
+    color: #fff;
+}
+
+.tailor-card:hover {
+    transform: scale(1.05);
+}
+
+.tailor-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.tailor-card-info {
+    padding: 10px;
+}
+
+.tailor-card-info h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.tailor-card-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.tailor-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tailor-details {
+    position: relative;
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background: linear-gradient(90deg, rgb(231, 217, 13) 0%, rgb(231, 173, 12) 100%);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+}
+
+.tailor-details img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.tailor-details-info {
+    flex-grow: 1;
+}
+
+.tailor-details-info h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.tailor-details-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.tailor-details-info h3 {
+    margin: 10px 0 0 0;
+    font-size: 24px;
+}
+
+.btn-group {
+    margin-top: 20px;
+}
+
+.book-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135.8deg, rgb(26, 26, 29) 27.1%, rgb(111, 34, 50) 77.5%);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out;
+}
+
+.book-btn:hover {
+    transform: scale(1.05);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: #999;
+}
