@@ -1,0 +1,23 @@
+trigger:
+  - master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "16.x"
+    displayName: "Install Node.js"
+
+  - script: |
+      cd Client
+      npm install
+      npm start
+    displayName: "npm install and build for Client"
+
+  - script: |
+      cd Server
+      npm install
+      npm start
+    displayName: "npm install and build for Server"
