@@ -2,11 +2,9 @@ trigger:
   - master
 
 pool:
-  vmImage: ubuntu-latest
-# pool:
-#   name: MYPCAbdulMoiz
-#   demands:
-#    - agent.name -equals MYPC
+  name: MYPCAbdulMoiz
+  demands: 
+   - agent.name -equals MYPC
 steps:
   - task: NodeTool@0
     inputs:
