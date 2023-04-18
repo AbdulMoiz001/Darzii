@@ -1,15 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Main.css";
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from "../../../context/authContext/AuthContext";
-import { login } from "../../../context/authContext/apiCalls";
 
-function LoginForm(props) {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const { dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     const formData = {
@@ -17,9 +12,18 @@ function LoginForm(props) {
       password,
     };
     event.preventDefault();
-    await login(formData, dispatch);
-    navigate("/");
-    window.location.reload();
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/auth/loginUser",
+        formData
+      );
+      //Store user data in LocalStorage
+      localStorage.setItem("user", JSON.stringify(res.data));
+      //
+      //   console.log(JSON.parse(localStorage.getItem("user")));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -55,7 +59,7 @@ function LoginForm(props) {
           </div>
         </div>
         <div className="buttonDiv">
-          <button className="btn-form changeColor" type="submit" >
+          <button className="btn-form changeColor" type="submit">
             Login
           </button>
         </div>
