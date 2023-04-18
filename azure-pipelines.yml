@@ -13,11 +13,11 @@ steps:
   - script: |
       cd Client
       npm install
-      npm start
+      npm run build
     displayName: "npm install and build for Client"
 
   - script: |
       cd Server
       npm install
-      npm start
+      npm run build
     displayName: "npm install and build for Server"
