@@ -1,15 +1,15 @@
 import React from "react";
 import "./Admin.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AdminNavbar from "../../Navbar/AdminNavbar/AdminNavbar";
 import RiderForm from "./Forms/RiderForm";
 import WHManagerForm from "./Forms/WHManagerForm";
 import DarziiForm from "./Forms/DarziiForm";
+import Navbar from "../../Navbar/UserNavbar01/Navbar";
 
 function Admin() {
   return (
     <BrowserRouter>
-      <AdminNavbar />
+      <Navbar />
       <Routes>
         <Route
           path=""
@@ -20,6 +20,7 @@ function Admin() {
             </div>
           }
         />
+        <Route path="rider" element={<RiderForm />} />
         <Route path="rider" element={<RiderForm />} />
         <Route path="darzii" element={<DarziiForm />} />
         <Route path="wh-manager" element={<WHManagerForm />} />
