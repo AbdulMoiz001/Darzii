@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RiderForm from "./Forms/RiderForm";
 import WHManagerForm from "./Forms/WHManagerForm";
 import DarziiForm from "./Forms/DarziiForm";
-import Navbar from "../../Navbar/UserNavbar01/Navbar";
+import Navbar from "../../Navbar/Navbar";
 
 function Admin() {
   return (
