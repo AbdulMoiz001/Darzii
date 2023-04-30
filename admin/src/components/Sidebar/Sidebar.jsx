@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaBars } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
-// import './Navbar.css';
-
+import { useState } from 'react';
+import './Sidebar.css';
 
 const MenuItems = [
     {
@@ -33,7 +33,8 @@ const MenuItems = [
     }
 ]
 
-function Navbar() {
+
+function Sidebar() {
     const [clicked, setCliked] = useState(false)
 
     const handleClick = () => {
@@ -41,26 +42,31 @@ function Navbar() {
     }
 
     return (
-        <nav className='NavbarItems'>
-            <a href={'/'}><h1 className='navbar-logo'>Darzii<i className='fab fa-accusoft'></i></h1></a>
+
+        <nav className='SidebarItems'>
+
             <div className='menu-icon' onClick={handleClick}>
                 <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}>
                     {clicked ? <GrClose /> : <FaBars />}
                 </i>
             </div>
-            <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
-                {MenuItems.map((item, index) => {
-                    return (
-                        <li key={index}>
-                            <a className={item.cName} href={item.url}>
-                                {item.title}
-                            </a>
-                        </li>
-                    )
-                })}
-            </ul>
+            <div className={clicked ? 'SidebarItemsBox active' : 'SidebarItemsBox'}>
+
+                <a href={'/'}><h1 className={clicked ? 'navbar-logo active' : 'navbar-logo '}>SideBar<i className='fab fa-accusoft'></i></h1></a>
+                <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
+                    {MenuItems.map((item, index) => {
+                        return (
+                            <li key={index} className='nav-items'>
+                                <a className={item.cName} href={item.url}>
+                                    {item.title}
+                                </a>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
         </nav>
     );
 }
 
-export default Navbar
+export default Sidebar

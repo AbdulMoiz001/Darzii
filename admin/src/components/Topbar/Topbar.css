@@ -1,0 +1,39 @@
+.TopbarBox {
+  position: absolute;
+  right: 0;
+  background-color: #f5f5f586;
+  border-radius: 20px;
+
+  /* border: solid black; */
+  width: 73%;
+  height: 60px;
+  margin: 5px 5px 5px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.Wicon {
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  width: 70%;
+}
+
+.UBox {
+  width: 15%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Uimage {
+  background-color: #f5f5f5;
+  border-radius: 100%;
+  width: 35px;
+  height: auto;
+}
+
+.Qicon {
+  display: flex;
+  font-size: 35px;
+  text-align: center;
+}

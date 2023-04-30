@@ -5,20 +5,19 @@ import RiderForm from "./Forms/RiderForm";
 import WHManagerForm from "./Forms/WHManagerForm";
 import DarziiForm from "./Forms/DarziiForm";
 import Navbar from "../../Navbar/Navbar";
-
+import Dashboard from "./Dashboard.jsx";
+import Sidebar from "../../Sidebar/Sidebar";
+import Topbar from "../../Topbar/Topbar";
 function Admin() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <Sidebar />
+      <Topbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route
-          path=""
-          element={
-            <div className="AdminHome">
-              <h1>Welcome! Admin,</h1>
-              <div className="AdminHomepage center"></div>
-            </div>
-          }
+          path="/"
+          element={<Dashboard />}
         />
         <Route path="rider" element={<RiderForm />} />
         <Route path="rider" element={<RiderForm />} />
