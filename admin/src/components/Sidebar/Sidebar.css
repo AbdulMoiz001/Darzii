@@ -1,0 +1,195 @@
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+nav li {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.SidebarItemsBox {
+  position: fixed;
+  display: flex;
+  align-items: self-start;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 225, 225, 0.356);
+  height: 100%;
+  width: inherit;
+  overflow: hidden;
+}
+.SidebarItems:hover {
+  background-color: rgb(255, 225, 225);
+}
+
+.fa-accusoft {
+  margin-left: 0.5rem;
+  font-size: 2rem;
+}
+.nav-links {
+  margin: 5px;
+  display: block;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+.navbar-logo {
+  color: rgb(5, 3, 3);
+  margin-left: 1px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 10px;
+  width: 100%;
+}
+
+.menu-icon {
+  display: none;
+}
+
+.nav-links:hover {
+  display: block;
+  background-color: rgb(255, 250, 207);
+  border-radius: 4px;
+  transition: color 0.2s ease-out;
+  box-shadow: 0px 0px 5px rgba(255, 225, 225, 0.842);
+}
+
+.SidebarItems {
+  /* backdrop-filter: blur(300px); */
+  top: 0;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  font-size: 1.2rem;
+  width: 25%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.nav-menu {
+  position: relative;
+  left: 0;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
+  align-items: stretch;
+  justify-content: space-around;
+}
+.nav-items {
+  width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+@media screen and (max-width: 960px) {
+  .SidebarItemsBox {
+    height: 100%;
+    width: inherit;
+    position: absolute;
+    top: 80px;
+    left: -200%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    overflow: hidden;
+  }
+
+  .SidebarItemsBox.active {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+    width: 100%;
+  }
+  .SidebarItems {
+    position: absolute;
+    width: 98%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .nav-items {
+    text-align: left;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+  .nav-links-mobile {
+    display: none;
+  }
+
+  .nav-links {
+    text-align: left;
+    padding: 1rem;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-links:hover {
+    background-color: rgb(255, 250, 207);
+    border-radius: 0;
+  }
+
+  .navbar-logo.active {
+    transition: all 0.5s ease;
+    top: 20%;
+    left: -10px;
+  }
+  .navbar-logo {
+    align-items: flex-end;
+    position: relative;
+    top: 0;
+    left: -140%;
+  }
+
+  .menu-icon {
+    display: block;
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 15%;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .fa-times {
+    color: rgb(0, 0, 0);
+    font-size: 2rem;
+  }
+
+  .nav-links-mobile {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 4px;
+    width: 300px;
+    background: #000000;
+    text-decoration: none;
+    color: rgb(231, 217, 13);
+    font-size: 1.5rem;
+  }
+
+  .nav-links-mobile:hover {
+    background: linear-gradient(
+      135.8deg,
+      rgb(26, 26, 29) 27.1%,
+      rgb(111, 34, 50) 77.5%
+    );
+    color: #ffffff;
+    transition: 250ms;
+  }
+}
