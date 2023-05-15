@@ -7,22 +7,22 @@ import './Sidebar.css';
 const MenuItems = [
     {
         title: 'Home',
-        url: '/',
+        url: '',
         cName: 'nav-links'
     },
     {
         title: 'Rider',
-        url: '/rider/register',
+        url: 'rider',
         cName: 'nav-links'
     },
     {
         title: 'Darzii',
-        url: '/darzii',
+        url: 'darzii',
         cName: 'nav-links'
     },
     {
         title: 'WareHouse Manager',
-        url: '/wh-manager/register',
+        url: 'wareHouse',
         cName: 'nav-links'
     },
 

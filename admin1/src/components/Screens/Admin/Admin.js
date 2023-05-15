@@ -8,8 +8,6 @@ import Navbar from "../../Navbar/Navbar";
 import Dashboard from "./Dashboard.jsx";
 import Sidebar from "../../Sidebar/Sidebar";
 import Topbar from "../../Topbar/Topbar";
-import DarziInfo from "./Darzii/DarziInfo";
-import DeleteDarzii from "./Darzii/DeleteDarzii";
 function Admin() {
   return (
     <BrowserRouter>
@@ -21,13 +19,9 @@ function Admin() {
           path="/"
           element={<Dashboard />}
         />
-        <Route path="/rider/register" element={<RiderForm />} />
-
-        <Route path="/darzii" element={<DarziInfo />} />
-        <Route path="/darzii/register" element={<DarziiForm />} />
-        <Route path="/darzii/delete" element={<DeleteDarzii />} />
-
-        <Route path="/wh-manager/register" element={<WHManagerForm />} />
+        <Route path="/register/rider" element={<RiderForm />} />
+        <Route path="/register/darzii" element={<DarziiForm />} />
+        <Route path="/register/wh-manager" element={<WHManagerForm />} />
       </Routes>
     </BrowserRouter>
   );

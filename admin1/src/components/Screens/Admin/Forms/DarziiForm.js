@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AreaDropdownBlack } from "../Areas";
 import "./Form.css";
 import axios from "axios";
-import Map from "../../Maps/Map";
-import { FaChevronLeft } from "react-icons/fa";
+import googleMaps from "googlemaps";
+import MapContainer from "../../Maps/MapContainer";
 
 const DarziiForm = () => {
-
-  const [DarziCoordinates, setDarziCoordinates] = useState(null);
-
-
   const accessToken =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjA4NDNlYjFhZjhlYTIxMzJkMTA0YyIsInJvbGVzIjpbInVzZXIiLCJhZG1pbiJdLCJpYXQiOjE2NzI3NTg4NDMsImV4cCI6MTY3MjkzMTY0M30.l2nqHDaDaHY9tBSNy2jeHlKSX_ONHoOOnxXr69DBpvY";
   const [formData, setFormData] = useState({
@@ -30,7 +26,7 @@ const DarziiForm = () => {
       [name]: value,
     }));
   };
-  //Hey Shweheryar
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
@@ -50,20 +46,9 @@ const DarziiForm = () => {
     }
   };
 
-  useEffect(() => {
-    console.log('Clicked coordinates:', DarziCoordinates);
-  }, [DarziCoordinates])
-
-
   return (
     <div className="formCard D">
       <form onSubmit={handleSubmit}>
-        <h2> <a href="/darzii/">
-
-          <FaChevronLeft />
-        </a>
-        </h2>
-
         <h1>Darzii Registration Form</h1>
         <table>
           <tr>
@@ -182,9 +167,9 @@ const DarziiForm = () => {
             <button type="submit">Submit</button>
           </tr>
         </table>
+        {/* <MapContainer /> */}
 
-        <Map DarziCoordinates={DarziCoordinates}
-          setDarziCoordinates={setDarziCoordinates} />
+
       </form>
     </div>
   );

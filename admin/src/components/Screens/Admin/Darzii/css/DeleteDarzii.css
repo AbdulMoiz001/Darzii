@@ -1,0 +1,89 @@
+.darziiBox {
+  overflow-y: auto;
+  position: absolute;
+
+  background-color: #ffffff1e;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  right: 0;
+  top: 70px;
+  /* border: solid black; */
+  width: 70%;
+  margin-inline: 20px;
+}
+.infoBox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.darziCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+
+  border-radius: 10px;
+  width: 100%;
+
+  font-size: large;
+
+  margin: 20px 10px;
+  padding: 20px 8px;
+
+  background-color: rgba(255, 255, 255, 0.364);
+}
+.darziCard:hover {
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.darziiTitle {
+  font-size: larger;
+  font-weight: bold;
+  width: 100%;
+}
+
+.deleteBox {
+  width: 6rem;
+  height: 2rem;
+}
+
+.deleteButton {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+
+  width: inherit;
+  height: inherit;
+  border-radius: 4px;
+
+  background-color: rgb(244, 37, 37);
+}
+.deleteBox:hover {
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  width: 6rem;
+  height: 3rem;
+  background-color: rgb(220, 20, 20);
+}
+.info {
+  font-size: x-large;
+  align-items: center;
+  margin-right: 10px;
+  color: rgb(31, 31, 31);
+}
+
+.darziCard span {
+  font-size: xx-large;
+}
