@@ -12,13 +12,13 @@ const UsersInfo = [
     },
     {
         title: 'Riders',
-        url: '/register/rider',
+        url: '/rider',
         cName: 'card',
         total: 60,
     },
     {
         title: 'Warehoue Managers',
-        url: '/register/wh-manager',
+        url: '/wh-manager',
         cName: 'card',
         total: 70,
     }

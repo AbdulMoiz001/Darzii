@@ -1,81 +1,81 @@
 import React from 'react'
-import "./css/DeleteDarzii.css";
+import "./css/DeleteWH.css";
 import { GrTrash } from 'react-icons/gr';
 import { FaChevronLeft } from 'react-icons/fa';
 
 
-const DarziInfo = [
+const WarehoueManagerInfo = [
     {
 
-        title: 'Darzi A',
+        title: 'Warehouse Manager A',
         orders: 'X',
         ordersCompleted: 'OX',
         ordersPending: 'X',
         totalOrders: 50,
 
-        darziiId: 1234,
+        warehouseId: 1234,
 
 
         card: "infoCard"
     },
     {
 
-        title: 'Darzi C',
+        title: 'Warehouse Manager C',
         orders: 'X',
         ordersCompleted: 'OX',
         ordersPending: 'X',
         totalOrders: 50,
 
-        darziiId: 1234,
+        warehouseId: 1234,
         card: "infoCard"
     },
     {
 
-        title: 'Darzi D',
+        title: 'Warehouse Manager D',
         orders: 'X',
         ordersCompleted: 'OX',
         ordersPending: 'X',
         totalOrders: 50,
 
-        darziiId: 1234,
+        warehouseId: 1234,
         card: "infoCard"
     },
     {
 
-        title: 'Darzi E',
+        title: 'Warehouse Manager E',
         orders: 'X',
         ordersCompleted: 'OX',
         ordersPending: 'X',
         totalOrders: 50,
 
-        darziiId: 1234,
+        warehouseId: 1234,
         card: "infoCard"
     }
 
 ]
 
-function DeleteDarzii() {
+function DeleteWH() {
 
 
     return (
-        <div className='darziiBox'>
+        <div className='warehouseBox'>
 
 
 
             <div className='info'>
-                <h4> <a href="/darzii/">
+                <h4> <a href="/wh-manager/">
 
                     <FaChevronLeft />
-                    Darziies
+                    Warehouse Manageries
                 </a>
                 </h4>
                 <hr></hr>
             </div>
 
-            {DarziInfo.map((item, index) => {
+            {WarehoueManagerInfo.map((item, index) => {
                 return (
                     <div className={item.card} key={index}>
-                        <div className='darziiTitle'>
+                        <div className='warehouseTitle'>
                             <label>
                                 {item.title}
                             </label>
@@ -88,12 +88,12 @@ function DeleteDarzii() {
 
                         </div>
 
-                        <div className='ordersCompleted infoBox'>
-                            <label htmlFor="ordersCompleted">Orders Completed : </label>
+                        <div className=' infoBox'>
+                            <label htmlFor="">Orders Completed : </label>
                             <span>{item.ordersCompleted}</span>
                         </div>
 
-                        <div className='ordersPending infoBox' >
+                        <div className=' infoBox' >
                             <label htmlFor="ordersPending">Pending Orders : </label>
                             <span>{item.ordersPending}</span>
 
@@ -110,4 +110,4 @@ function DeleteDarzii() {
     );
 }
 
-export default DeleteDarzii;
+export default DeleteWH;

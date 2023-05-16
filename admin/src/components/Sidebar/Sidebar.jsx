@@ -22,7 +22,7 @@ const MenuItems = [
     },
     {
         title: 'WareHouse Manager',
-        url: '/wh-manager/register',
+        url: '/wh-manager',
         cName: 'nav-links'
     },
 

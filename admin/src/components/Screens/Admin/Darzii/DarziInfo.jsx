@@ -29,7 +29,7 @@ function DarziInfo() {
                     Edit Darzi information
                 </label>
 
-                <a className='infoL' href="/darzii/edit"><FaChevronRight /></a>
+                <a className='infoL' href="/darzii/users"><FaChevronRight /></a>
 
             </div>
 
