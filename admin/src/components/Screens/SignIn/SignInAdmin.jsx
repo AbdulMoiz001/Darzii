@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, } from 'react';
 import "./css/SignInAdmin.css";
 import { login } from "../../../context/authContext/apiCalls";
 import { AuthContext } from "../../../context/authContext/AuthContext";
+import { useNavigate } from 'react-router-dom';
+
+
 
 const SignInAdmin = () => {
 
     const { dispatch } = useContext(AuthContext);
+
 
     const [formData, setFormData] = useState({
         email: '',
@@ -20,9 +24,14 @@ const SignInAdmin = () => {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        await login(formData, dispatch);
-        window.location.reload();
+        try {
+            event.preventDefault();
+            await login(formData, dispatch);
+            window.location.reload();
+        } catch (error) {
+            alert("error");
+
+        }
     };
 
     return (
@@ -36,7 +45,7 @@ const SignInAdmin = () => {
                     <label>Password:</label>
                     <input type="password" name="password" value={formData.password} onChange={handleInputChange} required />
 
-                    <button type="submit" disabled={dispatch}>SignIn</button>
+                    <button type="submit" disabled={!Boolean(dispatch)} onSubmit={handleSubmit}>SignIn</button>
                 </form>
             </div>
         </>

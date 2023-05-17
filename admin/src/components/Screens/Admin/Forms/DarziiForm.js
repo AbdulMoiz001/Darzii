@@ -4,23 +4,34 @@ import "./Form.css";
 import axios from "axios";
 import Map from "../../Maps/Map";
 import { FaChevronLeft } from "react-icons/fa";
+import { AuthContext } from "../../../../context/authContext/AuthContext"
+import { useContext } from "react";
 
 const DarziiForm = () => {
 
   const [DarziCoordinates, setDarziCoordinates] = useState(null);
 
 
-  const accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjA4NDNlYjFhZjhlYTIxMzJkMTA0YyIsInJvbGVzIjpbInVzZXIiLCJhZG1pbiJdLCJpYXQiOjE2NzI3NTg4NDMsImV4cCI6MTY3MjkzMTY0M30.l2nqHDaDaHY9tBSNy2jeHlKSX_ONHoOOnxXr69DBpvY";
+  const { user } = useContext(AuthContext);
+
+
+  const accessToken = user.accessToken;
   const [formData, setFormData] = useState({
+
+
+    tailorId: "",
+    userName: "",
+    tailorName: "",
+    phone: "",
     firstName: "",
     lastName: "",
     email: "",
-    phone: "",
     password: "",
     cinc: "",
     address: "",
     skill: "",
+    location: "",
+
   });
 
   const handleChange = (event) => {
@@ -30,7 +41,6 @@ const DarziiForm = () => {
       [name]: value,
     }));
   };
-  //Hey Shweheryar
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
@@ -66,6 +76,52 @@ const DarziiForm = () => {
 
         <h1>Darzii Registration Form</h1>
         <table>
+
+          <tr>
+            <td>
+              <label htmlFor="tailorId">Tailor Id</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                name="tailorId"
+                id="tailorId"
+                value={formData.tailorId}
+                onChange={handleChange}
+              />
+            </td>
+
+            <td>
+              <label htmlFor="userName">UserName</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                name="userName"
+                id="userName"
+                value={formData.userName}
+                onChange={handleChange}
+              />
+            </td>
+          </tr>
+
+
+          <tr>
+
+            <td>
+              <label htmlFor="tailorName">Tailor Name</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                name="tailorName"
+                id="tailorName"
+                value={formData.tailorName}
+                onChange={handleChange}
+              />
+            </td>
+          </tr>
+
           <tr>
             <td>
               <label htmlFor="firstName">First Name</label>
@@ -79,6 +135,7 @@ const DarziiForm = () => {
                 onChange={handleChange}
               />
             </td>
+
             <td>
               <label htmlFor="lastName">Last Name</label>
             </td>
@@ -92,6 +149,7 @@ const DarziiForm = () => {
               />
             </td>
           </tr>
+
           <tr>
             <td>
               <label htmlFor="email">Email</label>
@@ -172,10 +230,11 @@ const DarziiForm = () => {
           </tr>
           <tr>
             <td>
-              <label htmlFor="area">Area</label>
+              <label htmlFor="area">Location Selected</label>
             </td>
             <td>
-              <AreaDropdownBlack />
+              {DarziCoordinates ? DarziCoordinates.lat.toString() : <></>}<p></p>
+              {DarziCoordinates ? DarziCoordinates.lng.toString() : <></>}
             </td>
           </tr>
           <tr>

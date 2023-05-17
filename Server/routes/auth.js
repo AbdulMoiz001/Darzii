@@ -6,7 +6,8 @@ import {
     LoginUser,
     registerWarehouseUsers,
     registerUser,
-    registerDarzi
+    registerDarzi,
+    emailExists
 } from '../controllers/auth.js';
 import { verify } from "./verifyUserTokens.js";
 
@@ -14,6 +15,8 @@ import { verify } from "./verifyUserTokens.js";
 const routerAuth = express.Router();
 
 routerAuth.post('/registerUser', registerUser);
+routerAuth.post('/checkEmail', emailExists);
+
 routerAuth.post('/loginUser', LoginUser);
 
 //admin
@@ -22,8 +25,8 @@ routerAuth.post('/registerRider', verify, registerRider);
 routerAuth.post('/registerDarzi', verify, registerDarzi);
 
 //logIn other users {Rider, Darzi}
-routerAuth.post('/logInRide', logInRider);
-routerAuth.post('/logInDarzi', logInDarzi);
+routerAuth.post('/loginRide', logInRider);
+routerAuth.post('/loginDarzi', logInDarzi);
 
 
 

@@ -9,12 +9,11 @@ import { AuthContextProvider } from "../src/context/authContext/AuthContext";
 
 function App() {
   const { user } = useContext(AuthContext);
-  // user.roles.includes("user")
 
   return (
     <>
       <AuthContextProvider>
-        {user.roles.includes("admin") ? <Admin /> : <SiginInAdmin />}
+        {user ? user.roles.includes("admin") ? <Admin /> : <></> : <SiginInAdmin />}
       </AuthContextProvider>
     </>
 

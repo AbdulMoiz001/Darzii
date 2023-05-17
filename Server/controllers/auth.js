@@ -11,9 +11,9 @@ export const registerUser = async (req, res) => {
   const newUser = new userSchemaMsg({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    username: req.body.username,
+    // username: req.body.username,
     email: req.body.email,
-    area: req.body.area,
+    // area: req.body.area,
     phone: req.body.phone,
     dob: req.body.dob,
     password: CryptoJS.AES.encrypt(
@@ -77,6 +77,7 @@ export const LoginUser = async (req, res) => {
   try {
     //find using email
     const user = await userSchemaMsg.findOne({ email: req.body.email });
+
     if (!user) {
       res.status(401).json("Wrong password or username!");
       return;
@@ -102,14 +103,34 @@ export const LoginUser = async (req, res) => {
     res.status(500).json(error);
   }
 };
+//check if email exists;
+export const emailExists = async (req, res) => {
+  try {
+    const user = await userSchemaMsg.findOne({ email: req.body.email });
+
+    if (!user) {
+      res.status(400).json("exists: true");
+    }
+    else {
+      res.status(401).json("exists: false");
+    }
+
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 
 export const registerDarzi = async (req, res) => {
   if (req.user.roles.includes("admin")) {
     const newUser = new darziSchema({
+      tailorId: req.body.tailorId,
+      userName: req.body.userName,
+      tailorName: req.body.tailorName,
+      phone: req.body.phone,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      phone: req.body.phone,
       password: CryptoJS.AES.encrypt(
         req.body.password,
         process.env.SECRET_KEY
@@ -210,6 +231,7 @@ export const logInDarzi = async (req, res) => {
 
       const { password, ...info } = user._doc;
       res.status(200).json({ ...info, accessToken });
+      console.log(info)
     }
   } catch (error) {
     res.status(500).json(error);

@@ -16,7 +16,13 @@ import WHinfo from "./WareHouse Manager/WHinfo";
 import DeleteWH from "./WareHouse Manager/DeleteWH";
 
 import { AuthContextProvider } from "../../../context/authContext/AuthContext";
+import { AuthContext } from "../../../context/authContext/AuthContext";
+import { useContext } from "react";
+import SignInAdmin from "../SignIn/SignInAdmin";
+
 function Admin() {
+  const { user } = useContext(AuthContext);
+
 
 
   return (
@@ -26,10 +32,19 @@ function Admin() {
         <Sidebar />
         <Topbar />
         <Routes>
-          <Route
-            path="/"
-            element={<Dashboard />}
-          />
+
+          {user ?
+
+            <Route
+              path="/"
+              element={<Dashboard />}
+            />
+            :
+            <Route
+              path="/"
+              element={<SignInAdmin />}
+            />
+          }
           <Route path="/rider/register" element={<RiderForm />} />
 
           <Route path="/darzii" element={<DarziInfo />} />

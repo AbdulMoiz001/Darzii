@@ -5,7 +5,7 @@ import { login } from "../context/authContext/apiCalls.jsx"
 import { AuthContext } from "../context/authContext/AuthContext.jsx"
 
 
-const Login = ({ setLoginStatus, setUsername }) => {
+const Login = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -23,8 +23,8 @@ const Login = ({ setLoginStatus, setUsername }) => {
     };
 
     try {
+      console.log("here")
       await login(formData, dispatch);
-      navigate('/');
     } catch (error) {
       // Handle login failure
       alert('Wrong Credentials. Please try again!');

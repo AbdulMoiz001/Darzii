@@ -39,17 +39,9 @@ const App = () => {
 
   const [Tailor, setTailor] = useState();
 
-  useEffect(() => {
-    localStorage.setItem('loginStatus', JSON.stringify(loginStatus));
-  }, [loginStatus]);
-
-  useEffect(() => {
-    localStorage.setItem('Username', JSON.stringify(Username));
-    setTailor(Tailors.find(tailor => tailor.Username === Username));
-  }, [Username]);
-
   const handleLogout = () => {
-    setLoginStatus(false); navigate('/');
+    localStorage.setItem("user", "");
+    navigate('/');
   };
 
   const openProfile = () => {
@@ -59,24 +51,24 @@ const App = () => {
   return (
     <div className='darzi'>
       <div className="top-bar">
-        {loginStatus && <button className="profile-button" onClick={openProfile}>
+        {user && <button className="profile-button" onClick={openProfile}>
           <FaUser className="profile-icon" />
           {Username}
         </button>}
         <a href={'/'}><img src={logo} alt="Logo" className='logo' /></a>
-        {loginStatus && <button className="logout-button" onClick={handleLogout}>
+        {user && <button className="logout-button" onClick={handleLogout}>
           <FaSignOutAlt className="logout-icon" />
           Logout
         </button>}
       </div>
       <div className='main'>
-        {loginStatus && <Sidebar />}
+        {user && <Sidebar />}
         <Routes>
           {
-            !loginStatus && <Route path="/" element={<Login setLoginStatus={setLoginStatus} setUsername={setUsername} />} />
+            !user && <Route path="/" element={<Login />} />
           }
 
-          {loginStatus &&
+          {user &&
             <>
               <Route path="/" element={<Dashboard Orders={OrdersData} NewOrders={NewOrders} />} />
               <Route path="profile" element={<Profile tailor={Tailor} />} />
