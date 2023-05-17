@@ -1,8 +1,37 @@
 import React, { useState } from 'react';
-import { MenuItems } from "./MenuItems"
 import { FaBars } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
-import './Navbar.css';
+// import './Navbar.css';
+
+
+const MenuItems = [
+    {
+        title: 'Home',
+        url: '',
+        cName: 'nav-links'
+    },
+    {
+        title: 'Rider',
+        url: 'rider',
+        cName: 'nav-links'
+    },
+    {
+        title: 'Darzii',
+        url: 'darzii',
+        cName: 'nav-links'
+    },
+    {
+        title: 'WareHouse Manager',
+        url: 'wareHouse',
+        cName: 'nav-links'
+    },
+
+    {
+        name: "Abdul",
+        url: "/404",
+        cName: "nav-linkd",
+    }
+]
 
 function Navbar() {
     const [clicked, setCliked] = useState(false)
