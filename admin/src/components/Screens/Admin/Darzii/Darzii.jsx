@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Routes, Route } from "react-router-dom";
 import { DynamicItem, Sidebar, dummyData } from "./components";
-import "./Darzii"
 
 function Darzii() {
     return (
