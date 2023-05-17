@@ -1,0 +1,95 @@
+.payments {
+    width: 100%;
+    margin-right: 20px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: #b7d6eb;
+    height: 500px;
+    margin-top: 20px;
+    border: white solid 2px;
+    border-radius: 30px;
+    overflow-y: hidden;
+}
+
+.payments .page-title {
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.payments-container{
+    width: 100%;
+}
+
+.payments-container .filler{
+    height: 350px;
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tr:hover {
+    background-color: #ddd;
+}
+
+.TableData {
+    max-height: 350px;
+    overflow: auto;
+}
+
+.table thead tr th {
+    position: sticky;
+    top: 0;
+}
+
+.table tr>.table td:first-child,
+.table tr>.table td:last-child {
+    text-align: center;
+}
+
+.payment-footer{
+    height: 100px;
+    width: 100%;
+}
+
+.payment-footer .footer-row{
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    font-size: 18px;
+}
+
+.payment-footer .footer-row td{
+    width : 350px;
+    text-align: center;
+    justify-content: center;
+    /* background-color: aqua; */
+    padding-top: 30px;
+}
+
+.payment-footer span{
+    font-weight: bold;
+}

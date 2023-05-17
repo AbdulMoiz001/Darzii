@@ -1,0 +1,77 @@
+.order-card {
+    width: 320px;
+    margin-right: 20px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: #b7d6eb;
+    height: 500px;
+    margin-top: 20px;
+    border: white solid 2px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.order-card h3,
+.order-design h3 {
+    margin-top: 0;
+    font-size: 24px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #000000;
+    width: 100%;
+    text-align: center;
+}
+
+.order-info {
+    margin: 16px;
+    background-color: #2A82BA;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 20px;
+    border: white solid 2px;
+}
+
+.order-info p {
+    margin: 8px 0;
+}
+
+.order-info p span {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+button {
+    background-color: #2A82BA;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #5596be;
+}
+
+.order-card .btn {
+    width: 100%;
+    text-align: center;
+}
+
+.order-design {
+    width: 650px;
+    margin-right: 20px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: #b7d6eb;
+    height: 500px;
+    margin-top: 20px;
+    border: white solid 2px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.design-pane {
+    width: 100%;
+    height: 420px;
+    overflow: auto;
+}

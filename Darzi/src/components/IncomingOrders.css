@@ -1,0 +1,55 @@
+.incoming-orders {
+    width: 100%;
+    margin-right: 20px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: #b7d6eb;
+    height: 500px;
+    margin-top: 20px;
+    border: white solid 2px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.incoming-orders .page-title {
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.incoming-orders .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    height: 440px;
+    overflow: auto;
+}
+
+.incoming-orders .card {
+    width: 220px;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.incoming-orders .card-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.incoming-orders .card-content {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.incoming-orders .update-btn {
+    float: right;
+    padding: 8px 12px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}

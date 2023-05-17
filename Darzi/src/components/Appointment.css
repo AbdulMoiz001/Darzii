@@ -1,0 +1,187 @@
+.appointment {
+    width: 100%;
+    margin-right: 20px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: #b7d6eb;
+    height: 500px;
+    margin-top: 20px;
+    border: white solid 2px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.appointment-page-title {
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.appointment-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+.appointment-table th,
+.appointment-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.appointment-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    /* text-align: center; */
+}
+
+.appointment-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.appointment-table tr:hover {
+    background-color: #ddd;
+}
+
+.appointment-TableData {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.appointment-container thead tr th {
+    position: sticky;
+    top: 0;
+}
+
+.appointment-container tr>td:first-child,
+.appointment-container tr>td:last-child {
+    text-align: center;
+}
+
+.appointment-radio-buttons {
+    color: #ffffff;
+    padding: 5px;
+    background: #2A82BA;
+    display: flex;
+}
+
+.appointment-radio-buttons label {
+    margin-right: 20px;
+}
+
+/* Customize the label (the container) */
+.appointment-radio-container {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    /* margin-bottom: 12px; */
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.appointment-radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom radio button */
+.appointment-radio-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.appointment-radio-container:hover input~.appointment-radio-checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.appointment-radio-container input:checked~.appointment-radio-checkmark {
+    background-color: #ffffff;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.appointment-radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.appointment-radio-container input:checked~.appointment-radio-checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.appointment-radio-container .appointment-radio-checkmark:after {
+    top: 5px;
+    left: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2A82BA;
+}
+
+.appointment-card {
+    /* Styles for the appointment cards */
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 16px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.appointment-card-info {
+    /* Styles for the appointment card info section */
+    display: flex;
+    flex-direction: column;
+}
+
+.appointment-card-title {
+    /* Styles for the appointment card title */
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.appointment-card-details {
+    /* Styles for the appointment card details section */
+    font-size: 13px;
+}
+
+.incoming-appointments {
+    /* Styles for horizontal scrollable container */
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.appointment-incoming-title {
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.appointment-card-operation{
+    float: right;
+}

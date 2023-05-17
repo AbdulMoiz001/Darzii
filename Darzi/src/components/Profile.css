@@ -1,0 +1,41 @@
+.tailor-card {
+    width: 100%;
+    margin-right: 20px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: #b7d6eb;
+    height: 500px;
+    margin-top: 20px;
+    border: white solid 2px;
+    border-radius: 30px;
+    overflow-y: hidden;
+}
+
+.tailor-card h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-bottom: 80px;
+}
+
+.tailor-card p {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.tailor-card span {
+    font-weight: bold;
+}
+
+.tailor-card .tailor-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.foot-note{
+    margin-top: 100px;
+    width: 100%;
+    text-align: center;
+    font-size: small;
+}

@@ -1,0 +1,94 @@
+.main {
+    display: flex;
+    height: 100%;
+    color: #070707;
+}
+
+.top-bar {
+    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+    background-size: 200% auto;
+    height: 80px;
+    text-align: center;
+    justify-content: center;
+}
+
+.logo {
+    justify-self: start;
+    cursor: pointer;
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* CSS */
+.logout-button {
+    background: #2A82BA;
+    border-radius: 999px;
+    box-shadow: #5E5DF0 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 8px 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+    word-break: break-word;
+    border: 0;
+    position: absolute;
+    right: 10px;
+    top: 25px;
+}
+
+.logout-button:hover {
+    background: #f38273;
+    color: #070707;
+}
+
+.logout-icon {
+    position: relative;
+    margin-right: 5px;
+    top: 2px;
+}
+
+.profile-button {
+    background: #047c2c;
+    border-radius: 999px;
+    box-shadow: hsl(130, 56%, 55%) 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 8px 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+    word-break: break-word;
+    border: 0;
+    position: absolute;
+    left: 10px;
+    top: 25px;
+}
+
+.profile-button:hover {
+    background: #FF9E0E;
+    color: #070707;
+}
+
+.profile-icon {
+    position: relative;
+    margin-right: 5px;
+    top: 2px;
+}

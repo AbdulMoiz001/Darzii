@@ -1,0 +1,80 @@
+.main-dash{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.main-dash .card {
+    width: 180px;
+    height: 180px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.main-dash .card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.main-dash .card p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Add fancy backgrounds to the cards */
+.main-dash .card:nth-child(1) {
+    background-color: #ffb74d;
+    background-image: linear-gradient(to right, #ffb74d, #ff9800);
+    color: #fff;
+}
+
+.main-dash .card:nth-child(2) {
+    background-color: #81d4fa;
+    background-image: linear-gradient(to right, #81d4fa, #03a9f4);
+    color: #fff;
+}
+
+.main-dash .card:nth-child(3) {
+    background-color: #64b5f6;
+    background-image: linear-gradient(to right, #64b5f6, #2196f3);
+    color: #fff;
+}
+
+.main-dash .card:nth-child(4) {
+    background-color: #4db6ac;
+    background-image: linear-gradient(to right, #4db6ac, #009688);
+    color: #fff;
+}
+
+.main-dash .card:nth-child(5) {
+    background-color: #aed581;
+    background-image: linear-gradient(to right, #aed581, #8bc34a);
+    color: #fff;
+}
+
+.main-dash .card:nth-child(6) {
+    background-color: #f06292;
+    background-image: linear-gradient(to right, #f06292, #e91e63);
+    color: #fff;
+}
+
+.main-dash .card:nth-child(7) {
+    background-color: #ba68c8;
+    background-image: linear-gradient(to right, #ba68c8, #9c27b0);
+    color: #fff;
+}
+
+.main-dash .card:nth-child(8) {
+    background-color: #7986cb;
+    background-image: linear-gradient(to right, #7986cb, #3f51b5);
+    color: #fff;
+}
