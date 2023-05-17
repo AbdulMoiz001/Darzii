@@ -4,6 +4,8 @@ import axios from 'axios';
 import { FaChevronLeft } from 'react-icons/fa';
 import Map from '../../Maps/Map';
 import { useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../../context/authContext/AuthContext';
 
 
 
@@ -22,9 +24,9 @@ function EditDarzi() {
     const [DarziCoordinates, setDarziCoordinates] = useState(null);
 
 
-    const accessToken =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjA4NDNlYjFhZjhlYTIxMzJkMTA0YyIsInJvbGVzIjpbInVzZXIiLCJhZG1pbiJdLCJpYXQiOjE2NzI3NTg4NDMsImV4cCI6MTY3MjkzMTY0M30.l2nqHDaDaHY9tBSNy2jeHlKSX_ONHoOOnxXr69DBpvY";
+    const { user } = useContext(AuthContext);
 
+    const accessToken = user.accessToken;
 
     const [formData, setFormData] = useState({});
     useEffect(() => {

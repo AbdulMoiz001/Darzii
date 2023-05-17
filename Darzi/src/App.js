@@ -1,3 +1,4 @@
+import axios from "axios"
 import Dashboard from './components/Dashboard';
 import Payments from './components/Payments';
 import Login from './components/Login';
@@ -20,28 +21,42 @@ import Appointment from './components/Appointment';
 import { AuthContext } from './context/authContext/AuthContext';
 
 const App = () => {
-
-
   const { user } = useContext(AuthContext);
-
-
   const navigate = useNavigate();
 
-  const [Username, setUsername] = useState(() => {
-    const storedUsername = localStorage.getItem('Username');
-    return storedUsername === null ? '' : JSON.parse(storedUsername);
-  });
 
-  const [loginStatus, setLoginStatus] = useState(() => {
-    const storedStatus = localStorage.getItem('loginStatus');
-    return storedStatus === null ? false : JSON.parse(storedStatus);
-  });
+  // const accessToken = user.accessToken;
+  const accessToken = user ? user.accessToken : "";
+
+
+  //Orders DATA will be in orderData
+  const [orderData, setOrderData] = useState([{}]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/order/getOrdersForTailor",
+          {
+            headers: {
+              token: "Bearer " + accessToken,
+            },
+          });
+        setOrderData(res.data);
+      } catch (error) {
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+
 
   const [Tailor, setTailor] = useState();
 
   const handleLogout = () => {
-    localStorage.setItem("user", "");
+    localStorage.removeItem("tailor")
     navigate('/');
+    window.location.reload();
   };
 
   const openProfile = () => {
@@ -53,7 +68,7 @@ const App = () => {
       <div className="top-bar">
         {user && <button className="profile-button" onClick={openProfile}>
           <FaUser className="profile-icon" />
-          {Username}
+          {user.userName}
         </button>}
         <a href={'/'}><img src={logo} alt="Logo" className='logo' /></a>
         {user && <button className="logout-button" onClick={handleLogout}>
@@ -70,12 +85,12 @@ const App = () => {
 
           {user &&
             <>
-              <Route path="/" element={<Dashboard Orders={OrdersData} NewOrders={NewOrders} />} />
-              <Route path="profile" element={<Profile tailor={Tailor} />} />
-              <Route path="orders" element={<Orders Orders={OrdersData} />} />
-              <Route path="payments" element={<Payments Orders={OrdersData.filter(order => order.OrderStatus === 'Dispatched')} />} />
+              <Route path="/" element={<Dashboard Orders={orderData} NewOrders={NewOrders} />} />
+              <Route path="profile" element={<Profile tailor={user} />} />
+              <Route path="orders" element={<Orders Orders={orderData} />} />
+              <Route path="payments" element={<Payments Orders={orderData.filter(order => order.OrderStatus === 'Dispatched')} />} />
               <Route path="order" element={<Order />} />
-              <Route path="incoming-orders" element={<IncomingOrders NewOrders={NewOrders} />} />
+              <Route path="incoming-orders" element={<IncomingOrders NewOrders={orderData.filter(order => order.OrderStatus === 'Pending')} />} />
               <Route path="appointment" element={<Appointment />} />
             </>
           }

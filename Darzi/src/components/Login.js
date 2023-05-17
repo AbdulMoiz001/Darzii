@@ -6,7 +6,7 @@ import { AuthContext } from "../context/authContext/AuthContext.jsx"
 
 
 const Login = () => {
-  const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
@@ -17,18 +17,21 @@ const Login = () => {
 
   const handleLogin = async (event) => {
 
+    event.preventDefault();
+
+
     const formData = {
-      userId,
+      email,
       password,
     };
 
     try {
-      console.log("here")
       await login(formData, dispatch);
+      console.log()
     } catch (error) {
-      // Handle login failure
       alert('Wrong Credentials. Please try again!');
     }
+
   };
 
   return (
@@ -43,9 +46,9 @@ const Login = () => {
               <i className="login__icon fas fa-user"></i>
               <input
                 type="text"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
-                placeholder="User ID"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="email"
                 className='login__input'
               />
             </div>

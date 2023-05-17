@@ -1,6 +1,10 @@
 import React from 'react'
 import "./Dashboard.css"
 import { FaChevronRight } from 'react-icons/fa'
+import axios from "axios"
+import { useState } from 'react'
+import { useEffect, useContext } from 'react';
+import { AuthContext } from '../../../context/authContext/AuthContext'
 
 
 
@@ -28,6 +32,30 @@ const UsersInfo = [
 
 function Dashboard() {
 
+    const [totalOrders, setTotalOrders] = useState(0);
+
+
+    const { user } = useContext(AuthContext);
+
+    const accessToken = user.accessToken;
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/order/getOrders",
+                    {
+                        headers: {
+                            token: "Bearer " + accessToken,
+                        },
+                    });
+                setTotalOrders(res.data);
+            } catch (error) {
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
 
 
     return (
@@ -41,6 +69,9 @@ function Dashboard() {
 
                 <div className='orders card'>
                     Orders
+                    <div>
+                        {totalOrders}
+                    </div>
                 </div>
 
                 {UsersInfo.map((item, index) => {

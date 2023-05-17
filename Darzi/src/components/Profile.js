@@ -7,7 +7,7 @@ const Profile = ({ tailor }) => {
       <div className="tailor-info">
         <h2>{tailor.TailorName}</h2>
         <p>
-            <span>Contact:</span> {tailor.TailorContactNumber}
+          <span>Contact:</span> {tailor.phone}
         </p>
         <p>
           <span>Name:</span> {tailor.firstName} {tailor.lastName}
@@ -16,7 +16,7 @@ const Profile = ({ tailor }) => {
           <span>Email:</span> {tailor.email}
         </p>
         <p>
-          <span>CINC:</span> {tailor.cinc}
+          <span>CINC:</span> {tailor.cnic}
         </p>
         <p>
           <span>Address:</span> {tailor.address}

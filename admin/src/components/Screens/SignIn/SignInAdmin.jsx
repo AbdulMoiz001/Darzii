@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignInAdmin = () => {
 
-    const { dispatch } = useContext(AuthContext);
+    const { dispatch, error } = useContext(AuthContext);
 
 
     const [formData, setFormData] = useState({
@@ -27,7 +27,12 @@ const SignInAdmin = () => {
         try {
             event.preventDefault();
             await login(formData, dispatch);
+
             window.location.reload();
+            if (error) {
+                alert("Wrong Username or Password");
+            }
+
         } catch (error) {
             alert("error");
 

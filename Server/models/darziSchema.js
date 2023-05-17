@@ -5,11 +5,6 @@ const DarziSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    tailorId:
-    {
-        type: String,
-        required: true,
-    },
     userName:
     {
         type: String,
@@ -70,6 +65,6 @@ const DarziSchema = new mongoose.Schema({
     },
 });
 
-const darziSchema = mongoose.model("darzi", DarziSchema);
+const darziSchema = mongoose.model("tailor", DarziSchema);
 
 export default darziSchema;
