@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { login } from "../context/authContext/apiCalls.jsx"
+import { AuthContext } from "../context/authContext/AuthContext.jsx"
+
 
 const Login = ({ setLoginStatus, setUsername }) => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (userId === 'test' && password === '123') {
-      setLoginStatus(true);
-      setUsername(userId);
+  const { dispatch } = useContext(AuthContext);
+
+
+
+
+  const handleLogin = async (event) => {
+
+    const formData = {
+      userId,
+      password,
+    };
+
+    try {
+      await login(formData, dispatch);
       navigate('/');
-    } else {
-      setLoginStatus(false);
+    } catch (error) {
+      // Handle login failure
       alert('Wrong Credentials. Please try again!');
     }
   };
@@ -23,9 +36,9 @@ const Login = ({ setLoginStatus, setUsername }) => {
       <div className="screen">
         <div className="screen__content">
           <form className="login">
-          <div className='login-title'> Welcome,
-            <h1>Darzi</h1>
-          </div>
+            <div className='login-title'> Welcome,
+              <h1>Darzi</h1>
+            </div>
             <div className="login__field">
               <i className="login__icon fas fa-user"></i>
               <input

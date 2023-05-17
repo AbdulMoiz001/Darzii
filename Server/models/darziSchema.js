@@ -5,6 +5,26 @@ const DarziSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
+
+    tailorId:
+    {
+        type: String,
+        required: true,
+    },
+    userName:
+    {
+        type: String,
+        required: true,
+    },
+    tailorName:
+    {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: String,
+        required: true,
+    },
     firstName: {
         type: String,
         required: true,
@@ -15,7 +35,6 @@ const DarziSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
         unique: true,
     },
 
@@ -23,10 +42,7 @@ const DarziSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    phone: {
-        type: String,
-        required: true,
-    },
+
     cnic: {
         type: String,
         required: true,

@@ -4,7 +4,7 @@ import Login from './components/Login';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import logo from './components/Images/logo.png'
 import { FaSignOutAlt } from 'react-icons/fa';
 import Orders from './components/Orders';
@@ -17,7 +17,14 @@ import OrdersData from './components/OrdersData';
 import NewOrders from './components/PendingOrdersData';
 import Appointment from './components/Appointment';
 
+import { AuthContext } from './context/authContext/AuthContext';
+
 const App = () => {
+
+
+  const { user } = useContext(AuthContext);
+
+
   const navigate = useNavigate();
 
   const [Username, setUsername] = useState(() => {
@@ -42,8 +49,7 @@ const App = () => {
   }, [Username]);
 
   const handleLogout = () => {
-    setLoginStatus(false);
-    navigate('/');
+    setLoginStatus(false); navigate('/');
   };
 
   const openProfile = () => {
@@ -67,11 +73,19 @@ const App = () => {
         {loginStatus && <Sidebar />}
         <Routes>
           {
-            !loginStatus &&
-            <Route path="/" element={<Login setLoginStatus={setLoginStatus} setUsername={setUsername}/>} />
+            !loginStatus && <Route path="/" element={<Login setLoginStatus={setLoginStatus} setUsername={setUsername} />} />
           }
+
           {loginStatus &&
-            <><Route path="/" element={<Dashboard Orders={OrdersData} NewOrders={NewOrders}/>} /><Route path="profile" element={<Profile tailor={Tailor}/>} /><Route path="orders" element={<Orders Orders={OrdersData}/>} /><Route path="payments" element={<Payments Orders={OrdersData.filter(order => order.OrderStatus === 'Dispatched')}/>} /><Route path="order" element={<Order />} /><Route path="incoming-orders" element={<IncomingOrders NewOrders={NewOrders}/>} /><Route path="appointment" element={<Appointment/>} /></>
+            <>
+              <Route path="/" element={<Dashboard Orders={OrdersData} NewOrders={NewOrders} />} />
+              <Route path="profile" element={<Profile tailor={Tailor} />} />
+              <Route path="orders" element={<Orders Orders={OrdersData} />} />
+              <Route path="payments" element={<Payments Orders={OrdersData.filter(order => order.OrderStatus === 'Dispatched')} />} />
+              <Route path="order" element={<Order />} />
+              <Route path="incoming-orders" element={<IncomingOrders NewOrders={NewOrders} />} />
+              <Route path="appointment" element={<Appointment />} />
+            </>
           }
         </Routes>
       </div>
