@@ -14,3 +14,7 @@ export const getAppointments = async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 };
+
+export const updateAppointment = async (req, res) => {
+
+};
