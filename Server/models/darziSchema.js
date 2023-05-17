@@ -5,7 +5,6 @@ const DarziSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-
     tailorId:
     {
         type: String,
