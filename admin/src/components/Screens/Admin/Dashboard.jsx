@@ -3,6 +3,7 @@ import "./Dashboard.css"
 import { FaChevronRight } from 'react-icons/fa'
 
 
+
 const UsersInfo = [
     {
         title: 'Darzies',
@@ -26,8 +27,13 @@ const UsersInfo = [
 
 
 function Dashboard() {
+
+
+
     return (
         <>
+
+
             <div className='DashboardBox'>
                 <div className='orders card'>
                     Total Sales

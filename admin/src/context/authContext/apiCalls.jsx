@@ -11,7 +11,7 @@ export const login = async (user, dispatch) => {
         );
         dispatch(loginSuccess(res.data))
     } catch (error) {
-        dispatch(loginFailure())
+        dispatch(loginFailure());
     }
 
 }

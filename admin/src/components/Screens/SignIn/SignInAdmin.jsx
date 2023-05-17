@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import "./css/SignInAdmin.css";
+import { login } from "../../../context/authContext/apiCalls";
+import { AuthContext } from "../../../context/authContext/AuthContext";
 
 const SignInAdmin = () => {
+
+    const { dispatch } = useContext(AuthContext);
+
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -14,15 +19,16 @@ const SignInAdmin = () => {
         });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // TODO: Add form validation and submit data to server
+        await login(formData, dispatch);
+        window.location.reload();
     };
 
     return (
         <>
             <h1>Admin SignIn</h1>
-            <div className='SignInBox'>
+            <div className='SignInBox' >
                 <form className='SignInForm' onSubmit={handleSubmit}>
                     <label>Email:</label>
                     <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
@@ -30,7 +36,7 @@ const SignInAdmin = () => {
                     <label>Password:</label>
                     <input type="password" name="password" value={formData.password} onChange={handleInputChange} required />
 
-                    <button type="submit">SignIn</button>
+                    <button type="submit" disabled={dispatch}>SignIn</button>
                 </form>
             </div>
         </>

@@ -5,12 +5,17 @@ import SiginInAdmin from "./components/Screens/SignIn/SignInAdmin"
 
 
 import { AuthContext } from "../src/context/authContext/AuthContext";
+import { AuthContextProvider } from "../src/context/authContext/AuthContext";
+
 function App() {
   const { user } = useContext(AuthContext);
+  // user.roles.includes("user")
 
   return (
     <>
-      {user ? <Admin /> : <SiginInAdmin />}
+      <AuthContextProvider>
+        {user.roles.includes("admin") ? <Admin /> : <SiginInAdmin />}
+      </AuthContextProvider>
     </>
 
   );
