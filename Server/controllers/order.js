@@ -38,12 +38,13 @@ export const createMeasurementOrder = async (req, res) => {
 
 export const getNumberOfOrdersForTailor = async (req, res) => {
     try {
-        const tailorId = req.user.tailorId;
+        const tailorId = req.user.id;
         const orders = await OrderSchema
-            .find({ tailorID: tailorId })
+            .find({ TailorID: tailorId })
             .select(
-                'OrderID ClothingType OrderStatus Price CustomerID CustomerContactNumber CustomerName TailorID TailorName TailorContactNumber OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating Catalogue CatalogueID Measurements ClothUI Design'
+                'OrderID ClothingType OrderStatus Price CustomerID CustomerContactNumber CustomerName TailorName TailorContactNumber OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating Catalogue CatalogueID Measurements ClothUI Design'
             );
+
         res.status(200).json(orders);
     } catch (error) {
         console.error(error);
@@ -55,7 +56,7 @@ export const getPaymentInformation = async (req, res) => {
     try {
         const tailorId = req.params.tailorId;
 
-        const paymentInformation = await orderSchema.findOne({ tailorID: tailorId }).select('OrderID ClothingType OrderStatus Price CustomerID CustomerContactNumber CustomerName OrderDeliveryDeadline');
+        const paymentInformation = await OrderSchema.findOne({ tailorID: tailorId }).select('OrderID ClothingType OrderStatus Price CustomerID CustomerContactNumber CustomerName OrderDeliveryDeadline');
 
         if (!paymentInformation) {
             return res.status(404).json({ message: 'Payment information not found' });
@@ -68,3 +69,31 @@ export const getPaymentInformation = async (req, res) => {
     }
 };
 
+
+
+export const updateOrderStatus = async (req, res) => {
+
+    try {
+        const order = await OrderSchema.findById(req.body.id);
+        console.log(order.TailorID, req.user.id);
+        if (order.TailorID === req.user.id) {
+
+            const updatedOrder = await OrderSchema.findOneAndUpdate(
+                { _id: req.body.id },
+                { $set: { OrderStatus: 'Received' } },
+                { new: true }
+            );
+            res.status(200).json("order update to recieved " + updatedOrder._id);
+        }
+        else {
+
+            res.status(403).json("You are not allowed");
+        }
+
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
+    }
+
+}

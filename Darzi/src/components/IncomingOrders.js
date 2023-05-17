@@ -1,7 +1,8 @@
 import React from 'react';
 import './IncomingOrders.css';
+import axios from 'axios';
 
-function IncomingOrders({NewOrders}) {
+function IncomingOrders({ NewOrders }) {
   return (
     <div className="incoming-orders">
       <div className="page-title">Incoming Orders</div>

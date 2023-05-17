@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import "./Order.css";
 import DesignPane from "./DesignPane";
+import { AuthContext } from "../context/authContext/AuthContext";
+import axios from "axios";
 
 const Order = () => {
+    const { user } = useContext(AuthContext);
+    const accessToken = user ? user.accessToken : "";
+
+
     const location = useLocation();
     const propString = new URLSearchParams(location.search).get("order");
     const o_data = JSON.parse(decodeURIComponent(propString));
     const [order, setOrder] = useState({
-        OrderID: o_data.OrderID,
+        OrderID: o_data._id,
         ClothingType: o_data.ClothingType,
         OrderStatus: o_data.OrderStatus,
         Price: o_data.Price,
@@ -53,12 +59,24 @@ const Order = () => {
         }
     }, [order.OrderStatus]);
 
-    const handleStatusChange = () => {
+    const handleStatusChange = async () => {
+
         const newStatus = nextStatus();
         setOrder((prevOrder) => ({
             ...prevOrder,
             OrderStatus: newStatus,
         }));
+        try {
+            const res = await axios.post("http://localhost:5000/order/updateOrderStatus", { id: o_data._id },
+                {
+                    headers: {
+                        token: "Bearer " + accessToken,
+                    },
+                });
+            console.log(res);
+        } catch (error) {
+        }
+
     };
 
     return (
@@ -108,7 +126,7 @@ const Order = () => {
             <div className="order-design">
                 <h3>Order Design</h3>
                 <div className="design-pane">
-                    <DesignPane/>
+                    <DesignPane />
                 </div>
             </div>
         </>

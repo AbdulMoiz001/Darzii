@@ -14,7 +14,7 @@ function Appointment() {
 
 
   const { user } = useContext(AuthContext);
-  const accessToken = user.accessToken;
+  const accessToken = user ? user.accessToken : "";
 
   useEffect(() => {
     const fetchOrders = async () => {

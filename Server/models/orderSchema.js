@@ -5,8 +5,7 @@ const orderSchema = new mongoose.Schema({
   ItemID: { type: Number, },
   ItemTitle: { type: String, },
   TailorID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "tailor",
+    type: String,
   },
   TailorName: { type: String, },
   Size: { type: String, default: null },
@@ -40,8 +39,7 @@ const orderSchema = new mongoose.Schema({
   ClothingType: { type: String, },
   OrderStatus: { type: String, },
   CustomerID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    type: String,
   },
   CustomerContactNumber: { type: String, },
   CustomerName: { type: String, },
