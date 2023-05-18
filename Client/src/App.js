@@ -35,22 +35,22 @@ function App() {
 
   return (
     <div className="App">
-      {user ? <SINavbar cartItemCount={cartItemCount}/> : <Navbar />}
+      {user ? <SINavbar cartItemCount={cartItemCount} /> : <Navbar />}
 
       <AuthContextProvider>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='Store' element={<StoreScreen />} />
-          <Route path='Try' element={<Gateway />} />
-          <Route path='ClothUI' element={<ClothUI />} />
-          <Route path='MeasurementForm' element={<MeasurementForm />} />
-          {user ? <Route path='Profile' element={<Profile />} /> : <></>}
-          <Route path='Tailor' element={<Tailor />} />
-          <Route path='OrderCreation' element={<OrderCreation />} />
-          <Route path='Cart' element={<Cart onCartItemCountChange={handleCartItemCountChange}/>} />
-          <Route path='Checkout' element={<Checkout />} />
-          <Route path='Orders' element={<Orders />} />
-          <Route path='Order' element={<Order />} />
+          <Route path='/Store' element={<StoreScreen />} />
+          <Route path='/Try' element={<Gateway />} />
+          <Route path='/ClothUI' element={<ClothUI />} />
+          <Route path='/MeasurementForm' element={<MeasurementForm />} />
+          {user ? <Route path='/Profile' element={<Profile />} /> : <></>}
+          <Route path='/Tailor' element={<Tailor />} />
+          <Route path='/OrderCreation' element={<OrderCreation />} />
+          <Route path='/Cart' element={<Cart onCartItemCountChange={handleCartItemCountChange} />} />
+          <Route path='/Checkout' element={<Checkout />} />
+          <Route path='/Orders' element={<Orders />} />
+          <Route path='/Order' element={<Order />} />
         </Routes>
       </AuthContextProvider>
     </div >

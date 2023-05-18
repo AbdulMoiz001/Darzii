@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Tailor.css";
+import Map from "../Maps/Map";
 
 const tailors = [
   {
@@ -7,21 +8,27 @@ const tailors = [
     imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFKDJ4mF5M_JMtbwiVQ_FK3qRB_Zma20YIeLamqETuyoeSpoqfOynWr9Z8XH3P55Xz_oo&usqp=CAU",
     name: "Baari Tailors",
     description: "Baari Tailors, is in the industry since 1908.",
-    price: 1099
+    price: 1099,
+    lat: 24.4234872984,
+    lng: 26.9384209820
   },
   {
     id: 2,
     imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjRIc9_1kP9L5V-Gl4dejhvIxNoIwcafKpjGq6kPPkIJMPsj1VWvPqkPP2QcEtTkBJwaU&usqp=CAU",
     name: "Sartoria Tailors",
     description: "Situated in the heart of Karachi, providing quality.",
-    price: 1599
+    price: 1599,
+    lat: 24.4234872984,
+    lng: 26.9384209820
   },
   {
     id: 3,
     imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsThTe1pLqospIFkZXCz6A-xxk2ARSxjaDXZP2kvSdDiwhhXCoQI7Mo3Ul6GwfhcbAfPc&usqp=CAU",
     name: "Knockout Tailors",
     description: "Best choice for your special occasions.",
-    price: 2099
+    price: 2099,
+    lat: 24.4234872984,
+    lng: 26.9384209820
   }
 ];
 
@@ -75,9 +82,15 @@ const Tailor = () => {
         ))}
       </div>
       {selectedTailor && (
-        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose}/>
+        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} />
       )}
+
+      <div>
+        <Map tailors={tailors} />
+      </div >
     </div>
+
+
   );
 };
 
