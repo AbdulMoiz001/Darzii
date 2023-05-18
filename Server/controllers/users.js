@@ -1,6 +1,7 @@
 // import userSchema from "../models/User.js";
 import CryptoJS from "crypto-js";
 import userSchema from "../models/userShema.js";
+import darziSchema from "../models/darziSchema.js";
 
 //Update
 export const userUpdate = async (req, res) => {
@@ -74,4 +75,72 @@ export const GetAll = async (req, res) => {
     res.status(403).json("You cannot access this data");
   }
 };
-//Get User Stats
+
+
+
+export const GetAllTailor = async (req, res) => {
+
+  if (req.user["roles"].includes("admin")) {
+    try {
+
+      const tailor = await darziSchema.find();
+      res.status(200).json(tailor);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+  else {
+    res.status(403).json("You cannot access this data");
+  }
+
+}
+
+
+export const deleteTailor = async (req, res) => {
+
+  if (req.user["roles"].includes("admin")) {
+
+    try {
+      const tailorId = req.params.id; // Get the tailor ID from the request parameters
+
+      // Delete the tailor from the database
+      await darziSchema.findByIdAndRemove(tailorId);
+
+      res.status(200).json({ message: "Tailor deleted successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred while deleting the tailor" });
+    }
+  }
+  else {
+    res.status(403).json("You cannot access this data");
+  }
+};
+
+
+
+export const updatTailor = async (req, res) => {
+  if (req.user["roles"].includes("admin")) {
+
+    console.log(req.params.id);
+    try {
+      const tailorId = req.params.id;
+      const updatedTailor = await darziSchema.findByIdAndUpdate(
+        tailorId,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).json(updatTailor)
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Error" });
+    }
+  }
+  else {
+    res.status(403).json("You cannot access this data");
+  }
+
+}
+

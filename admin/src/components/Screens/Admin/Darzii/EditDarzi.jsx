@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useState, React, useEffect } from 'react'
 import "./css/EditDarzi.css";
 import axios from 'axios';
@@ -13,6 +15,9 @@ import { AuthContext } from '../../../../context/authContext/AuthContext';
 
 
 function EditDarzi() {
+
+    const navigate = useNavigate();
+
 
 
     const location = useLocation();
@@ -31,7 +36,11 @@ function EditDarzi() {
     const [formData, setFormData] = useState({});
     useEffect(() => {
         setFormData(o_data);
-    }, [o_data])
+        const { lat, lng } = formData;
+        setDarziCoordinates({ lat, lng });
+
+
+    }, [])
 
 
     const handleChange = (event) => {
@@ -41,31 +50,41 @@ function EditDarzi() {
             [name]: value,
         }));
     };
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event, id) => {
         event.preventDefault();
-        console.log(formData);
         try {
+            console.log(id);
             const res = await axios.post(
-                "http://localhost:5000/auth/registerDarzi",
-                formData,
+                `http://localhost:5000/user/updateTailor/${id}`,
+                formData,  // Move the formData here
                 {
                     headers: {
                         token: "Bearer " + accessToken,
                     },
                 }
             );
-            console.log(res);
-        } catch (err) {
-            console.log(err);
+
+            navigate('/darzii/users');
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
         }
     };
 
+
     useEffect(() => {
-        console.log('Clicked coordinates:', DarziCoordinates);
-    }, [DarziCoordinates])
+
+        setFormData(DarziCoordinates ? (prevFormData) => ({
+            ...prevFormData,
+            lat: DarziCoordinates["lat"],
+            lng: DarziCoordinates["lng"],
+        }) : o_data);
+
+    }, [DarziCoordinates]);
+
     return (
         <div className='DarziInfoBox'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(event) => handleSubmit(event, formData._id)}>
                 <h2> <a href="/darzii/users">
 
                     <FaChevronLeft />
@@ -122,7 +141,7 @@ function EditDarzi() {
                                 type="password"
                                 name="password"
                                 id="password"
-                                value={formData.password}
+                                value=""
                                 onChange={handleChange}
                             />
                         </td>
@@ -148,7 +167,7 @@ function EditDarzi() {
                                 type="text"
                                 name="cnic"
                                 id="cnic"
-                                value={formData.CNIC}
+                                value={formData.cnic}
                                 onChange={handleChange}
                                 ondou
                             />

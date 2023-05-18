@@ -1,111 +1,95 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./css/DeleteDarzii.css";
 import { GrTrash } from 'react-icons/gr';
 import { FaChevronLeft } from 'react-icons/fa';
+import axios from "axios"
+import { AuthContext } from "../../../../context/authContext/AuthContext";
 
-
-const DarziInfo = [
-    {
-
-        title: 'Darzi A',
-        orders: 'X',
-        ordersCompleted: 'OX',
-        ordersPending: 'X',
-        totalOrders: 50,
-
-        darziiId: 1234,
-
-
-        card: "infoCard"
-    },
-    {
-
-        title: 'Darzi C',
-        orders: 'X',
-        ordersCompleted: 'OX',
-        ordersPending: 'X',
-        totalOrders: 50,
-
-        darziiId: 1234,
-        card: "infoCard"
-    },
-    {
-
-        title: 'Darzi D',
-        orders: 'X',
-        ordersCompleted: 'OX',
-        ordersPending: 'X',
-        totalOrders: 50,
-
-        darziiId: 1234,
-        card: "infoCard"
-    },
-    {
-
-        title: 'Darzi E',
-        orders: 'X',
-        ordersCompleted: 'OX',
-        ordersPending: 'X',
-        totalOrders: 50,
-
-        darziiId: 1234,
-        card: "infoCard"
-    }
-
-]
 
 function DeleteDarzii() {
+    const [darziInfo, setDarziInfo] = useState([]);
+    const { user } = useContext(AuthContext);
+    const accessToken = user ? user.accessToken : "";
 
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/user/getAllTailors", {
+                    headers: {
+                        token: "Bearer " + accessToken,
+                    },
+                });
+                setDarziInfo(res.data);
+                console.log(res);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
+    const handleDelete = async (id) => {
+        try {
+            // Make an HTTP request to delete the item with the given ID
+            await axios.delete(`http://localhost:5000/user/deleteTailor/${id}`, {
+                headers: {
+                    token: "Bearer " + accessToken,
+                },
+            });
+
+            // Update the darziInfo state by filtering out the deleted item
+            setDarziInfo((prevInfo) => prevInfo.filter((item) => item._id !== id));
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
-        <div className='darziiBox'>
-
-
-
-            <div className='info'>
-                <h4> <a href="/darzii/">
-
-                    <FaChevronLeft />
-                    Darziies
-                </a>
+        <div className="darziiBox">
+            <div className="info">
+                <h4>
+                    <a href="/darzii/">
+                        <FaChevronLeft />
+                        Darziies
+                    </a>
                 </h4>
-                <hr></hr>
+                <hr />
             </div>
 
-            {DarziInfo.map((item, index) => {
-                return (
-                    <div className={item.card} key={index}>
-                        <div className='darziiTitle'>
-                            <label>
-                                {item.title}
-                            </label>
+            {darziInfo.length > 0 ? (
+                darziInfo.map((item, index) => (
+                    <div className="infoCard" key={index}>
+                        <div className="id infoBox">
+                            <label htmlFor="id">ID : </label>
+                            <label>{item._id}</label>
                         </div>
-                        <div className='totalOrders infoBox'>
-                            <label htmlFor="totalOrders">Total Orders</label>
-                            <span>
-                                {item.totalOrders}
-                            </span>
-
+                        <div className="darziiuserName infoBox">
+                            <label htmlFor="cnic">UserName : </label>
+                            <label>{item.userName}</label>
                         </div>
-
-                        <div className='ordersCompleted infoBox'>
-                            <label htmlFor="ordersCompleted">Orders Completed : </label>
-                            <span>{item.ordersCompleted}</span>
+                        <div className="cnic infoBox">
+                            <label htmlFor="cnic">CNIC : </label>
+                            <span>{item.cnic}</span>
                         </div>
-
-                        <div className='ordersPending infoBox' >
-                            <label htmlFor="ordersPending">Pending Orders : </label>
-                            <span>{item.ordersPending}</span>
-
+                        <div className="phone infoBox">
+                            <label htmlFor="phone">Phone :</label>
+                            <span>{item.phone}</span>
                         </div>
-
-                        <div className='deleteBox'><button className='deleteButton' href={item.url}>Delete <GrTrash /></button></div>
-
-
+                        <div className="email infoBox">
+                            <label htmlFor="email">Email :</label>
+                            <span>{item.email}</span>
+                        </div>
+                        <div className="deleteBox">
+                            <button className="deleteButton" onClick={() => handleDelete(item._id)}>
+                                Delete <GrTrash />
+                            </button>
+                        </div>
                     </div>
-                )
-            })}
-
+                ))
+            ) : (
+                <div className="infoCard">No Data Found</div>
+            )}
         </div>
     );
 }

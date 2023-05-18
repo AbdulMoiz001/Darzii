@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { AreaDropdownBlack } from "../Areas";
 import "./Form.css";
 import axios from "axios";
 import Map from "../../Maps/Map";
@@ -9,7 +8,7 @@ import { useContext } from "react";
 
 const DarziiForm = () => {
 
-  const [DarziCoordinates, setDarziCoordinates] = useState(null);
+  const [DarziCoordinates, setDarziCoordinates] = useState();
 
 
   const { user } = useContext(AuthContext);
@@ -30,7 +29,8 @@ const DarziiForm = () => {
     cinc: "",
     address: "",
     skill: "",
-    location: "",
+    lat: "",
+    lng: "",
 
   });
 
@@ -58,10 +58,19 @@ const DarziiForm = () => {
     } catch (err) {
       console.log(err);
     }
+
+    window.location.reload();
   };
 
   useEffect(() => {
-    console.log('Clicked coordinates:', DarziCoordinates);
+
+    setFormData(DarziCoordinates ? (prevFormData) => ({
+      ...prevFormData,
+      lat: DarziCoordinates["lat"],
+      lng: DarziCoordinates["lng"],
+    }) : formData);
+    console.log(formData);
+
   }, [DarziCoordinates])
 
 
@@ -78,18 +87,7 @@ const DarziiForm = () => {
         <table>
 
           <tr>
-            <td>
-              <label htmlFor="tailorId">Tailor Id</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                name="tailorId"
-                id="tailorId"
-                value={formData.tailorId}
-                onChange={handleChange}
-              />
-            </td>
+
 
             <td>
               <label htmlFor="userName">UserName</label>

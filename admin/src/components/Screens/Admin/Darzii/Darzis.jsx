@@ -1,59 +1,35 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./css/Darzis.css";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { AuthContext } from '../../../../context/authContext/AuthContext';
+import axios from 'axios';
 
-const DarziInfo = [
-
-    {
-        TailorID: 2001,
-        Username: ' test',
-        TailorName: 'Elegant Tailors',
-        phone: '0300-7452125',
-        firstName: "Rashid",
-        lastName: "Khurshid",
-        email: "elegant.tailor90@gmail.com",
-        CNIC: "42201-1548466-9",
-        address: "Shop# 05, Pari Mall, Qaidabad, Karachi, Sindh, Pakistan",
-        skill: "Femail Shalwar Kameez",
-        card: "darziCard"
-
-    },
-
-    {
-        TailorID: 2021,
-        Username: ' test 1',
-        TailorName: 'Elegant Tailors',
-        phone: '0300-7452125',
-        firstName: "Rashid",
-        lastName: "Khurshid",
-        email: "elegant.tailor90@gmail.com",
-        CNIC: "42201-1548466-9",
-        address: "Shop# 05, Pari Mall, Qaidabad, Karachi, Sindh, Pakistan",
-        skill: "Femail Shalwar Kameez",
-        card: "darziCard",
-
-
-    },
-
-    {
-        TailorID: 2321,
-        Username: ' test 2 ',
-        TailorName: 'Elegant Tailors',
-        phone: '0300-7452125',
-        firstName: "Rashid",
-        lastName: "Khurshid",
-        email: "elegant.tailor90@gmail.com",
-        CNIC: "42201-1548466-9",
-        address: "Shop# 05, Pari Mall, Qaidabad, Karachi, Sindh, Pakistan",
-        skill: "Femail Shalwar Kameez",
-        card: "darziCard"
-
-    },
-
-
-]
 
 function Darzis() {
+
+    const [darziInfo, setDarziInfo] = useState([]);
+    const { user } = useContext(AuthContext);
+    const accessToken = user ? user.accessToken : "";
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/user/getAllTailors", {
+                    headers: {
+                        token: "Bearer " + accessToken,
+                    },
+                });
+                setDarziInfo(res.data);
+                console.log(res.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
+
     return (
         <div className='Darzis'>
 
@@ -68,19 +44,25 @@ function Darzis() {
             </div>
 
 
-            {DarziInfo.map((item, index) => {
+            {darziInfo.map((item, index) => {
                 return (
-                    <div className={item.card} key={index}>
+                    <div className="infoCard" key={index}>
                         <div className='darziiTitle'>
                             <label>
                                 ID :
-                                {item.TailorID}
+                                {item._id}
                             </label>
                         </div>
                         <div className='darziiTitle'>
                             <label>
                                 Name :
-                                {item.Username}
+                                {item.userName}
+                            </label>
+                        </div>
+                        <div className='darziiTitle'>
+                            <label>
+                                Email :
+                                {item.email}
                             </label>
                         </div>
 
@@ -88,7 +70,7 @@ function Darzis() {
                         <div className=' infoBox'>
                             <label htmlFor="TailorName">Tailor Name:</label>
                             <span>
-                                {item.TailorName}
+                                {item.tailorName}
                             </span>
 
                         </div>

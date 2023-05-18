@@ -46,6 +46,17 @@ const DarziSchema = new mongoose.Schema({
         { type: mongoose.Schema.Types.ObjectId, ref: "measurementOrder" }
     ],
 
+
+    lat:
+    {
+        type: String,
+    },
+    lng:
+    {
+        type: String,
+    },
+
+
     skill:
     {
         type: String,

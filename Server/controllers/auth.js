@@ -138,6 +138,8 @@ export const registerDarzi = async (req, res) => {
       cnic: req.body.cnic,
       address: req.body.address,
       skill: req.body.skill,
+      lat: req.body.lat,
+      lng: req.body.lng
     });
     try {
       const user = await newUser.save();

@@ -9,31 +9,30 @@ const containerStyle = {
 const center = {
     lat: 24.90128935919415,
     lng: 67.12061598638903
-
 };
 
 function MyComponent({ DarziCoordinates, setDarziCoordinates }) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: "AIzaSyBPK5vF5NcPMtpuKPHWdYU5Og1vIw7K1as"
-    })
+    });
 
-    const [map, setMap] = React.useState(null)
+    const [map, setMap] = React.useState(null);
+    const [tailorLocation, setTailorLocation] = useState(null);
 
     const onLoad = React.useCallback(function callback(map) {
-        // This is just an example of getting and using the map instance!!! don't just blindly copy!
         const bounds = new window.google.maps.LatLngBounds(center);
         map.fitBounds(bounds);
-
-        setMap(map)
-    }, [])
-
-    const onUnmount = React.useCallback(function callback(map) {
-        setMap(null)
-    }, [])
+        setMap(map);
 
 
-    const [TailorLocation, setTailorLocation] = useState(null);
+    }, []);
+
+    const onUnmount = React.useCallback(function callback() {
+        setMap(null);
+    }, []);
+
+
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
@@ -48,20 +47,14 @@ function MyComponent({ DarziCoordinates, setDarziCoordinates }) {
                 };
                 setTailorLocation(coordinates);
                 setDarziCoordinates(coordinates);
-
             }}
         >
-            { /* Child components, such as markers, info windows, etc. */}
-            <>
-
-                <Marker
-                    position={TailorLocation}
-                >
-
+            {tailorLocation && (
+                <Marker position={tailorLocation}>
                 </Marker>
-            </>
-        </GoogleMap >
-    ) : <></>
+            )}
+        </GoogleMap>
+    ) : <></>;
 }
 
-export default React.memo(MyComponent)
+export default React.memo(MyComponent);
