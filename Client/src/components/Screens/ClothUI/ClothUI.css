@@ -1,9 +1,21 @@
-.ClothUI{
+.ClothUI .main{
     display: flex;  /* make the parent element a flex container */
     height: 500px;   /* set the height of the parent element to 100% */
     border-radius: 10px;
     margin: 30px;
+    margin-top: 10px;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3); 
     background-color: rgba(255, 255, 255, .08);
     backdrop-filter: blur(1px);
 }
+
+.ClothUI .Header{
+    color: white;
+    font-size: large;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+ .ClothUI .tailorName{
+    font-weight: bold;
+ }

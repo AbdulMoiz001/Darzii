@@ -1,0 +1,32 @@
+.order-details {
+    background-color: #f5f5f54d;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 30px;
+    position:relative;
+}
+
+.order-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.order-details h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.order-details p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.order-details p:first-child {
+    margin-top: 10px;
+}
+
+.order-details p:last-child {
+    margin-bottom: 20px;
+}

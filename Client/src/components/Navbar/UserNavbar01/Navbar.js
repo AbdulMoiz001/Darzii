@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MenuItems } from "./MenuItems"
+import { MenuItems } from "./MenuItems";
+import logo from "../../Images/logo.png";
 import './Navbar.css';
 
 function Navbar() {
@@ -11,7 +12,7 @@ function Navbar() {
     
     return(
         <nav className='NavbarItems'>
-            <a href={'/'}><h1 className='navbar-logo'>Darzii<i className='fab fa-accusoft'></i></h1></a>
+            <a href={'/'}><img src={logo} alt="Logo" className='logo'/></a>
             <div className='menu-icon' onClick={handleClick}>
                 <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
             </div>
@@ -30,4 +31,4 @@ function Navbar() {
     );
 }
 
-export default Navbar
+export default Navbar;

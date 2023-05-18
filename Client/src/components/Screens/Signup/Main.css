@@ -1,211 +1,211 @@
-  .gateway {
-    padding-bottom: 20px;
-    font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
-  }
+.gateway {
+  padding-bottom: 20px;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+}
 
-  .wrapper {
-    margin: 0 auto;
-    max-width: 680px;
-  }
+.wrapper {
+  margin: 0 auto;
+  max-width: 680px;
+}
 
-  .card {
-    border-radius: 10px;
-    margin-top: 30px;
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, .08);
-    backdrop-filter: blur(1px);
-    padding: 57px 65px;
-  }
+.card {
+  border-radius: 10px;
+  margin-top: 30px;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, .08);
+  backdrop-filter: blur(1px);
+  padding: 57px 65px;
+}
 
-  .title {
-    color: #ffffff;
-    margin-bottom: 40px;
-    font-size: 30px;
-    font-weight: 400;
-  }
+.title {
+  color: #ffffff;
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 400;
+}
 
-  .row {
-    display: flex;
-    justify-content: space-between;
-  }
+.row {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .col {
-    width: calc((100% - 30px) / 2);
-  }
+.col {
+  width: calc((100% - 30px) / 2);
+}
 
-  .group {
-    position: relative;
-    margin-bottom: 22px;
-  }
+.group {
+  position: relative;
+  margin-bottom: 22px;
+}
 
-  .formLabel {
-    font-size: 16px;
-    color: rgb(255, 255, 255);
-    text-transform: capitalize;
-    display: block;
-    margin-bottom: 5px;
-  }
+.formLabel {
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  text-transform: capitalize;
+  display: block;
+  margin-bottom: 5px;
+}
 
-  .inputStyle {
-    line-height: 50px;
-    width: 100%;
-    background-color: rgba(255, 255, 255, .08);
-    box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
-    border-radius: 5px;
-    padding: 0 20px;
-    font-size: 16px;
-    color: rgb(255, 255, 255);
-    transition: all 0.4s ease;
-    border: none;
-    outline: none;
-  }
+.inputStyle {
+  line-height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, .08);
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 5px;
+  padding: 0 20px;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  transition: all 0.4s ease;
+  border: none;
+  outline: none;
+}
 
-  .radioDiv {
-    padding-top: 10px;
-  }
+.radioDiv {
+  padding-top: 10px;
+}
 
-  .signupCard .radio-container {
-    display: inline-block;
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
-    font-size: 16px;
-    color: rgb(255, 255, 255);
-    user-select: none;
-  }
+.signupCard .radio-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  user-select: none;
+}
 
-  .signupCard .radio-container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
+.signupCard .radio-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
 
-  .signupCard .radio-container input:checked~.checkmark {
-    background-color: rgba(255, 255, 255, .08);
-  }
+.signupCard .radio-container input:checked~.checkmark {
+  background-color: rgba(255, 255, 255, .08);
+}
 
-  .signupCard .radio-container input:checked~.checkmark:after {
-    display: block;
-  }
+.signupCard .radio-container input:checked~.checkmark:after {
+  display: block;
+}
 
-  .signupCard .radio-container .checkmark:after {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #e4e2e2;
-  }
+.signupCard .radio-container .checkmark:after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e4e2e2;
+}
 
-  .signupCard .checkmark {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: rgba(255, 255, 255, .08);
-    border-radius: 50%;
-    box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
-  }
+.signupCard .checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: rgba(255, 255, 255, .08);
+  border-radius: 50%;
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+}
 
-  .signupCard .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
+.signupCard .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
 
-  .buttonDiv {
-    padding-top: 15px;
-  }
+.buttonDiv {
+  padding-top: 15px;
+}
 
-  .m-r-45 {
-    margin-right: 45px;
-  }
+.m-r-45 {
+  margin-right: 45px;
+}
 
-  .btn-form {
-    display: inline-block;
-    line-height: 50px;
-    padding: 0 50px;
-    transition: all 0.4s ease;
-    cursor: pointer;
-    font-size: 18px;
-    color: #fff;
-    font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
-    border-radius: 5px;
-    background: #000000;
-    outline: none;
-    border: none;
-  }
+.btn-form {
+  display: inline-block;
+  line-height: 50px;
+  padding: 0 50px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  font-size: 18px;
+  color: #fff;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+  border-radius: 5px;
+  background: #000000;
+  outline: none;
+  border: none;
+}
 
-  .btn-form:hover {
-    background: #161616;
-  }
+.btn-form:hover {
+  background: #161616;
+}
 
-  .controls {
-    float: right;
-    display: flex;
-    justify-content: space-around;
-  }
+.controls {
+  float: right;
+  display: flex;
+  justify-content: space-around;
+}
 
-  .loginCard {
-    transition: all 0.3s ease-in-out;
-  }
+.loginCard {
+  transition: all 0.3s ease-in-out;
+}
 
-  .signupCard {
-    transition: all 0.3s ease-in-out;
-  }
+.signupCard {
+  transition: all 0.3s ease-in-out;
+}
 
-  .btn-control-form {
-    transition: all 0.4s ease;
-    cursor: pointer;
-    font-size: 15px;
-    width: 90px;
-    height: 40px;
-    color: #fff;
-    font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
-    border-radius: 10px;
-    background: #000000;
-    outline: none;
-    border: none;
-    display: inline-block;
-  }
+.btn-control-form {
+  transition: all 0.4s ease;
+  cursor: pointer;
+  font-size: 15px;
+  width: 90px;
+  height: 40px;
+  color: #fff;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+  border-radius: 10px;
+  background: #000000;
+  outline: none;
+  border: none;
+  display: inline-block;
+}
 
-  .btn-control-form:hover {
-    background-color: #161616;
-    color: #ffffff;
-  }
+.btn-control-form:hover {
+  background-color: #161616;
+  color: #ffffff;
+}
 
-  .changeColor {
-    background: linear-gradient(90deg, rgb(231, 217, 13) 0%, rgb(231, 173, 12) 100%);
-    color: #070707;
-    outline: none;
-    border: none;
-  }
+.changeColor {
+  background: linear-gradient(90deg, rgb(231, 217, 13) 0%, rgb(231, 173, 12) 100%);
+  color: #070707;
+  outline: none;
+  border: none;
+}
 
-  .changeColor:hover {
-    background: #000000;
-    color: #ffffff;
-  }
+.changeColor:hover {
+  background: #000000;
+  color: #ffffff;
+}
 
-  .tagline {
-    font-size: 15px;
-    margin-left: 40px;
-    float: right;
-    margin-right: 20px;
-    margin-top: 15px;
-  }
+.tagline {
+  font-size: 15px;
+  margin-left: 40px;
+  float: right;
+  margin-right: 20px;
+  margin-top: 15px;
+}
 
-  .selectInput{
-    height: 50px;
-    max-width: 100%;
-    background-color: rgba(255, 255, 255, .08);
-    box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
-    border-radius: 5px;
-    padding: 0 20px;
-    color: rgb(255, 255, 255);
-    transition: all 0.4s ease;
-    border: none;
-    outline: none;
-  }
+.selectInput{
+  height: 50px;
+  max-width: 100%;
+  background-color: rgba(255, 255, 255, .08);
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 5px;
+  padding: 0 20px;
+  color: rgb(255, 255, 255);
+  transition: all 0.4s ease;
+  border: none;
+  outline: none;
+}

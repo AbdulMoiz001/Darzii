@@ -19,12 +19,10 @@
     margin-top: 10px;
     padding: 30px;
     border-radius: 5px;
-    width: 80%;
-    max-width: 800px;
+    width: 800px;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
     background-color: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(1px);
-    /* color: #ffffff; */
 }
 
 .order-creation .form-row {
@@ -50,22 +48,28 @@
     display: flex;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    width: 790px;
+    padding: 10px;
 }
 
 .order-creation .option-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
     cursor: pointer;
-    border: 2px solid #ccc;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(1px);
     border-radius: 5px;
     padding: 10px;
-    width: 250px;
+    min-width: 230px;
+    min-height: 230px;
 }
 
 .order-creation .option-card:hover {
-    background-color: #f1f1f1;
+    background-color: rgb(119, 67, 78);
 }
 
 .order-creation .option-card-info {
@@ -75,72 +79,18 @@
     flex-grow: 1;
 }
 
-.order-creation .option-card-info h3 {
-    margin-top: 0;
-}
-
-.order-creation .option-card-info p {
-    margin: 10px 0;
+.order-creation .option-card-info div {
+    margin: 5px;
+    width: 100%;
 }
 
 .order-creation .checkmark {
-    color: green;
+    color: rgb(255, 208, 0);
     font-size: 24px;
-    align-self: flex-end;
-    margin-top: -35px;
-    margin-right: -10px;
 }
 
 .order-creation .selected {
-    background-color: #f1f1f1;
-}
-
-.order-creation .dropdown {
-    position: relative;
-}
-
-.order-creation .dropdown-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    width: 250px;
-    cursor: pointer;
-}
-
-.order-creation .dropdown-button:hover {
-    background-color: #f1f1f1;
-}
-
-.order-creation .dropdown-icon {
-    font-size: 24px;
-}
-
-.order-creation .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 5px 5px;
-    padding: 10px;
-    width: 250px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1;
-}
-
-.order-creation .dropdown-menu-item {
-    padding: 5px;
-    cursor: pointer;
-}
-
-.order-creation .dropdown-menu-item:hover {
-    background-color: #f1f1f1;
+    background-color: rgb(119, 67, 78);
 }
 
 .order-creation .submit-button {
@@ -159,4 +109,24 @@
 .order-creation .submit-button:hover {
     background: #000000;
     color: #ffffff;
+}
+
+.order-creation .button {
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    background: #000000;
+    color: rgb(255, 255, 255);
+    outline: none;
+    border: solid 2px rgb(231, 173, 12);
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.order-creation .button:hover {
+    background: linear-gradient(90deg, rgb(231, 217, 13) 0%, rgb(231, 173, 12) 100%);
+    color: #000000;
+    border: solid 2px rgb(0, 0, 0);
 }

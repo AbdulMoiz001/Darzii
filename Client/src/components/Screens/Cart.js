@@ -1,118 +1,92 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './Cart.css';
 
-const CartDummyData = [
-  {
-    OrderID: 1,
-    OrderType: "store_purchase",
-    ItemID: 123,
-    ItemTitle: "Shirt",
-    TailorID: null,
-    TailorName: null,
-    Size: "Large",
-    Measurements: {
-      height: null,
-      weight: null,
-      chest: null,
-      waist: null,
-      hips: null,
-      shoulder: null,
-      sleeves: null,
-      neck: null
-    },
-    ClothUI: null,
-    Design: null,
-    Catalogue: null,
-    CatalogueID: null,
-    Price: 100,
-    Title: "Trendy Shirt"
-  },
-  {
-    OrderID: 2,
-    OrderType: "store_purchase_with_stitching",
-    ItemID: 456,
-    ItemTitle: "Cloth",
-    TailorID: 123,
-    TailorName: "Elegant Tailors",
-    Size: null,
-    Measurements: {
-      height: 5,
-      weight: 5,
-      chest: 5,
-      waist: 5,
-      hips: 5,
-      shoulder: 5,
-      sleeves: 5,
-      neck: 5
-    },
-    ClothUI: true,
-    Design: {
-      beltStyle: "Style 01",
-      cuffsStyle: "Style 02",
-      bottomStyle: "Style 03",
-      trouserStyle: "Style 01",
-      stitchStyle: "Style 02",
-      collarStyle: "Style 03",
-      sleevesStyle: "Style 01",
-      shoulderStyle: "Style 02",
-      neckStyle: "Style 03",
-      lacingStyle: "Style 01"
-    },
-    Catalogue: false,
-    CatalogueID: null,
-    Price: 2000,
-    Title: "Store Purchase with Stitching Item"
-  },
-  {
-    OrderID: 3,
-    OrderType: "store_purchase_with_stitching",
-    ItemID: 456,
-    ItemTitle: "Cloth",
-    TailorID: 123,
-    TailorName: "Elegant Tailors",
-    Size: null,
-    Measurements: {
-      height: 5,
-      weight: 5,
-      chest: 5,
-      waist: 5,
-      hips: 5,
-      shoulder: 5,
-      sleeves: 5,
-      neck: 5
-    },
-    ClothUI: false,
-    Design: {
-      beltStyle: null,
-      cuffsStyle: null,
-      bottomStyle: null,
-      trouserStyle: null,
-      stitchStyle: null,
-      collarStyle: null,
-      sleevesStyle: null,
-      shoulderStyle: null,
-      neckStyle: null,
-      lacingStyle: null
-    },
-    Catalogue: true,
-    CatalogueID: 254,
-    Price: 3000,
-    Title: "Store Purchase with Stitching Item"
-  }
-];
-
-function Cart({ setCartItemCount }) {
-  const cartItemCount = 4;
-
-  useEffect(() => {
-    setCartItemCount(cartItemCount);
-  }, [cartItemCount, setCartItemCount]);
-
+const CartItem = ({ item, onRemoveItem }) => {
   return (
-    <div className='Cart'>
-      Cart
+    <div className="cart-item">
+      <div className="item-details">
+        <h3>{item.ItemTitle}</h3>
+        <p>Order Type: {item.OrderType}</p>
+        <p>Rs. {item.Price}</p>
+      </div>
+      <button className="delete-button" onClick={() => onRemoveItem(item.OrderID)}>
+        Delete
+      </button>
     </div>
   );
-}
+};
+
+const Cart = ({ onCartItemCountChange }) => {
+  const [cartItems, setCartItems] = useState([]);
+  const [cartItemCount, setCartItemCount] = useState(0);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Retrieve cart items from cache
+    const cachedCartItems = localStorage.getItem('cartItems');
+    const initialCartItems = cachedCartItems ? JSON.parse(cachedCartItems) : [];
+    setCartItems(initialCartItems);
+
+    // Retrieve cart item count from cache
+    const cachedCartItemCount = localStorage.getItem('cartItemCount');
+    const initialCartItemCount = cachedCartItemCount ? parseInt(cachedCartItemCount) : 0;
+    setCartItemCount(initialCartItemCount);
+  }, []);
+
+  useEffect(() => {
+    // Update cache whenever cart items change
+    updateCache(cartItems);
+    updateCartItemCount(cartItems.length);
+
+    // Notify parent component about cart item count change
+    onCartItemCountChange(cartItems.length);
+  }, [cartItems, onCartItemCountChange]);
+
+  // Function to update the cache with cart items
+  const updateCache = (updatedCartItems) => {
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+  };
+
+  // Function to update the cache with cart item count
+  const updateCartItemCount = (count) => {
+    localStorage.setItem('cartItemCount', count);
+  };
+
+  // Function to remove an item from the cart
+  const handleRemoveItem = (orderId) => {
+    const updatedCartItems = cartItems.filter((item) => item.OrderID !== orderId);
+    setCartItems(updatedCartItems);
+    setCartItemCount((prevCount) => prevCount - 1); // Update cart item count
+  };
+
+  useEffect(() => {
+    // Add new cart item from URL query parameter
+    const newItem = JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('cart_item')));
+    if (newItem) {
+      setCartItems((prevItems) => [...prevItems, newItem]);
+      setCartItemCount((prevCount) => prevCount + 1);
+    }
+  }, [location.search]);
+
+  return (
+    <div className="cart-container">
+      <h2>Cart, {cartItemCount} items</h2>
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <div className="cart-items">
+          {cartItems.map((item) => (
+            <CartItem key={item.OrderID} item={item} onRemoveItem={handleRemoveItem} />
+          ))}
+        </div>
+      )}
+      <div>
+        <h3>Total: {cartItems.reduce((total, cart_item) => total + cart_item.Price, 0)}</h3>
+        <a className="book-btn" href={`Checkout?cartItems=${encodeURIComponent(JSON.stringify(cartItems))}`}>Checkout</a>
+      </div>
+    </div>
+  );
+};
 
 export default Cart;

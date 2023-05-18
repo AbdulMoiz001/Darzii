@@ -1,0 +1,39 @@
+.user-profile-container {
+    color: #fff;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #cccccc34;
+    margin-top: 30px;
+    border-radius: 20px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logout-button {
+    background-color: #df6603;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.profile-details {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+h2,
+h3 {
+    margin-top: 0;
+}
+
+.address {
+    margin-bottom: 20px;
+}

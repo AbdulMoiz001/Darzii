@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-// import { MenuItems } from "./MenuItems"
+import { FaShoppingCart } from 'react-icons/fa';
 import './SINavbar.css';
 import { AuthContext } from '../../../context/authContext/AuthContext';
+import logo from "../../Images/logo.png";
 
-
-function SINavbar() {
-    const { user } = useContext(AuthContext)
+function SINavbar({ cartItemCount }) {
+    const { user } = useContext(AuthContext);
 
     const MenuItems = [
         {
@@ -15,36 +15,40 @@ function SINavbar() {
         },
         {
             title: 'Tailor',
-            url: '#',
+            url: 'Tailor',
             cName: 'nav-links'
         },
-        {
-            title: 'ClothUI',
-            url: 'ClothUI',
-            cName: 'nav-links'
-        },
-        {
-            title: 'About Us',
-            url: '#',
-            cName: 'nav-links'
-        },
-
         {
             title: user.firstName,
-            url: '/blank',
+            url: 'Profile',
+            cName: 'nav-links'
+        },
+        {
+            title: 'Orders',
+            url: 'Orders',
+            cName: 'nav-links'
+        },
+        {
+            title: (
+                <>
+                    <span className="cart-item-count">{cartItemCount>0 && '+'}{cartItemCount}</span>
+                    <FaShoppingCart className="cart-icon" />
+                </>
+            ),
+            url: 'Cart',
             cName: 'nav-links'
         }
     ];
 
-    const [clicked, setCliked] = useState(false)
+    const [clicked, setClicked] = useState(false);
 
     const handleClick = () => {
-        setCliked(!clicked);
-    }
+        setClicked(!clicked);
+    };
 
     return (
         <nav className='NavbarItems'>
-            <a href={'/'}><h1 className='navbar-logo'>Darzii<i className='fab fa-accusoft'></i></h1></a>
+            <a href={'/'}><img src={logo} alt="Logo" className='logo' /></a>
             <div className='menu-icon' onClick={handleClick}>
                 <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
             </div>
@@ -63,6 +67,4 @@ function SINavbar() {
     );
 };
 
-
-
-export default SINavbar
+export default SINavbar;
