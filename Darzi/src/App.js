@@ -1,10 +1,11 @@
+import axios from "axios"
 import Dashboard from './components/Dashboard';
 import Payments from './components/Payments';
 import Login from './components/Login';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import logo from './components/Images/logo.png'
 import { FaSignOutAlt } from 'react-icons/fa';
 import Orders from './components/Orders';
@@ -17,33 +18,45 @@ import OrdersData from './components/OrdersData';
 import NewOrders from './components/PendingOrdersData';
 import Appointment from './components/Appointment';
 
+import { AuthContext } from './context/authContext/AuthContext';
+
 const App = () => {
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [Username, setUsername] = useState(() => {
-    const storedUsername = localStorage.getItem('Username');
-    return storedUsername === null ? '' : JSON.parse(storedUsername);
-  });
 
-  const [loginStatus, setLoginStatus] = useState(() => {
-    const storedStatus = localStorage.getItem('loginStatus');
-    return storedStatus === null ? false : JSON.parse(storedStatus);
-  });
+  // const accessToken = user.accessToken;
+  const accessToken = user ? user.accessToken : "";
+
+
+  //Orders DATA will be in orderData
+  const [orderData, setOrderData] = useState([{}]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/order/getOrdersForTailor",
+          {
+            headers: {
+              token: "Bearer " + accessToken,
+            },
+          });
+        setOrderData(res.data);
+      } catch (error) {
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+
 
   const [Tailor, setTailor] = useState();
 
-  useEffect(() => {
-    localStorage.setItem('loginStatus', JSON.stringify(loginStatus));
-  }, [loginStatus]);
-
-  useEffect(() => {
-    localStorage.setItem('Username', JSON.stringify(Username));
-    setTailor(Tailors.find(tailor => tailor.Username === Username));
-  }, [Username]);
-
   const handleLogout = () => {
-    setLoginStatus(false);
+    localStorage.removeItem("tailor")
     navigate('/');
+    window.location.reload();
   };
 
   const openProfile = () => {
@@ -53,25 +66,33 @@ const App = () => {
   return (
     <div className='darzi'>
       <div className="top-bar">
-        {loginStatus && <button className="profile-button" onClick={openProfile}>
+        {user && <button className="profile-button" onClick={openProfile}>
           <FaUser className="profile-icon" />
-          {Username}
+          {user.userName}
         </button>}
         <a href={'/'}><img src={logo} alt="Logo" className='logo' /></a>
-        {loginStatus && <button className="logout-button" onClick={handleLogout}>
+        {user && <button className="logout-button" onClick={handleLogout}>
           <FaSignOutAlt className="logout-icon" />
           Logout
         </button>}
       </div>
       <div className='main'>
-        {loginStatus && <Sidebar />}
+        {user && <Sidebar />}
         <Routes>
           {
-            !loginStatus &&
-            <Route path="/" element={<Login setLoginStatus={setLoginStatus} setUsername={setUsername}/>} />
+            !user && <Route path="/" element={<Login />} />
           }
-          {loginStatus &&
-            <><Route path="/" element={<Dashboard Orders={OrdersData} NewOrders={NewOrders}/>} /><Route path="profile" element={<Profile tailor={Tailor}/>} /><Route path="orders" element={<Orders Orders={OrdersData}/>} /><Route path="payments" element={<Payments Orders={OrdersData.filter(order => order.OrderStatus === 'Dispatched')}/>} /><Route path="order" element={<Order />} /><Route path="incoming-orders" element={<IncomingOrders NewOrders={NewOrders}/>} /><Route path="appointment" element={<Appointment/>} /></>
+
+          {user &&
+            <>
+              <Route path="/" element={<Dashboard Orders={orderData} NewOrders={NewOrders} />} />
+              <Route path="profile" element={<Profile tailor={user} />} />
+              <Route path="orders" element={<Orders Orders={orderData} />} />
+              <Route path="payments" element={<Payments Orders={orderData.filter(order => order.OrderStatus === 'Dispatched')} />} />
+              <Route path="order" element={<Order />} />
+              <Route path="incoming-orders" element={<IncomingOrders NewOrders={orderData.filter(order => order.OrderStatus === 'Pending')} />} />
+              <Route path="appointment" element={<Appointment />} />
+            </>
           }
         </Routes>
       </div>

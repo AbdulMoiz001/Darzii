@@ -5,6 +5,20 @@ const DarziSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
+    userName:
+    {
+        type: String,
+        required: true,
+    },
+    tailorName:
+    {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: String,
+        required: true,
+    },
     firstName: {
         type: String,
         required: true,
@@ -15,7 +29,6 @@ const DarziSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
         unique: true,
     },
 
@@ -23,10 +36,7 @@ const DarziSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    phone: {
-        type: String,
-        required: true,
-    },
+
     cnic: {
         type: String,
         required: true,
@@ -35,6 +45,17 @@ const DarziSchema = new mongoose.Schema({
     measurementOrders: [
         { type: mongoose.Schema.Types.ObjectId, ref: "measurementOrder" }
     ],
+
+
+    lat:
+    {
+        type: String,
+    },
+    lng:
+    {
+        type: String,
+    },
+
 
     skill:
     {
@@ -55,6 +76,6 @@ const DarziSchema = new mongoose.Schema({
     },
 });
 
-const darziSchema = mongoose.model("darzi", DarziSchema);
+const darziSchema = mongoose.model("tailor", DarziSchema);
 
 export default darziSchema;

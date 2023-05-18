@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, } from 'react';
 import "./css/SignInAdmin.css";
+import { login } from "../../../context/authContext/apiCalls";
+import { AuthContext } from "../../../context/authContext/AuthContext";
+import { useNavigate } from 'react-router-dom';
+
+
 
 const SignInAdmin = () => {
+
+    const { dispatch, error } = useContext(AuthContext);
+
+
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -14,15 +23,26 @@ const SignInAdmin = () => {
         });
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // TODO: Add form validation and submit data to server
+    const handleSubmit = async (event) => {
+        try {
+            event.preventDefault();
+            await login(formData, dispatch);
+
+            window.location.reload();
+            if (error) {
+                alert("Wrong Username or Password");
+            }
+
+        } catch (error) {
+            alert("error");
+
+        }
     };
 
     return (
         <>
             <h1>Admin SignIn</h1>
-            <div className='SignInBox'>
+            <div className='SignInBox' >
                 <form className='SignInForm' onSubmit={handleSubmit}>
                     <label>Email:</label>
                     <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
@@ -30,7 +50,7 @@ const SignInAdmin = () => {
                     <label>Password:</label>
                     <input type="password" name="password" value={formData.password} onChange={handleInputChange} required />
 
-                    <button type="submit">SignIn</button>
+                    <button type="submit" disabled={!Boolean(dispatch)} onSubmit={handleSubmit}>SignIn</button>
                 </form>
             </div>
         </>

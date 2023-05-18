@@ -1,21 +1,37 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { login } from "../context/authContext/apiCalls.jsx"
+import { AuthContext } from "../context/authContext/AuthContext.jsx"
 
-const Login = ({ setLoginStatus, setUsername }) => {
-  const [userId, setUserId] = useState('');
+
+const Login = () => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (userId === 'test' && password === '123') {
-      setLoginStatus(true);
-      setUsername(userId);
-      navigate('/');
-    } else {
-      setLoginStatus(false);
+  const { dispatch } = useContext(AuthContext);
+
+
+
+
+  const handleLogin = async (event) => {
+
+    event.preventDefault();
+
+
+    const formData = {
+      email,
+      password,
+    };
+
+    try {
+      await login(formData, dispatch);
+      console.log()
+    } catch (error) {
       alert('Wrong Credentials. Please try again!');
     }
+
   };
 
   return (
@@ -23,16 +39,16 @@ const Login = ({ setLoginStatus, setUsername }) => {
       <div className="screen">
         <div className="screen__content">
           <form className="login">
-          <div className='login-title'> Welcome,
-            <h1>Darzi</h1>
-          </div>
+            <div className='login-title'> Welcome,
+              <h1>Darzi</h1>
+            </div>
             <div className="login__field">
               <i className="login__icon fas fa-user"></i>
               <input
                 type="text"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
-                placeholder="User ID"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="email"
                 className='login__input'
               />
             </div>

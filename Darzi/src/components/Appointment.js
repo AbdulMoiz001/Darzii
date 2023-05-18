@@ -1,9 +1,42 @@
-import React, { useState } from 'react';
+import axios from "axios"
+import React, { useContext, useEffect, useState } from 'react';
 import './Appointment.css';
 import AppointmentsData from './AppointmentsData';
 import { FaTimes, FaCheck } from 'react-icons/fa';
+import { AuthContext } from '../context/authContext/AuthContext';
+
 
 function Appointment() {
+
+
+  //DATA FROM THE DATA BASE IS IN THE FOLOOWING!!!!
+  const [appointmentsData, setAppointmentsData] = useState({});
+
+
+  const { user } = useContext(AuthContext);
+  const accessToken = user ? user.accessToken : "";
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/appointment/getAppointments",
+          {
+            headers: {
+              token: "Bearer " + accessToken,
+            },
+          });
+        setAppointmentsData(res.data);
+        console.log(res.data);
+      } catch (error) {
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+
+
+
   const [selectedOption, setSelectedOption] = useState('All');
   const [Appointments, setAppointments] = useState(AppointmentsData);
 

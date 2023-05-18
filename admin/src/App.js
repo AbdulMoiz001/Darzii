@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import Admin from "./components/Screens/Admin/Admin";
-// import Darzii from "./components/Screens/Admin/Darzii/Darzii";
-// import SignInAdmin from "./components/Screens/SignIn/SignInAdmin";
+import SiginInAdmin from "./components/Screens/SignIn/SignInAdmin"
+
+
+
+import { AuthContext } from "../src/context/authContext/AuthContext";
+import { AuthContextProvider } from "../src/context/authContext/AuthContext";
+
+const handleUnAuth = () => {
+  localStorage.removeItem("user");
+}
+
 
 function App() {
+  const { user } = useContext(AuthContext);
+
   return (
     <>
-
-      <Admin />
+      <AuthContextProvider>
+        {user && user.roles.includes("admin") ? <Admin /> : <SiginInAdmin />}
+      </AuthContextProvider>
     </>
-    // <Darzii />
-    // <SignInAdmin />
+
   );
 }
 
