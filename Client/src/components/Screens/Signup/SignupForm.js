@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import './Main.css';
 import Areas from './Areas';
 import axios from 'axios';
-import { useEffect } from 'react';
-
 function SignupForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

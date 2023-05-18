@@ -10,22 +10,22 @@ function SINavbar({ cartItemCount }) {
     const MenuItems = [
         {
             title: 'Shop',
-            url: 'Store',
+            url: '/Store',
             cName: 'nav-links'
         },
         {
             title: 'Tailor',
-            url: 'Tailor',
+            url: '/Tailor',
             cName: 'nav-links'
         },
         {
             title: user.firstName,
-            url: 'Profile',
+            url: '/Profile',
             cName: 'nav-links'
         },
         {
             title: 'Orders',
-            url: 'Orders',
+            url: '/Orders',
             cName: 'nav-links'
         },
         {
@@ -35,7 +35,7 @@ function SINavbar({ cartItemCount }) {
                     <FaShoppingCart className="cart-icon" />
                 </>
             ),
-            url: 'Cart',
+            url: '/Cart',
             cName: 'nav-links'
         }
     ];

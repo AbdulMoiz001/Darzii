@@ -16,6 +16,7 @@ import Cart from './components/Screens/Cart';
 import Checkout from './components/Screens/Checkout';
 import Orders from './components/Screens/Orders';
 import Order from './components/Screens/Order';
+import Appointments from './components/Screens/Appointments';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -40,17 +41,18 @@ function App() {
       <AuthContextProvider>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='Store' element={<StoreScreen />} />
-          <Route path='Try' element={<Gateway />} />
-          <Route path='ClothUI' element={<ClothUI />} />
-          <Route path='MeasurementForm' element={<MeasurementForm />} />
-          {user ? <Route path='Profile' element={<Profile />} /> : <></>}
-          <Route path='Tailor' element={<Tailor />} />
-          <Route path='OrderCreation' element={<OrderCreation />} />
-          <Route path='Cart' element={<Cart onCartItemCountChange={handleCartItemCountChange}/>} />
-          <Route path='Checkout' element={<Checkout />} />
-          <Route path='Orders' element={<Orders />} />
-          <Route path='Order' element={<Order />} />
+          <Route path='/Store' element={<StoreScreen />} />
+          <Route path='/Try' element={<Gateway />} />
+          <Route path='/ClothUI' element={<ClothUI />} />
+          <Route path='/MeasurementForm' element={<MeasurementForm />} />
+          {user ? <Route path='/Profile' element={<Profile />} /> : <></>}
+          <Route path='/Tailor' element={<Tailor />} />
+          <Route path='/OrderCreation' element={<OrderCreation />} />
+          <Route path='/Cart' element={<Cart onCartItemCountChange={handleCartItemCountChange}/>} />
+          <Route path='/Checkout' element={<Checkout />} />
+          <Route path='/Orders' element={<Orders />} />
+          <Route path='/Order' element={<Order />} />
+          <Route path='/Appointments' element={<Appointments />} />
         </Routes>
       </AuthContextProvider>
     </div >
