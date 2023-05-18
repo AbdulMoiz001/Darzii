@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MeasurementForm.css';
 
 function MeasurementForm() {
+  const navigate = useNavigate();
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [chest, setChest] = useState('');
@@ -24,6 +26,7 @@ function MeasurementForm() {
       sleeves,
       neck
     });
+    navigate('/Orders');
   };
 
   return (
