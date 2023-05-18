@@ -31,6 +31,7 @@ const Order = () => {
   return (
     <div className="order-details">
       <h2>{order.ItemTitle}</h2>
+      <h4><a href='/Appointments'>Request an Appointment ?</a></h4>
       <p>Order ID: {order.OrderID}</p>
       <p>Tailor: {order.TailorName}</p>
       <p>Size: {order.Size}</p>

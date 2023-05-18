@@ -16,6 +16,7 @@ import Cart from './components/Screens/Cart';
 import Checkout from './components/Screens/Checkout';
 import Orders from './components/Screens/Orders';
 import Order from './components/Screens/Order';
+import Appointments from './components/Screens/Appointments';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -51,6 +52,7 @@ function App() {
           <Route path='/Checkout' element={<Checkout />} />
           <Route path='/Orders' element={<Orders />} />
           <Route path='/Order' element={<Order />} />
+          <Route path='/Appointments' element={<Appointments />} />
         </Routes>
       </AuthContextProvider>
     </div >
