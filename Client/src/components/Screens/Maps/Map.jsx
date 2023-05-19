@@ -36,6 +36,7 @@ function MyComponent({ tailors }) {
     }, []);
 
 
+    //------------------------------------------------------radius-----------------------------------------------------
     function calculateDistance(lat1, lng1, lat2, lng2) {
         const R = 6371; // Radius of the Earth in kilometers
         const dLat = (lat2 - lat1) * (Math.PI / 180);
@@ -62,9 +63,7 @@ function MyComponent({ tailors }) {
         );
         return distance <= radius;
     }) : null;
-
-
-
+    //------------------------------------------------------radius-----------------------------------------------------
 
 
 
