@@ -5,7 +5,7 @@ import { login } from "../context/authContext/apiCalls.jsx"
 import { AuthContext } from "../context/authContext/AuthContext.jsx"
 
 
-const xLogin = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();

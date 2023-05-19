@@ -65,10 +65,6 @@ function MyComponent({ tailors }) {
     }) : null;
     //------------------------------------------------------radius-----------------------------------------------------
 
-
-
-
-
     const [map, setMap] = React.useState(null);
 
     const onLoad = React.useCallback(function callback(map) {

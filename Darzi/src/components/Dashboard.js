@@ -2,14 +2,14 @@ import React from 'react';
 import './Dashboard.css';
 import AnimatedNumber from 'react-animated-number';
 
-const Dashboard = ({ Orders , NewOrders}) => {
+const Dashboard = ({ Orders, NewOrders }) => {
 
     const incomingOrders = () => {
         return NewOrders.length;
     }
-    
+
     const overallRating = () => {
-        return (Orders.filter(order => order.PaymentStatus === 'Confirmed').reduce((total, order) => total + order.Rating, 0))/(Orders.filter(order => order.PaymentStatus === 'Confirmed').length);
+        return (Orders.filter(order => order.PaymentStatus === 'Confirmed').reduce((total, order) => total + order.Rating, 0)) / (Orders.filter(order => order.PaymentStatus === 'Confirmed').length);
     }
 
     const unconfirmedPayment = () => {
@@ -50,7 +50,7 @@ const Dashboard = ({ Orders , NewOrders}) => {
 
     return (
         <div className="main-dash">
-            <div className="card" onClick={console.log("Hello")}>
+            <div className="card" >
                 <h2>Incoming Orders</h2>
                 <p>{counter(incomingOrders())}</p>
             </div>

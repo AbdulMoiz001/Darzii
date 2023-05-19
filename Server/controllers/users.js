@@ -132,7 +132,7 @@ export const updatTailor = async (req, res) => {
         },
         { new: true }
       );
-      res.status(200).json(updatTailor)
+      res.status(200).json(updatedTailor)
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Error" });

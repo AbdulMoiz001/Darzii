@@ -19,7 +19,7 @@ function Appointment() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/appointment/getAppointments",
+        const res = await axios.get("http://localhost:5000/darzi/getAppointments",
           {
             headers: {
               token: "Bearer " + accessToken,

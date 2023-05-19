@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+
+import { AuthContext } from '../../../context/authContext/AuthContext';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from "react";
 import "./Tailor.css";
 import Map from "../Maps/Map";
 
@@ -65,14 +68,29 @@ const TailorDetails = ({ tailor, onClose }) => (
 
 const Tailor = () => {
 
+  const { user } = useContext(AuthContext);
+  const accessToken = user ? user.accessToken : "";
+
+  const [tailorsInfo, setTailorInfo] = useState([]);
 
 
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/user/getAllTailors", {
+          headers: {
+            token: "Bearer " + accessToken,
+          },
+        });
+        setTailorInfo(res.data);
+        console.log(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-
-
-
-
-
+    fetchOrders();
+  }, []);
 
 
 

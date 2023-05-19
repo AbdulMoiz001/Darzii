@@ -11,7 +11,7 @@ import routerProduct from "./routes/Product.js";
 import routerCart from "./routes/cart.js";
 import routerMeasurement from "./routes/measurement.js";
 import routerOrder from "./routes/order.js";
-import routerAppointment from "./routes/appointment.js";
+import routerDarzi from "./routes/darzi.js";
 
 const app = express();
 
@@ -31,7 +31,7 @@ app.use('/order', routerOrder)
 
 app.use('/product', routerProduct);
 
-app.use('/appointment', routerAppointment);
+app.use('/darzi', routerDarzi);
 
 
 const CONNECTION_URL = process.env.CONNECTION_URL || "mongodb+srv://Darzii:darzii123@cluster0.fwhecap.mongodb.net/?retryWrites=true&w=majority";
