@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
 
-  cnic: 
+  cnic:
   {
     type: String,
   },
@@ -40,7 +40,7 @@ const UserSchema = new mongoose.Schema({
   gender:
   {
     type: String,
-    enum:["male", "female"],
+    enum: ["male", "female"],
     // required: true,
   },
   dob:
@@ -66,9 +66,15 @@ const UserSchema = new mongoose.Schema({
       city: {
         type: String,
       },
-      area:{type:String},
+      area: { type: String },
       address: {
         type: String,
+      },
+      location: {
+
+        lat: { type: String },
+        lng: { type: String }
+
       }
     }
   ],

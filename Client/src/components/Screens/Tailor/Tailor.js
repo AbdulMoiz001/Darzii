@@ -9,8 +9,8 @@ const tailors = [
     name: "Baari Tailors",
     description: "Baari Tailors, is in the industry since 1908.",
     price: 1099,
-    lat: 24.4234872984,
-    lng: 26.9384209820
+    lat: 24.910461453474166,
+    lng: 67.18585718599024
   },
   {
     id: 2,
@@ -18,8 +18,8 @@ const tailors = [
     name: "Sartoria Tailors",
     description: "Situated in the heart of Karachi, providing quality.",
     price: 1599,
-    lat: 24.4234872984,
-    lng: 26.9384209820
+    lat: 24.90702119736485,
+    lng: 66.93327386632889
   },
   {
     id: 3,
@@ -27,8 +27,9 @@ const tailors = [
     name: "Knockout Tailors",
     description: "Best choice for your special occasions.",
     price: 2099,
-    lat: 24.4234872984,
-    lng: 26.9384209820
+
+    lat: 24.939374858646556,
+    lng: 67.15580543228663
   }
 ];
 
@@ -63,6 +64,21 @@ const TailorDetails = ({ tailor, onClose }) => (
 );
 
 const Tailor = () => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const [selectedTailor, setSelectedTailor] = useState(null);
 
   const handleTailorClick = (tailor) => {

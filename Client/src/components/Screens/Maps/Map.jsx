@@ -6,34 +6,18 @@ const containerStyle = {
     height: '400px'
 };
 
-const center = {
-    lat: 24.90128935919415,
-    lng: 67.12061598638903
-};
 
 function MyComponent({ tailors }) {
+
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: "AIzaSyBPK5vF5NcPMtpuKPHWdYU5Og1vIw7K1as"
     });
 
-    const [map, setMap] = React.useState(null);
-    const [tailorLocation, setTailorLocation] = useState(null);
-
-    const onLoad = React.useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
-        setMap(map);
-
-
-    }, []);
-
-    const onUnmount = React.useCallback(function callback() {
-        setMap(null);
-    }, []);
-
 
     const [userLocation, setUserLocation] = useState(null);
+    const [zoom, setZoom] = useState(14);
+
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -41,7 +25,6 @@ function MyComponent({ tailors }) {
                 (position) => {
                     const { latitude, longitude } = position.coords;
                     setUserLocation({ lat: latitude, lng: longitude });
-                    console.log(userLocation);
                 },
                 (error) => {
                     console.log(error.message);
@@ -50,42 +33,78 @@ function MyComponent({ tailors }) {
         } else {
             console.log('Geolocation is not supported by this browser.');
         }
-    }, [])
+    }, []);
 
-    const calRadius = (uLat, uLng, tLat, tLng) => {
-        const R = 6371; // Radius of the Earth in km
-        const dLat = ((tLat - uLat) * Math.PI) / 180;
-        const dLon = ((tLng - uLng) * Math.PI) / 180;
 
+    function calculateDistance(lat1, lng1, lat2, lng2) {
+        const R = 6371; // Radius of the Earth in kilometers
+        const dLat = (lat2 - lat1) * (Math.PI / 180);
+        const dLng = (lng2 - lng1) * (Math.PI / 180);
         const a =
             Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos((uLat * Math.PI) / 180) *
-            Math.cos((tLat * Math.PI) / 180) *
-            Math.sin(dLon / 2) *
-            Math.sin(dLon / 2);
-
+            Math.cos((lat1 * Math.PI) / 180) *
+            Math.cos((lat2 * Math.PI) / 180) *
+            Math.sin(dLng / 2) *
+            Math.sin(dLng / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        const distance = R * c;
-        console.log(distance);
+        const distance = R * c; // Distance in kilometers
+        return distance;
     }
 
-    // calRadius(userLocation.lat, userLocation.lng, tailors[0].lat, tailors[0].lng)
-    return isLoaded ? (
+    // Assuming userLocation and tailors array are available
+    const radius = 5; // Radius in kilometers
+    const tailorsWithinRadius = userLocation ? tailors.filter((tailor) => {
+        const distance = calculateDistance(
+            userLocation.lat,
+            userLocation.lng,
+            tailor.lat,
+            tailor.lng
+        );
+        return distance <= radius;
+    }) : null;
+
+
+
+
+
+
+
+
+    const [map, setMap] = React.useState(null);
+
+    const onLoad = React.useCallback(function callback(map) {
+        const bounds = new window.google.maps.LatLngBounds(userLocation);
+        map.fitBounds(bounds);
+
+
+        setMap(map);
+    }, [userLocation]);
+
+    const onUnmount = React.useCallback(function callback() {
+        setMap(null);
+    }, []);
+
+    return isLoaded && userLocation ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
-            center={center}
-            zoom={1}
+            center={userLocation}
+            zoom={zoom}
             onLoad={onLoad}
             onUnmount={onUnmount}
-
         >
-            {tailorLocation && (
-                <Marker position={center}>
-                </Marker>
-            )}
+            {userLocation && <Marker position={userLocation} />}
+
+
+            {tailorsWithinRadius.map((tailor) => (
+                <Marker key={tailor.id} position={{ lat: tailor.lat, lng: tailor.lng }} />
+            ))}
+
         </GoogleMap>
     ) : <></>;
+
+
+
+
 }
 
 export default React.memo(MyComponent);
