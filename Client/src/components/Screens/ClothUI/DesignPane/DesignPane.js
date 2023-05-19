@@ -75,7 +75,7 @@ function DesignPane({
           </td>
         </tr>
       </table>
-      <a className='cuiNext' href='MeasurementForm'>Next &raquo;</a>
+      <a className='cuiNext' href='/MeasurementForm'>Next &raquo;</a>
     </div>
   )
 }
