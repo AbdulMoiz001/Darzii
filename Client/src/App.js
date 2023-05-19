@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className="App">
-      {user ? <SINavbar cartItemCount={cartItemCount}/> : <Navbar />}
+      {user ? <SINavbar cartItemCount={cartItemCount} /> : <Navbar />}
 
       <AuthContextProvider>
         <Routes>
@@ -48,7 +48,7 @@ function App() {
           {user ? <Route path='/Profile' element={<Profile />} /> : <></>}
           <Route path='/Tailor' element={<Tailor />} />
           <Route path='/OrderCreation' element={<OrderCreation />} />
-          <Route path='/Cart' element={<Cart onCartItemCountChange={handleCartItemCountChange}/>} />
+          <Route path='/Cart' element={<Cart onCartItemCountChange={handleCartItemCountChange} />} />
           <Route path='/Checkout' element={<Checkout />} />
           <Route path='/Orders' element={<Orders />} />
           <Route path='/Order' element={<Order />} />

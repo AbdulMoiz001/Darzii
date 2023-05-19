@@ -23,6 +23,7 @@ function Topbar() {
     const handleLogout = () => {
         localStorage.removeItem("user");
         navigate("/");
+        window.location.reload();
     }
     return (
 

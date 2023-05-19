@@ -7,7 +7,10 @@ const orderSchema = new mongoose.Schema({
   TailorID: {
     type: String,
   },
-  TailorName: { type: String, },
+  TailorName: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "tailor",
+  },
   Size: { type: String, default: null },
   Measurements: {
     height: { type: Number, default: null },

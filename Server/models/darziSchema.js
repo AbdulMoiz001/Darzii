@@ -66,6 +66,15 @@ const DarziSchema = new mongoose.Schema({
     {
         type: String,
     },
+    price:
+    {
+        type: String,
+    },
+    description:
+    {
+        type: String,
+    },
+
 
     updated: {
         type: Date,

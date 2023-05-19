@@ -24,7 +24,6 @@ const App = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-
   // const accessToken = user.accessToken;
   const accessToken = user ? user.accessToken : "";
 
@@ -60,7 +59,7 @@ const App = () => {
   };
 
   const openProfile = () => {
-    navigate('profile');
+    navigate('/profile');
   };
 
   return (
@@ -86,12 +85,12 @@ const App = () => {
           {user &&
             <>
               <Route path="/" element={<Dashboard Orders={orderData} NewOrders={NewOrders} />} />
-              <Route path="profile" element={<Profile tailor={user} />} />
-              <Route path="orders" element={<Orders Orders={orderData} />} />
-              <Route path="payments" element={<Payments Orders={orderData.filter(order => order.OrderStatus === 'Dispatched')} />} />
-              <Route path="order" element={<Order />} />
-              <Route path="incoming-orders" element={<IncomingOrders NewOrders={orderData.filter(order => order.OrderStatus === 'Pending')} />} />
-              <Route path="appointment" element={<Appointment />} />
+              <Route path="/profile" element={<Profile tailor={user} />} />
+              <Route path="/orders" element={<Orders Orders={orderData} />} />
+              <Route path="/payments" element={<Payments Orders={orderData.filter(order => order.OrderStatus === 'Dispatched')} />} />
+              <Route path="/order" element={<Order />} />
+              <Route path="/incoming-orders" element={<IncomingOrders NewOrders={orderData.filter(order => order.OrderStatus === 'Pending')} />} />
+              <Route path="/appointment" element={<Appointment />} />
             </>
           }
         </Routes>

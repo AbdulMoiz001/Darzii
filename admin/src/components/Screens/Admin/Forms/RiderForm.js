@@ -47,7 +47,7 @@ const RiderForm = () => {
     };
 
     return (
-        <div className='formCard R'>
+        <div className='formCard'>
             <form onSubmit={handleSubmit}>
                 <h1>Rider Registration Form</h1>
                 <table>

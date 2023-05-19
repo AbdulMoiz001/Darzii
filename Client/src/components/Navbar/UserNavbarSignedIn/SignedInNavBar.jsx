@@ -31,7 +31,7 @@ function SINavbar({ cartItemCount }) {
         {
             title: (
                 <>
-                    <span className="cart-item-count">{cartItemCount>0 && '+'}{cartItemCount}</span>
+                    <span className="cart-item-count">{cartItemCount > 0 && '+'}{cartItemCount}</span>
                     <FaShoppingCart className="cart-icon" />
                 </>
             ),

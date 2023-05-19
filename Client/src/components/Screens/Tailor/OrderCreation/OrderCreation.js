@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./OrderCreation.css";
-
+import { useNavigate } from "react-router-dom";
 const clothingTypes = ["Shirt", "Pants", "Suit", "Dress"];
 
 const options = [
@@ -194,6 +194,9 @@ const OptionCard = ({ option, onOptionClick, selected }) => (
 );
 
 const OrderCreation = () => {
+
+    const navigate = useNavigate();
+
     const location = useLocation();
     const propString = new URLSearchParams(location.search).get('tailor');
     const tailor = JSON.parse(decodeURIComponent(propString));
@@ -285,7 +288,9 @@ const OrderCreation = () => {
                                 </div>
                             )}
                             <div className="form-row">
-                                <button className="submit-button" onClick={() => alert("Order submitted!")}>
+                                <button className="submit-button" onClick={() => {
+                                    navigate("/MeasurementForm");
+                                }}>
                                     Submit Order
                                 </button>
                             </div>

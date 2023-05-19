@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './DesignPane.css';
 
-function DesignPane({ 
-  beltStyle, 
-  cuffsStyle, 
-  bottomStyle, 
-  trouserStyle, 
-  stitchStyle, 
-  collarStyle, 
-  sleevesStyle, 
-  shoulderStyle, 
-  neckStyle, 
-  lacingStyle, 
+function DesignPane({
+  beltStyle,
+  cuffsStyle,
+  bottomStyle,
+  trouserStyle,
+  stitchStyle,
+  collarStyle,
+  sleevesStyle,
+  shoulderStyle,
+  neckStyle,
+  lacingStyle,
 }) {
   const [showPopup, setShowPopup] = useState(false);
   const [popupImageSrc, setPopupImageSrc] = useState('');

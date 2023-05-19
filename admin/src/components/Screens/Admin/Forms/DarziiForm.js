@@ -42,24 +42,31 @@ const DarziiForm = () => {
     }));
   };
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formData);
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/auth/registerDarzi",
-        formData,
-        {
-          headers: {
-            token: "Bearer " + accessToken,
-          },
-        }
-      );
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
 
-    window.location.reload();
+    if (formData.lat !== "" && formData.lng !== "") {
+
+      event.preventDefault();
+      console.log(formData);
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/auth/registerDarzi",
+          formData,
+          {
+            headers: {
+              token: "Bearer " + accessToken,
+            },
+          }
+        );
+        console.log(res);
+      } catch (err) {
+        console.log(err);
+      }
+
+      window.location.reload();
+    }
+    else {
+      alert("Please Select Coordinates");
+    }
   };
 
   useEffect(() => {
@@ -77,13 +84,12 @@ const DarziiForm = () => {
   return (
     <div className="formCard D">
       <form onSubmit={handleSubmit}>
-        <h2> <a href="/darzii/">
 
-          <FaChevronLeft />
-        </a>
-        </h2>
 
-        <h1>Darzii Registration Form</h1>
+        <h1 className="heading">
+          <a href="/darzii/">
+            <FaChevronLeft />
+          </a>Darzii Registration Form</h1>
         <table>
 
           <tr>
@@ -159,6 +165,7 @@ const DarziiForm = () => {
                 id="email"
                 value={formData.email}
                 onChange={handleChange}
+                required
               />
             </td>
             <td>
@@ -239,9 +246,11 @@ const DarziiForm = () => {
             <button type="submit">Submit</button>
           </tr>
         </table>
+        <div className="map">
+          <Map DarziCoordinates={DarziCoordinates}
+            setDarziCoordinates={setDarziCoordinates} />
+        </div>
 
-        <Map DarziCoordinates={DarziCoordinates}
-          setDarziCoordinates={setDarziCoordinates} />
       </form>
     </div>
   );
