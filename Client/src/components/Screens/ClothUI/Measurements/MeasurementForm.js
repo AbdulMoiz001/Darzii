@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './MeasurementForm.css';
 
 function MeasurementForm() {
+  const location = useLocation();
+  const orderData = JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('orderData')));
+  
   const navigate = useNavigate();
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
@@ -16,17 +19,20 @@ function MeasurementForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Do something with the form data
-    console.log('Form submitted:', {
-      height,
-      weight,
-      chest,
-      waist,
-      hips,
-      shoulder,
-      sleeves,
-      neck
-    });
-    navigate('/Orders');
+    const order = {
+      ...orderData, // Spread the properties from designData
+      Measurements: {
+        height,
+        weight,
+        chest,
+        waist,
+        hips,
+        shoulder,
+        sleeves,
+        neck,
+      },
+    };
+    navigate(`/Cart?order=${encodeURIComponent(JSON.stringify(order))}`);
   };
 
   return (

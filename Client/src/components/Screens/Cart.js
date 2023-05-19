@@ -5,12 +5,13 @@ import './Cart.css';
 const CartItem = ({ item, onRemoveItem }) => {
   return (
     <div className="cart-item">
+      <div className='ID'>{item.local_orderID+1}</div>
+      <img src={item.imageSrc}/>
       <div className="item-details">
-        <h3>{item.ItemTitle}</h3>
-        <p>Order Type: {item.OrderType}</p>
-        <p>Rs. {item.Price}</p>
+        <h3>For {item.name}</h3>
+        <p>Rs. {item.price}</p>
       </div>
-      <button className="delete-button" onClick={() => onRemoveItem(item.OrderID)}>
+      <button className="delete-button" onClick={() => onRemoveItem(item.local_orderID)}>
         Delete
       </button>
     </div>
@@ -55,15 +56,16 @@ const Cart = ({ onCartItemCountChange }) => {
 
   // Function to remove an item from the cart
   const handleRemoveItem = (orderId) => {
-    const updatedCartItems = cartItems.filter((item) => item.OrderID !== orderId);
+    const updatedCartItems = cartItems.filter((item) => item.local_orderID !== orderId);
     setCartItems(updatedCartItems);
     setCartItemCount((prevCount) => prevCount - 1); // Update cart item count
   };
 
   useEffect(() => {
     // Add new cart item from URL query parameter
-    const newItem = JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('cart_item')));
+    const newItem = JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('order')));
     if (newItem) {
+      console.log(newItem);
       setCartItems((prevItems) => [...prevItems, newItem]);
       setCartItemCount((prevCount) => prevCount + 1);
     }
@@ -77,12 +79,12 @@ const Cart = ({ onCartItemCountChange }) => {
       ) : (
         <div className="cart-items">
           {cartItems.map((item) => (
-            <CartItem key={item.OrderID} item={item} onRemoveItem={handleRemoveItem} />
+            <CartItem key={item.local_orderID} item={item} onRemoveItem={handleRemoveItem} />
           ))}
         </div>
       )}
-      <div>
-        <h3>Total: {cartItems.reduce((total, cart_item) => total + cart_item.Price, 0)}</h3>
+      <div className='total'>
+        <h3>Total: {cartItems.reduce((total, cart_item) => total + cart_item.price, 0)}</h3>
         <a className="book-btn" href={`Checkout?cartItems=${encodeURIComponent(JSON.stringify(cartItems))}`}>Checkout</a>
       </div>
     </div>

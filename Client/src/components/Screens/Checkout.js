@@ -30,12 +30,16 @@ function Checkout() {
         paymentPromise.then(() => {
             setProcessingPayment(false);
             setPaymentSuccess(true);
-
+            const orders = cartItems.map((item) => ({
+                ...item,
+                address: address,
+            }));  
+            console.log(orders);
             // Perform the navigation
             localStorage.removeItem('cartItems');
             localStorage.removeItem('cartItemCount');
-            navigate('/Store');
-            window.location.reload();
+            // navigate('/Store');
+            // window.location.reload();
         });
     };
 
@@ -43,7 +47,7 @@ function Checkout() {
         <div className='checkout-container'>
             <h2>Checkout</h2>
             <div>
-                <h2>Total: {cartItems.reduce((total, cart_item) => total + cart_item.Price, 0)}</h2>
+                <h2>Total: Rs. {cartItems.reduce((total, cart_item) => total + cart_item.price, 0)}</h2>
             </div>
             <div className='address-section'>
                 <h3>Shipping Address</h3>

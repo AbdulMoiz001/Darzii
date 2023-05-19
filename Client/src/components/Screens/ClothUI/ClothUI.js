@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
-import { useLocation } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { useLocation, useNavigate } from "react-router-dom";
 import './ClothUI.css';
 import RightPanel from './Panels/RightPanel';
 import LeftPanel from './Panels/LeftPanel';
 import DesignPane from './DesignPane/DesignPane';
+import { AuthContext } from '../../../context/authContext/AuthContext';
 
 const OrderDetails = ({ tailor }) => (
   <div className='Header'>
@@ -12,9 +13,11 @@ const OrderDetails = ({ tailor }) => (
 );
 
 function ClothUI() {
+  const { user } = useContext(AuthContext);
   const location = useLocation();
   const propString = new URLSearchParams(location.search).get('tailor');
   const tailor = JSON.parse(decodeURIComponent(propString));
+  const navigate = useNavigate();
 
   const [beltStyle, setBeltStyle] = useState('Belt Style');
   const [cuffsStyle, setCuffsStyle] = useState('Cuffs Style');
@@ -67,13 +70,37 @@ function ClothUI() {
     setLacingStyle(event.target.value);
   }
 
+  function sendToMeasurements() {
+    const cachedCartItems = localStorage.getItem('cartItems');
+    const initialCartItems = cachedCartItems ? JSON.parse(cachedCartItems) : [];
+    const order = {
+      local_orderID: initialCartItems.length,
+      orderType: "ClothUI",
+      ...user,
+      ...tailor,
+      Design: {
+        beltStyle,
+        cuffsStyle,
+        bottomStyle,
+        trouserStyle,
+        stitchStyle,
+        collarStyle,
+        sleevesStyle,
+        shoulderStyle,
+        neckStyle,
+        lacingStyle,
+      }
+    }
+    navigate(`/MeasurementForm?orderData=${encodeURIComponent(JSON.stringify(order))}`);
+  }
+
   return (
     <div className='ClothUI'>
       <OrderDetails tailor={tailor} />
       <div className='main'>
-        <LeftPanel beltStyle={beltStyle} cuffsStyle={cuffsStyle} bottomStyle={bottomStyle} trouserStyle={trouserStyle} stitchStyle={stitchStyle} handleBeltChange={handleBeltChange} handleCuffsChange={handleCuffsChange} handleBottomChange={handleBottomChange} handleTrouserChange={handleTrouserChange} handleStitchChange={handleStitchChange}/>
-        <DesignPane beltStyle={beltStyle} cuffsStyle={cuffsStyle} bottomStyle={bottomStyle} trouserStyle={trouserStyle} stitchStyle={stitchStyle} collarStyle={collarStyle} sleevesStyle={sleevesStyle} shoulderStyle={shoulderStyle} neckStyle={neckStyle} lacingStyle={lacingStyle}/>
-        <RightPanel collarStyle={collarStyle} sleevesStyle={sleevesStyle} shoulderStyle={shoulderStyle} neckStyle={neckStyle} lacingStyle={lacingStyle} handleCollarChange={handleCollarChange} handleSleevesChange={handleSleevesChange} handleShoulderChange={handleShoulderChange} handleNeckChange={handleNeckChange} handleLacingChange={handleLacingChange}/>
+        <LeftPanel beltStyle={beltStyle} cuffsStyle={cuffsStyle} bottomStyle={bottomStyle} trouserStyle={trouserStyle} stitchStyle={stitchStyle} handleBeltChange={handleBeltChange} handleCuffsChange={handleCuffsChange} handleBottomChange={handleBottomChange} handleTrouserChange={handleTrouserChange} handleStitchChange={handleStitchChange} />
+        <DesignPane beltStyle={beltStyle} cuffsStyle={cuffsStyle} bottomStyle={bottomStyle} trouserStyle={trouserStyle} stitchStyle={stitchStyle} collarStyle={collarStyle} sleevesStyle={sleevesStyle} shoulderStyle={shoulderStyle} neckStyle={neckStyle} lacingStyle={lacingStyle} sendToMeasurements={sendToMeasurements} />
+        <RightPanel collarStyle={collarStyle} sleevesStyle={sleevesStyle} shoulderStyle={shoulderStyle} neckStyle={neckStyle} lacingStyle={lacingStyle} handleCollarChange={handleCollarChange} handleSleevesChange={handleSleevesChange} handleShoulderChange={handleShoulderChange} handleNeckChange={handleNeckChange} handleLacingChange={handleLacingChange} />
       </div>
     </div>
   )

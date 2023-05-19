@@ -294,7 +294,6 @@ const OrderCreation = () => {
                                     Submit Order
                                 </button>
                             </div>
-                            <a className="book-btn" href={`Cart?cart_item=${encodeURIComponent(JSON.stringify(CartDummyData[1]))}`}>Send Now</a>
                         </>
                     )
                 }
