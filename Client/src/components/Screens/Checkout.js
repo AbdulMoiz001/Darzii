@@ -33,6 +33,7 @@ function Checkout() {
             const orders = cartItems.map((item) => ({
                 ...item,
                 address: address,
+                creationDate: new Date().toISOString().split('T')[0]
             }));  
             console.log(orders);
             // Perform the navigation

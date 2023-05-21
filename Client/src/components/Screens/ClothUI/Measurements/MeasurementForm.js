@@ -21,7 +21,7 @@ function MeasurementForm() {
     // Do something with the form data
     const order = {
       ...orderData, // Spread the properties from designData
-      Measurements: {
+      measurements: {
         height,
         weight,
         chest,

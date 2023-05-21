@@ -76,9 +76,12 @@ function ClothUI() {
     const order = {
       local_orderID: initialCartItems.length,
       orderType: "ClothUI",
-      ...user,
-      ...tailor,
-      Design: {
+      userID: user._id,
+      userEmail: user.email,
+      tailorID: tailor.id,
+      price: tailor.price,
+      tailorImage: tailor.imageSrc,
+      design: {
         beltStyle,
         cuffsStyle,
         bottomStyle,
