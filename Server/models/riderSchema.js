@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const RiderSchema = new mongoose.Schema({
     image: {
         type: String,
-        default: "",
+        default: '',
     },
     firstName: {
         type: String,
@@ -11,14 +11,13 @@ const RiderSchema = new mongoose.Schema({
     },
     lastName: {
         type: String,
-        default: "",
+        default: '',
     },
     email: {
         type: String,
         required: true,
         unique: true,
     },
-
     password: {
         type: String,
         required: true,
@@ -31,42 +30,24 @@ const RiderSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
-    address:
-    {
+    address: {
         type: String,
-        default: " "
+        default: ' ',
     },
-
-    measurementOrders:[
-        {type: mongoose.Schema.Types.ObjectId, ref:"measurementOrder"}
-    ],
-
-    productOrders:[
+    assignedOrders: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref:"orderCart",
-        }
+            ref: 'Order',
+        },
     ],
-
-    orders:
-    [
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"order",
-        }
-    ],
-
     vehicleMake: {
         type: String,
         required: true,
     },
-
     vehicleModel: {
         type: String,
         required: true,
     },
-
     vehicleReg: {
         type: String,
         required: true,
@@ -80,6 +61,6 @@ const RiderSchema = new mongoose.Schema({
     },
 });
 
-const riderSchema = mongoose.model("rider", RiderSchema);
+const Rider = mongoose.model('Rider', RiderSchema);
 
-export default riderSchema;
+export default Rider;

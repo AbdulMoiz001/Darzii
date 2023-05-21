@@ -19,6 +19,7 @@ import { AuthContextProvider } from "../../../context/authContext/AuthContext";
 import { AuthContext } from "../../../context/authContext/AuthContext";
 import { useContext } from "react";
 import SignInAdmin from "../SignIn/SignInAdmin";
+import Product from "./WareHouse Manager/Product";
 
 function Admin() {
   const { user } = useContext(AuthContext);
@@ -54,7 +55,7 @@ function Admin() {
           <Route path="/darzii/edit" element={<EditDarzi />} />
 
           <Route path="/wh-manager" element={<WHinfo />} />
-          <Route path="/wh-manager/register" element={<WHManagerForm />} />
+          <Route path="/wh-manager/AddProduct" element={<Product />} />
           <Route path="/wh-manager/delete" element={<DeleteWH />} />
         </Routes>
       </AuthContextProvider>
