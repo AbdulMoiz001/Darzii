@@ -4,13 +4,13 @@ const orderSchema = new mongoose.Schema({
   OrderType: { type: String, },
   ItemID: { type: Number, },
   ItemTitle: { type: String, },
-  TailorID: {
-    type: String,
-  },
-  TailorName: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "tailor",
-  },
+  TailorID: { type: String, },
+  TailorName: { type: String, },
+
+  // {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "tailor",
+  // },
   Size: { type: String, default: null },
   Measurements: {
     height: { type: Number, default: null },
