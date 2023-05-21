@@ -6,7 +6,7 @@ const CartItem = ({ item, onRemoveItem }) => {
   return (
     <div className="cart-item">
       <div className='ID'>{item.local_orderID+1}</div>
-      <img src={item.imageSrc}/>
+      <img src={item.tailorImage}/>
       <div className="item-details">
         <h3>For {item.name}</h3>
         <p>Rs. {item.price}</p>

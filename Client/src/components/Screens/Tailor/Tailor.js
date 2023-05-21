@@ -1,5 +1,6 @@
 
 import { AuthContext } from '../../../context/authContext/AuthContext';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from "react";
 import "./Tailor.css";
@@ -47,7 +48,7 @@ const TailorCard = ({ tailor, onTailorClick }) => (
 );
 
 
-const TailorDetails = ({ tailor, onClose }) => (
+const TailorDetails = ({ tailor, onClose, cloth }) => (
   <div className="tailor-details-overlay">
     <div className="tailor-details">
       <button className="close-btn" onClick={onClose}>
@@ -59,7 +60,7 @@ const TailorDetails = ({ tailor, onClose }) => (
         <p>{tailor.description}</p>
         <h3>Starts at: Rs.{tailor.price}</h3>
         <div className="btn-group">
-          <a className="book-btn" href={`OrderCreation?tailor=${encodeURIComponent(JSON.stringify(tailor))}`}>Book Now</a>
+          <a className="book-btn" href={`OrderCreation?order=${encodeURIComponent(JSON.stringify([tailor, cloth]))}`}>Book Now</a>
         </div>
       </div>
     </div>
@@ -92,10 +93,8 @@ const Tailor = () => {
     fetchOrders();
   }, []);
 
-
-
-
-
+  const location = useLocation();
+  const cloth = JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('cloth')));
 
   const [selectedTailor, setSelectedTailor] = useState(null);
 
@@ -116,7 +115,7 @@ const Tailor = () => {
         ))}
       </div>
       {selectedTailor && (
-        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} />
+        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} cloth={cloth}/>
       )}
 
       <div>

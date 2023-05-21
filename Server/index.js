@@ -12,7 +12,7 @@ import routerCart from "./routes/cart.js";
 import routerMeasurement from "./routes/measurement.js";
 import routerOrder from "./routes/order.js";
 import routerDarzi from "./routes/darzi.js";
-
+import routerPayment from "./routes/stripe.js";
 const app = express();
 
 dotenv.config();
@@ -32,7 +32,7 @@ app.use('/order', routerOrder)
 app.use('/product', routerProduct);
 
 app.use('/darzi', routerDarzi);
-
+app.use('/payment', routerPayment);
 
 const CONNECTION_URL = process.env.CONNECTION_URL || "mongodb+srv://Darzii:darzii123@cluster0.fwhecap.mongodb.net/?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
