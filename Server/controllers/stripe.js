@@ -6,23 +6,8 @@ dotenv.config();
 
 const secretKey = process.env.PAYMENT_SK;
 const stripeInstance = Stripe(secretKey);
-
-// Now you can use the `stripeInstance` object to interact with the Stripe API
-
-
-// const stripe = require("stripe")(process.env.PAYMENT_SK);
-
 const calculateOrderAmount = (orders) => {
-    // Replace this constant with a calculation of the order's amount
-    // Calculate the order total on the server to prevent
-    // people from directly manipulating the amount on the client
 
-    // if (orders) {
-    //     // perform the reduce operation
-    //     return 0;
-    // } else {
-    //     // handle the case when orders is null or undefined
-    // }
     return orders.reduce((total, order) => total + order.price, 0) * 100;
 };
 
@@ -37,9 +22,8 @@ export const stripePayment = async (req, res) => {
             enabled: true,
         },
     });
-    console.log(calculateOrderAmount(orders));
 
     res.send({
         clientSecret: paymentIntent.client_secret,
     });
-}
+};
