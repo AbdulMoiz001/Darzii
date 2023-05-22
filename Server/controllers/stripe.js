@@ -24,8 +24,7 @@ const calculateOrderAmount = (orders) => {
     //     // handle the case when orders is null or undefined
     //     return orders.reduce((total, order) => total + order.Price, 0) * 100;
     // }
-    console.log(orders);
-    return 500*100;
+    return 500 * 100;
 };
 
 export const stripePayment = async (req, res) => {

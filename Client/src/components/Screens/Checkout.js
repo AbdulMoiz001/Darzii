@@ -5,9 +5,9 @@ import Stripe from './Stripe/Stripe';
 
 function Checkout() {
     const location = useLocation();
-    const cartItems = JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('cartItems')));
     const [address, setAddress] = useState('');
     const [orders, setOrders] = useState('');
+    const [cartItems, setCartItems] = useState(JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('cartItems'))));
 
     // const navigate = useNavigate();
 
@@ -15,27 +15,24 @@ function Checkout() {
     //     console.log(orders)
     // }
 
-    const addAddress = () => {
+    const addAddressAndInfo = () => {
         const orders_with_address = cartItems.map((item) => ({
             ...item,
             address: address,
             creationDate: new Date().toISOString().split('T')[0]
         }));
         setOrders(orders_with_address);
-        console.log(orders);
+        console.log(orders_with_address);
         // localStorage.removeItem('cartItems');
         // localStorage.removeItem('cartItemCount');
         // navigate('/');
         // window.location.reload();
     };
 
-    useEffect(()=>{
-        addAddress();
-    },[]);
 
-    useEffect(()=>{
-        addAddress();
-    },[address]);
+    useEffect(() => {
+        addAddressAndInfo();
+    }, []);
 
     return (
         <><div className='checkout-container'>
@@ -55,7 +52,11 @@ function Checkout() {
                     </div>
                 </div>
                 <div className='child'>
-                    <Stripe orders={orders}/>
+                    {
+                        orders ?
+                            <Stripe orders={orders} />
+                            : <></>
+                    }
                 </div>
             </div>
         </div><div className='footer'></div></>
