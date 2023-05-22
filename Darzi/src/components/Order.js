@@ -18,15 +18,16 @@ const Order = () => {
         ClothingType: o_data.ClothingType,
         OrderStatus: o_data.OrderStatus,
         Price: o_data.Price,
-        CustomerID: o_data.CustomerID,
-        CustomerContactNumber: o_data.CustomerContactNumber,
-        CustomerName: o_data.CustomerName,
-        TailorID: o_data.TailorID,
-        TailorName: o_data.TailorName,
-        TailorContactNumber: o_data.TailorContactNumber,
+        CustomerID: o_data.CustomerID._id,
+        CustomerContactNumber: o_data.CustomerID.phone,
+        CustomerName: o_data.CustomerID.firstName + " " + o_data.CustomerID.lastName,
+        TailorID: o_data.TailorID._id,
+        TailorName: o_data.TailorID.tailorName,
+        TailorContactNumber: o_data.TailorID.phone,
         OrderAcceptanceDate: o_data.OrderAcceptanceDate,
         OrderDeliveryDeadline: o_data.OrderDeliveryDeadline,
     });
+    console.log(order)
 
     const nextStatus = () => {
         let newStatus = "Dispatched";

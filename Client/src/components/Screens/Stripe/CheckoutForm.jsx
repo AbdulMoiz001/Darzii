@@ -30,8 +30,11 @@ export default function CheckoutForm() {
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case "succeeded":
-          setMessage("Payment succeeded!");
-          break;
+          {
+            setMessage("Payment succeeded!");
+            window.localStorage.setItem("cartItems", "ha done");
+            break;
+          }
         case "processing":
           setMessage("Your payment is processing.");
           break;
@@ -46,7 +49,6 @@ export default function CheckoutForm() {
   }, [stripe]);
 
   const handleSubmit = async (e) => {
-    console.log(email);
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -62,7 +64,7 @@ export default function CheckoutForm() {
       confirmParams: {
         //
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000",
+        return_url: "http://localhost:3001",
       },
     });
 

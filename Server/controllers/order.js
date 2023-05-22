@@ -41,16 +41,15 @@ export const getNumberOfOrdersForTailor = async (req, res) => {
 
 
         const tailorId = mongoose.Types.ObjectId(req.user.id)
-        console.log(tailorId)
         // const tailorId = new ObjectId(req.user.id);
         const orders = await OrderSchema.find({ TailorID: tailorId })
             .populate("TailorID", "tailorName phone")
             .populate("CustomerID", "firstName lastName phone")
-            .select("_id Measurements TailorID ClothUI Design Catalogue CatalogueID Price CustomerID OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating")
+            .select("_id Measurements TailorID ClothUI Design Catalogue CatalogueID Price CustomerID OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating OrderStatus ClothingType")
 
 
 
-        console.log(orders);
+        // console.log(orders);
 
 
 

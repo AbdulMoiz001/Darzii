@@ -12,7 +12,7 @@ import "./Stripe.css";
 // Sign in to see your own test API key embedded in code samples.
 const stripePromise = loadStripe("pk_test_51N9uxcBOyLWnHawEceDN9ySY6DNQftz8IqRAEp6noMdENEyWy3PtPvbOaBhSHHt7b8Ukn4Pje4RT0Y5HMkpZO1Tl00czjzoEA6");
 
-export default function Stripe({orders}) {
+export default function Stripe({ orders }) {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
@@ -21,16 +21,17 @@ export default function Stripe({orders}) {
     fetch("http://localhost:5000/payment/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({orders}),
+      body: JSON.stringify({ orders }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
+    console.log(clientSecret);
   }, []);
 
   const appearance = {
     theme: 'stripe',
   };
-  
+
   const options = {
     clientSecret,
     appearance,

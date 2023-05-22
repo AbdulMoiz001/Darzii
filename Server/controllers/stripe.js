@@ -22,9 +22,8 @@ const calculateOrderAmount = (orders) => {
     //     return 0;
     // } else {
     //     // handle the case when orders is null or undefined
-    //     return orders.reduce((total, order) => total + order.Price, 0) * 100;
     // }
-    return 500 * 100;
+    return orders.reduce((total, order) => total + order.price, 0) * 100;
 };
 
 export const stripePayment = async (req, res) => {
@@ -38,6 +37,7 @@ export const stripePayment = async (req, res) => {
             enabled: true,
         },
     });
+    console.log(calculateOrderAmount(orders));
 
     res.send({
         clientSecret: paymentIntent.client_secret,

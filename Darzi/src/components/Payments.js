@@ -2,17 +2,17 @@ import React from 'react';
 import './Payments.css';
 
 const Payments = ({ Orders }) => {
-  
+
   const confirmedPayment = () => {
     return Orders.filter(order => order.PaymentStatus === 'Confirmed').reduce((total, order) => total + order.Price, 0);
   }
-  
+
   const unconfirmedPayment = () => {
     return Orders.filter(order => order.PaymentStatus === 'Unconfirmed').reduce((total, order) => total + order.Price, 0);
   }
-  
+
   const totalPayment = () => {
-    return confirmedPayment()+unconfirmedPayment();
+    return confirmedPayment() + unconfirmedPayment();
   }
 
   return (
@@ -36,12 +36,12 @@ const Payments = ({ Orders }) => {
               <tbody>
                 {Orders.map((order) => {
                   return (
-                    <tr key={order.OrderID}>
-                      <td>{order.OrderID}</td>
+                    <tr key={order._id}>
+                      <td>{order._id}</td>
                       <td>{order.ClothingType}</td>
-                      <td>{order.OrderDeliveryDeadline}</td>
+                      <td>{order.OrderAcceptanceDate}</td>
                       <td>{order.Price}</td>
-                      <td>{order.CustomerName}</td>
+                      <td>{order.CustomerID && order.CustomerID.firstName + " " + order.CustomerID.firstName}</td>
                       <td>{order.PaymentStatus}</td>
                       <td>{order.Rating}</td>
                     </tr>
