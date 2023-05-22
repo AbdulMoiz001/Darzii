@@ -71,21 +71,21 @@ function ClothUI() {
   }
 
   function sendToMeasurements() {
-    console.log("Function Called");
     const cachedCartItems = localStorage.getItem('cartItems');
     const initialCartItems = cachedCartItems ? JSON.parse(cachedCartItems) : [];
     const orderData = {
       local_orderID: initialCartItems.length,
-      clothID: order[1].productID,
-      clothPrice: order[1].price,
-      clothImage: order[1].imgSrc,
+      clothID: order.cloth ? order.cloth.productID : null,
+      clothPrice: order.cloth ? order.cloth.price : null,
+      clothImage: order.cloth ? order.cloth.imgSrc : null,
       orderType: "ClothUI",
       userID: user._id,
       userEmail: user.email,
-      tailorID: order[0].id,
-      tailorName: order[0].name,
-      price: (order[0].price + order[1].price),
-      tailorImage: order[0].imageSrc,
+      tailorID: order.tailor.id,
+      tailorName: order.tailor.name,
+      tailorPrice: order.tailor.price,
+      price: (order.tailor.price ?? 0) + (order.cloth?.price ?? 0),
+      tailorImage: order.tailor.imageSrc,
       design: {
         beltStyle,
         cuffsStyle,
@@ -97,14 +97,14 @@ function ClothUI() {
         shoulderStyle,
         neckStyle,
         lacingStyle,
-      }
-    }
+      },
+    };
     navigate(`/MeasurementForm?orderData=${encodeURIComponent(JSON.stringify(orderData))}`);
   }
 
   return (
     <div className='ClothUI'>
-      <OrderDetails tailor={order[0]} />
+      <OrderDetails tailor={order.tailor} />
       <div className='main'>
         <LeftPanel beltStyle={beltStyle} cuffsStyle={cuffsStyle} bottomStyle={bottomStyle} trouserStyle={trouserStyle} stitchStyle={stitchStyle} handleBeltChange={handleBeltChange} handleCuffsChange={handleCuffsChange} handleBottomChange={handleBottomChange} handleTrouserChange={handleTrouserChange} handleStitchChange={handleStitchChange} />
         <DesignPane beltStyle={beltStyle} cuffsStyle={cuffsStyle} bottomStyle={bottomStyle} trouserStyle={trouserStyle} stitchStyle={stitchStyle} collarStyle={collarStyle} sleevesStyle={sleevesStyle} shoulderStyle={shoulderStyle} neckStyle={neckStyle} lacingStyle={lacingStyle}/>

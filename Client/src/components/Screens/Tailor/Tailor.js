@@ -60,7 +60,10 @@ const TailorDetails = ({ tailor, onClose, cloth }) => (
         <p>{tailor.description}</p>
         <h3>Starts at: Rs.{tailor.price}</h3>
         <div className="btn-group">
-          <a className="book-btn" href={`OrderCreation?order=${encodeURIComponent(JSON.stringify([tailor, cloth]))}`}>Book Now</a>
+          <a className="book-btn" href={`OrderCreation?order=${encodeURIComponent(JSON.stringify({
+            tailor: { ...tailor },
+            cloth: { ...cloth }
+          }))}`}>Book Now</a>
         </div>
       </div>
     </div>
@@ -115,7 +118,7 @@ const Tailor = () => {
         ))}
       </div>
       {selectedTailor && (
-        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} cloth={cloth}/>
+        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} cloth={cloth} />
       )}
 
       <div>

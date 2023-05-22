@@ -206,10 +206,6 @@ const OrderCreation = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [showForm, setShowForm] = useState(false)
 
-    useEffect(()=>{
-        console.log(order);
-    },[])
-
     const handleClothingTypeChange = (event) => {
         setClothingType(event.target.value);
         setShowSlider(clothingTypes.includes(event.target.value));
@@ -229,7 +225,7 @@ const OrderCreation = () => {
             <h1>Create Order</h1>
             <div className="form-row">
                 <label htmlFor="tailor">Tailor:</label>
-                <h2 className="tailor-title">{order[0].name}</h2>
+                <h2 className="tailor-title">{order.tailor.name}</h2>
             </div>
             <div className="order-form">
                 {!showForm && (
