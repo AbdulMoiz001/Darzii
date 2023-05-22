@@ -70,20 +70,22 @@ function ClothUI() {
     setLacingStyle(event.target.value);
   }
 
-  function sendToMeasurements(o) {
-    console.log("About to Navigate");
+  function sendToMeasurements() {
+    console.log("Function Called");
     const cachedCartItems = localStorage.getItem('cartItems');
     const initialCartItems = cachedCartItems ? JSON.parse(cachedCartItems) : [];
-    const order = {
+    const orderData = {
       local_orderID: initialCartItems.length,
-      clothID: o[1].productID,
-      clothPrice: o[1].price,
+      clothID: order[1].productID,
+      clothPrice: order[1].price,
+      clothImage: order[1].imgSrc,
       orderType: "ClothUI",
       userID: user._id,
       userEmail: user.email,
-      tailorID: o[0].id,
-      price: (o[0].price + o[1].price),
-      tailorImage: o[0].imageSrc,
+      tailorID: order[0].id,
+      tailorName: order[0].name,
+      price: (order[0].price + order[1].price),
+      tailorImage: order[0].imageSrc,
       design: {
         beltStyle,
         cuffsStyle,
@@ -97,8 +99,7 @@ function ClothUI() {
         lacingStyle,
       }
     }
-    console.log("In D to Navigate");
-    navigate(`/MeasurementForm?orderData=${encodeURIComponent(JSON.stringify(order))}`);
+    navigate(`/MeasurementForm?orderData=${encodeURIComponent(JSON.stringify(orderData))}`);
   }
 
   return (
@@ -106,8 +107,9 @@ function ClothUI() {
       <OrderDetails tailor={order[0]} />
       <div className='main'>
         <LeftPanel beltStyle={beltStyle} cuffsStyle={cuffsStyle} bottomStyle={bottomStyle} trouserStyle={trouserStyle} stitchStyle={stitchStyle} handleBeltChange={handleBeltChange} handleCuffsChange={handleCuffsChange} handleBottomChange={handleBottomChange} handleTrouserChange={handleTrouserChange} handleStitchChange={handleStitchChange} />
-        <DesignPane beltStyle={beltStyle} cuffsStyle={cuffsStyle} bottomStyle={bottomStyle} trouserStyle={trouserStyle} stitchStyle={stitchStyle} collarStyle={collarStyle} sleevesStyle={sleevesStyle} shoulderStyle={shoulderStyle} neckStyle={neckStyle} lacingStyle={lacingStyle} sendToMeasurements={sendToMeasurements} order={order}/>
+        <DesignPane beltStyle={beltStyle} cuffsStyle={cuffsStyle} bottomStyle={bottomStyle} trouserStyle={trouserStyle} stitchStyle={stitchStyle} collarStyle={collarStyle} sleevesStyle={sleevesStyle} shoulderStyle={shoulderStyle} neckStyle={neckStyle} lacingStyle={lacingStyle}/>
         <RightPanel collarStyle={collarStyle} sleevesStyle={sleevesStyle} shoulderStyle={shoulderStyle} neckStyle={neckStyle} lacingStyle={lacingStyle} handleCollarChange={handleCollarChange} handleSleevesChange={handleSleevesChange} handleShoulderChange={handleShoulderChange} handleNeckChange={handleNeckChange} handleLacingChange={handleLacingChange} />
+        <button className='cuiNext' onClick={sendToMeasurements}>Next &raquo;</button>
       </div>
     </div>
   )
