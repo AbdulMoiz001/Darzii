@@ -16,7 +16,6 @@ function Checkout() {
             address: address,
             creationDate: new Date().toISOString().split('T')[0]
         }));  
-        console.log(orders);
         localStorage.removeItem('cartItems');
         localStorage.removeItem('cartItemCount');
         navigate('/');

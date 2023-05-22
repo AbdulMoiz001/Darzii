@@ -58,3 +58,18 @@ h2 {
 .cart-item .ID{
     margin-right: 15px;
 }
+
+.cart-container .book-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135.8deg, rgb(26, 26, 29) 27.1%, rgb(111, 34, 50) 77.5%);
+    color: #fcfcfc;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out;
+}
+
+.cart-container .book-btn:hover {
+    opacity: 0.95;
+}
