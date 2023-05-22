@@ -6,13 +6,15 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({orders}) {
   const stripe = useStripe();
   const elements = useElements();
 
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const PaidOrders = orders.map(order => order.local_orderID);
 
   useEffect(() => {
     if (!stripe) {
@@ -30,11 +32,8 @@ export default function CheckoutForm() {
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case "succeeded":
-          {
-            setMessage("Payment succeeded!");
-            window.localStorage.setItem("cartItems", "ha done");
-            break;
-          }
+          setMessage("Payment succeeded!");
+          break;
         case "processing":
           setMessage("Your payment is processing.");
           break;
@@ -49,6 +48,8 @@ export default function CheckoutForm() {
   }, [stripe]);
 
   const handleSubmit = async (e) => {
+    localStorage.setItem('orders', JSON.stringify(orders));
+    
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -58,16 +59,17 @@ export default function CheckoutForm() {
     }
 
     setIsLoading(true);
-
+    
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         //
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3001",
+        
+        return_url: `http://localhost:3000/payment-success?PaidOrders=${encodeURIComponent(JSON.stringify(PaidOrders))}`,
       },
     });
-
+    console.log(error);
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to
     // your `return_url`. For some payment methods like iDEAL, your customer will

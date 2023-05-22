@@ -17,7 +17,9 @@ export default function Stripe({ orders }) {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    console.log(orders);
+    console.log("Hey");
+    console.log(JSON.stringify(orders));
+
     fetch("http://localhost:5000/payment/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,7 +27,6 @@ export default function Stripe({ orders }) {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-    console.log(clientSecret);
   }, []);
 
   const appearance = {
@@ -41,7 +42,7 @@ export default function Stripe({ orders }) {
     <div className="Stripe">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm orders={orders}/>
         </Elements>
       )}
     </div>
