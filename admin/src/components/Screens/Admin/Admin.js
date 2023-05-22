@@ -31,9 +31,9 @@ function Admin() {
 
       <AuthContextProvider>
         <Sidebar />
-        <Topbar />
+        {/* <Topbar /> */}
         <Routes>
-
+          {/* //For HR
           {user ?
 
             <Route
@@ -45,7 +45,8 @@ function Admin() {
               path="/"
               element={<SignInAdmin />}
             />
-          }
+          } */}
+          {/* <Route path="/" element={<Dashboard />} /> */}
           <Route path="/rider/register" element={<RiderForm />} />
 
           <Route path="/darzii" element={<DarziInfo />} />

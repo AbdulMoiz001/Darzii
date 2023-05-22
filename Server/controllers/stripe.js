@@ -10,9 +10,6 @@ const stripeInstance = Stripe(secretKey);
 
 
 const calculateOrderAmount = (orders) => {
-    // Replace this constant with a calculation of the order's amount
-    // Calculate the order total on the server to prevent
-    // people from directly manipulating the amount on the client
 
     return orders.reduce((total, order) => total + order.price, 0) * 100;
 };
@@ -28,9 +25,8 @@ export const stripePayment = async (req, res) => {
             enabled: true,
         },
     });
-    console.log(calculateOrderAmount(orders));
 
     res.send({
         clientSecret: paymentIntent.client_secret,
     });
-}
+};
