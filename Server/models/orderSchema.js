@@ -4,13 +4,10 @@ const orderSchema = new mongoose.Schema({
   OrderType: { type: String, },
   ItemID: { type: Number, },
   ItemTitle: { type: String, },
-  TailorID: { type: String, },
-  TailorName: { type: String, },
-
-  // {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "tailor",
-  // },
+  TailorID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "tailor",
+  },
   Size: { type: String, default: null },
   Measurements: {
     height: { type: Number, default: null },
@@ -42,11 +39,9 @@ const orderSchema = new mongoose.Schema({
   ClothingType: { type: String, },
   OrderStatus: { type: String, },
   CustomerID: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
   },
-  CustomerContactNumber: { type: String, },
-  CustomerName: { type: String, },
-  TailorContactNumber: { type: String, },
   OrderAcceptanceDate: { type: Date, },
   OrderDeliveryDeadline: { type: Date, },
   PaymentStatus: { type: String, },

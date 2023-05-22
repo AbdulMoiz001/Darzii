@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
 import mesauremnetOrders from "../models/measurementOrderSchema.js";
 import mesauremnets from "../models/meaurementSchema.js";
 import OrderSchema from "../models/orderSchema.js";
-import { totalmem } from "os";
+import mongoose from "mongoose";
+import { ObjectId } from "mongoose";
 
 export const createMeasurementOrder = async (req, res) => {
     if (req.user.id == req.params.id) {
@@ -38,12 +38,21 @@ export const createMeasurementOrder = async (req, res) => {
 
 export const getNumberOfOrdersForTailor = async (req, res) => {
     try {
-        const tailorId = req.user.id;
-        const orders = await OrderSchema
-            .find({ TailorID: tailorId })
-            .select(
-                'OrderID ClothingType OrderStatus Price CustomerID CustomerContactNumber CustomerName TailorName TailorContactNumber OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating Catalogue CatalogueID Measurements ClothUI Design'
-            );
+
+
+        const tailorId = mongoose.Types.ObjectId(req.user.id)
+        console.log(tailorId)
+        // const tailorId = new ObjectId(req.user.id);
+        const orders = await OrderSchema.find({ TailorID: tailorId })
+            .populate("TailorID", "tailorName phone")
+            .populate("CustomerID", "firstName lastName phone")
+            .select("_id Measurements TailorID ClothUI Design Catalogue CatalogueID Price CustomerID OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating")
+
+
+
+        console.log(orders);
+
+
 
         res.status(200).json(orders);
     } catch (error) {
@@ -75,7 +84,6 @@ export const updateOrderStatus = async (req, res) => {
 
     try {
         const order = await OrderSchema.findById(req.body.id);
-        console.log(order.TailorID, req.user.id);
         if (order.TailorID === req.user.id) {
 
             const updatedOrder = await OrderSchema.findOneAndUpdate(

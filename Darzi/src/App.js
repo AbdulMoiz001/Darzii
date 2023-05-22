@@ -11,10 +11,8 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import Orders from './components/Orders';
 import Order from './components/Order';
 import IncomingOrders from './components/IncomingOrders';
-import Tailors from './components/TailorsData';
 import { FaUser } from "react-icons/fa";
 import Profile from './components/Profile';
-import OrdersData from './components/OrdersData';
 import NewOrders from './components/PendingOrdersData';
 import Appointment from './components/Appointment';
 
@@ -41,6 +39,7 @@ const App = () => {
             },
           });
         setOrderData(res.data);
+        console.log(res.data);
       } catch (error) {
       }
     };
@@ -50,7 +49,6 @@ const App = () => {
 
 
 
-  const [Tailor, setTailor] = useState();
 
   const handleLogout = () => {
     localStorage.removeItem("tailor")
