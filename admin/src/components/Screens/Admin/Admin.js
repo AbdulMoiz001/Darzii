@@ -6,7 +6,7 @@ import WHManagerForm from "./Forms/WHManagerForm";
 import DarziForm from "./Forms/DarziiForm";
 import Dashboard from "./Dashboard.jsx";
 import Sidebar from "../../Sidebar/Sidebar";
-import Topbar from "../../Topbar/Topbar";
+// import Topbar from "../../Topbar/Topbar";
 import DarziInfo from "./Darzii/DarziInfo";
 import DeleteDarzi from "./Darzii/DeleteDarzii";
 import EditDarzi from "./Darzii/EditDarzi";
