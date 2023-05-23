@@ -20,6 +20,10 @@ import { AuthContext } from "../../../context/authContext/AuthContext";
 import { useContext } from "react";
 import SignInAdmin from "../SignIn/SignInAdmin";
 import Product from "./WareHouse Manager/Product";
+import DeleteRider from "./Rider/DeleteRider";
+import EditRider from "./Rider/EditRider";
+import RiderInfo from "./Rider/RiderInfo";
+import Riders from "./Rider/Riders";
 
 function Admin() {
   const { user } = useContext(AuthContext);
@@ -47,7 +51,11 @@ function Admin() {
             />
           } */}
           {/* <Route path="/" element={<Dashboard />} /> */}
+          <Route path="/rider" element={<RiderInfo />} />
           <Route path="/rider/register" element={<RiderForm />} />
+          <Route path="/rider/delete" element={<DeleteRider />} />
+          <Route path="/rider/users" element={<Riders />} />
+          <Route path="/rider/edit" element={<EditRider />} />
 
           <Route path="/darzii" element={<DarziInfo />} />
           <Route path="/darzii/register" element={<DarziForm />} />

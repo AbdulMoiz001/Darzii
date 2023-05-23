@@ -12,7 +12,7 @@ const MenuItems = [
     },
     {
         title: 'Rider',
-        url: '/rider/register',
+        url: '/rider',
         cName: 'nav-links'
     },
     {

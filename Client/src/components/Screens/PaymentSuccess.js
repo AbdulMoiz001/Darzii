@@ -20,7 +20,10 @@ function PaymentSuccess() {
             payment_intent: paymentIntent
         }));
 
-        console.log(CompleteOrders);
+        CompleteOrders.map((order)=>{
+            console.log("Send POST request for " + order.local_orderID);
+            console.log(order);
+        });
         
         localStorage.removeItem('cartItems');
         localStorage.removeItem('cartItemCount');
