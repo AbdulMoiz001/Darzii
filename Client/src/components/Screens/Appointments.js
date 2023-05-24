@@ -29,44 +29,72 @@ const Appointments = () => {
   };
 
   return (
-    <div className="appointment-form">
-      <h2>Appointment Request</h2>
+    <div className="card">
+    <div className="gateway">
+
+    <div className="wrapper">
+    
+    <div className="loginCard">
+      <h2 className="title">
+        Appointment Request
+      </h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="appointmentDate">Appointment Date:</label>
-          <input
-            type="date"
-            id="appointmentDate"
-            name="AppointmentDate"
-            value={appointmentData.AppointmentDate}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="startTime">Start Time:</label>
-          <input
+        <div className="row">
+          <div className="col">
+            <div className="group">
+              <label className="formLabel">Email</label>
+              <input
+              className="inputStyle"
             type="time"
-            id="startTime"
             name="StartTime"
             value={appointmentData.StartTime}
             onChange={handleInputChange}
             required
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="endTime">End Time:</label>
-          <input
+            </div>
+          </div>
+          </div>
+          <div className="row">
+          <div className="col">
+            <div className="group">
+              <label className="formLabel">Password</label>
+              <input
+              className="inputStyle"
             type="time"
-            id="endTime"
+            
             name="EndTime"
             value={appointmentData.EndTime}
             onChange={handleInputChange}
             required
           />
+            </div>
+          </div>
+          </div>
+          <div className="row">
+          <div className="col">
+            <div className="group">
+              <label className="formLabel">Password</label>
+              <input
+            className="inputStyle"
+            type="time"
+            
+            name="EndTime"
+            value={appointmentData.EndTime}
+            onChange={handleInputChange}
+            required
+          />
+            </div>
+          </div>
         </div>
-        <button type="submit">Submit</button>
+        <div className="buttonDiv">
+          <button className="btn-form changeColor" type="submit" >
+            Submit
+          </button>
+        </div>
       </form>
+    </div>
+    </div>
+    </div>
     </div>
   );
 };
