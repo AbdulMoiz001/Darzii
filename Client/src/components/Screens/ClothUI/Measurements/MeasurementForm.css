@@ -49,6 +49,7 @@
     outline: none;
     border: none;
     font-weight: bold;
+    
 }
 
 .measurement-form button[type="submit"]:hover {
