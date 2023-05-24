@@ -42,7 +42,7 @@ const Appointments = () => {
         <div className="row">
           <div className="col">
             <div className="group">
-              <label className="formLabel">Email</label>
+              <label className="formLabel">Appointment Date:</label>
               <input
               className="inputStyle"
             type="time"
@@ -57,7 +57,7 @@ const Appointments = () => {
           <div className="row">
           <div className="col">
             <div className="group">
-              <label className="formLabel">Password</label>
+              <label className="formLabel">Start Time:</label>
               <input
               className="inputStyle"
             type="time"
@@ -73,7 +73,7 @@ const Appointments = () => {
           <div className="row">
           <div className="col">
             <div className="group">
-              <label className="formLabel">Password</label>
+              <label className="formLabel">End Time:</label>
               <input
             className="inputStyle"
             type="time"
