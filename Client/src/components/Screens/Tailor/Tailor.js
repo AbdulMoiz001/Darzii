@@ -9,7 +9,7 @@ import Map from "../Maps/Map";
 
 const TailorCard = ({ tailor, onTailorClick }) => (
   <div className="tailor-card" onClick={() => onTailorClick(tailor)}>
-    <img src={`data:image/png;base644, ${tailor.imageSrc}`} alt={tailor.tailorName} />
+    <img src={tailor.image} alt={tailor.tailorName} />
     <div className="tailor-card-info">
       <h3>{tailor.tailorName}</h3>
       <p>{tailor.description}</p>
@@ -24,7 +24,7 @@ const TailorDetails = ({ tailor, onClose, cloth }) => (
       <button className="close-btn" onClick={onClose}>
         X
       </button>
-      <img src={tailor.imageSrc} alt={tailor.tailorName} />
+      <img src={tailor.image} alt={tailor.tailorName} />
       <div className="tailor-details-info">
         <h2>{tailor.tailorName}</h2>
         <p>{tailor.description}</p>
@@ -64,7 +64,6 @@ const Tailor = () => {
         }));
 
         setTailorInfo(updatedData);
-        console.log(tailorsInfo);
       } catch (error) {
         console.error(error);
       }
@@ -139,6 +138,9 @@ const Tailor = () => {
     setSelectedTailor(null);
   };
 
+  console.log(tailorsInfo);
+
+
   return (
     <div className="Tailor">
       <h1>Tailors</h1>
@@ -148,9 +150,13 @@ const Tailor = () => {
         <label>50</label>
       </div>
       <div className="tailor-list">
-        {tailorsInfo.map((tailor) => (
+        {tailorsInfo ? tailorsInfo.map((tailor) => (
           <TailorCard key={tailor._id} tailor={tailor} onTailorClick={handleTailorClick} />
-        ))}
+        ))
+
+          :
+          <></>
+        }
       </div>
       {selectedTailor && (
         <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} cloth={cloth} />

@@ -3,7 +3,6 @@
   margin-right: 20px;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
   background-color: #b7d6eb;
-  height: 500px;
   margin-top: 20px;
   border: white solid 2px;
   border-radius: 30px;
@@ -11,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .tailor-card h2 {

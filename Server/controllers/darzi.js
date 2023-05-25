@@ -55,7 +55,6 @@ export const setDescription = async (req, res) => {
             const updatedTailor = await darziSchema.findByIdAndUpdate(
                 req.user.id,
                 {
-
                     $set: req.body,
                 },
                 { new: true }
@@ -73,3 +72,27 @@ export const setDescription = async (req, res) => {
     }
 
 };
+
+export const uploadPic = async (req, res) => {
+    if (req.user.id == req.params.id) {
+        try {
+            const updatedTailor = await darziSchema.findByIdAndUpdate(
+                req.user.id,
+                {
+                    image: req.body.image,
+                },
+                { new: true }
+            );
+            if (!updatedTailor) {
+                return res.status(404).json({ message: 'Tailor not found' });
+            }
+            return res.status(200).json(updatedTailor);
+
+        } catch (error) {
+            return res.status(500).json({ message: 'Internal server error' });
+
+        }
+    }
+
+};
+
