@@ -96,6 +96,25 @@ export const GetAllTailor = async (req, res) => {
 }
 
 
+export const GetTailors = async (req, res) => {
+
+  try {
+    const tailor = await darziSchema.find({}, {
+      image: 1,
+      tailorName: 1,
+      description: 1,
+      price: 1,
+      lat: 1,
+      lng: 1,
+      _id: 1
+    });
+    res.status(200).json(tailor);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+
+}
+
 export const deleteTailor = async (req, res) => {
 
   if (req.user["roles"].includes("admin")) {

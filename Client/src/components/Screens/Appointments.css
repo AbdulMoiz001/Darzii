@@ -8,11 +8,11 @@
   max-width: 680px;
 }
 
-.card {
+.appointment-card {
   border-radius: 10px;
   margin-top: 30px;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
-  background-color: rgba(255, 255, 255, .08);
+  background-color: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(1px);
   padding: 57px 65px;
   margin-left: 375px;
@@ -54,7 +54,7 @@
   line-height: 50px;
   width: 100%;
   margin: 0px 178px;
-  background-color: rgba(255, 255, 255, .08);
+  background-color: rgba(255, 255, 255, 0.08);
   box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
   border-radius: 5px;
   padding: 0 20px;
@@ -85,11 +85,11 @@
   cursor: pointer;
 }
 
-.signupCard .radio-container input:checked~.checkmark {
-  background-color: rgba(255, 255, 255, .08);
+.signupCard .radio-container input:checked ~ .checkmark {
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
-.signupCard .radio-container input:checked~.checkmark:after {
+.signupCard .radio-container input:checked ~ .checkmark:after {
   display: block;
 }
 
@@ -110,7 +110,7 @@
   left: 0;
   height: 20px;
   width: 20px;
-  background-color: rgba(255, 255, 255, .08);
+  background-color: rgba(255, 255, 255, 0.08);
   border-radius: 50%;
   box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
 }
@@ -183,7 +183,11 @@
 }
 
 .changeColor {
-  background: linear-gradient(90deg, rgb(231, 217, 13) 0%, rgb(231, 173, 12) 100%);
+  background: linear-gradient(
+    90deg,
+    rgb(231, 217, 13) 0%,
+    rgb(231, 173, 12) 100%
+  );
   color: #070707;
   outline: none;
   border: none;
@@ -203,10 +207,10 @@
   margin-top: 15px;
 }
 
-.selectInput{
+.selectInput {
   height: 50px;
   max-width: 100%;
-  background-color: rgba(255, 255, 255, .08);
+  background-color: rgba(255, 255, 255, 0.08);
   box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
   border-radius: 5px;
   padding: 0 20px;

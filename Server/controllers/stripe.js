@@ -16,17 +16,19 @@ const calculateOrderAmount = (orders) => {
 
 export const stripePayment = async (req, res) => {
     const { orders } = req.body;
-    console.log(req.body);
     // Create a PaymentIntent with the order amount and currency
-    const paymentIntent = await stripeInstance.paymentIntents.create({
-        amount: calculateOrderAmount(orders),
-        currency: "pkr",
-        automatic_payment_methods: {
-            enabled: true,
-        },
-    });
-
-    res.send({
-        clientSecret: paymentIntent.client_secret,
-    });
+    if (orders.length > 0) {
+        const paymentIntent = await stripeInstance.paymentIntents.create({
+            amount: calculateOrderAmount(orders),
+            currency: "pkr",
+            automatic_payment_methods: {
+                enabled: true,
+            },
+        });
+        res.send({
+            clientSecret: paymentIntent.client_secret,
+        });
+    } else {
+        res.status(400).json("No orders found")
+    }
 };

@@ -4,7 +4,9 @@ import {
     createMeasurementOrder,
     getNumberOfOrdersForTailor,
     getPaymentInformation,
-    updateOrderStatus
+    updateOrderStatus,
+    OrdersForUser,
+    createOrder
 } from "../controllers/order.js";
 
 const routerOrder = Express.Router();
@@ -15,6 +17,8 @@ routerOrder.get("/getOrdersForTailor", verify, getNumberOfOrdersForTailor);
 routerOrder.get("/getPaymentInformation", verify, getPaymentInformation);
 routerOrder.post("/updateOrderStatus", verify, updateOrderStatus);
 
+routerOrder.get("/getOrders", verify, OrdersForUser);
+routerOrder.post("/createOrder", verify, createOrder);
 
 
 export default routerOrder;

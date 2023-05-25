@@ -8,7 +8,10 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "tailor",
   },
+
   Size: { type: String, default: null },
+  address: { type: String, default: null },
+  payment_intent: { type: String, default: null },
   Measurements: {
     height: { type: Number, default: null },
     weight: { type: Number, default: null },
@@ -43,6 +46,7 @@ const orderSchema = new mongoose.Schema({
     ref: "user",
   },
   OrderAcceptanceDate: { type: Date, },
+  creationDate: { type: Date, },
   OrderDeliveryDeadline: { type: Date, },
   PaymentStatus: { type: String, },
   Rating: { type: Number, }

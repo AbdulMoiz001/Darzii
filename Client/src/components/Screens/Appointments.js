@@ -29,72 +29,72 @@ const Appointments = () => {
   };
 
   return (
-    <div className="card">
-    <div className="gateway">
+    <div className="appointment-card">
+      <div className="gateway">
 
-    <div className="wrapper">
-    
-    <div className="loginCard">
-      <h2 className="title">
-        Appointment Request
-      </h2>
-      <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col">
-            <div className="group">
-              <label className="formLabel">Appointment Date:</label>
-              <input
-              className="inputStyle"
-            type="time"
-            name="StartTime"
-            value={appointmentData.StartTime}
-            onChange={handleInputChange}
-            required
-          />
-            </div>
-          </div>
-          </div>
-          <div className="row">
-          <div className="col">
-            <div className="group">
-              <label className="formLabel">Start Time:</label>
-              <input
-              className="inputStyle"
-            type="time"
-            
-            name="EndTime"
-            value={appointmentData.EndTime}
-            onChange={handleInputChange}
-            required
-          />
-            </div>
-          </div>
-          </div>
-          <div className="row">
-          <div className="col">
-            <div className="group">
-              <label className="formLabel">End Time:</label>
-              <input
-            className="inputStyle"
-            type="time"
-            
-            name="EndTime"
-            value={appointmentData.EndTime}
-            onChange={handleInputChange}
-            required
-          />
-            </div>
+        <div className="wrapper">
+
+          <div className="loginCard">
+            <h2 className="title">
+              Appointment Request
+            </h2>
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                <div className="col">
+                  <div className="group">
+                    <label className="formLabel">Appointment Date:</label>
+                    <input
+                      className="inputStyle"
+                      type="time"
+                      name="StartTime"
+                      value={appointmentData.StartTime}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <div className="group">
+                    <label className="formLabel">Start Time:</label>
+                    <input
+                      className="inputStyle"
+                      type="time"
+
+                      name="EndTime"
+                      value={appointmentData.EndTime}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <div className="group">
+                    <label className="formLabel">End Time:</label>
+                    <input
+                      className="inputStyle"
+                      type="time"
+
+                      name="EndTime"
+                      value={appointmentData.EndTime}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="buttonDiv">
+                <button className="btn-form changeColor" type="submit" >
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-        <div className="buttonDiv">
-          <button className="btn-form changeColor" type="submit" >
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
-    </div>
-    </div>
+      </div>
     </div>
   );
 };

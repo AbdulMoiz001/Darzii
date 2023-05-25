@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './Orders.css';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { AuthContext } from '../../context/authContext/AuthContext';
 
 const OrdersData = [
     {
@@ -50,12 +53,24 @@ const OrdersData = [
     },
     {
         OrderID: 2,
-        OrderType: "Catalogue",
         ItemID: 2,
         ItemTitle: "Formal Trousers",
+        Size: "Large",
+        Title: "Formal Trousers",
+        ClothingType: "Trousers",
+        CustomerID: 2,
+        CustomerContactNumber: "9876543210",
+        CustomerName: "Jane Smith",
+        Rating: 5,
+        OrderType: "Catalogue",
+        Price: 800,
+        TailorContactNumber: "1234567890",
         TailorID: 2,
         TailorName: "Jane's Tailoring",
-        Size: "Large",
+        PaymentStatus: "Paid",
+        OrderDeliveryDeadline: "2023-05-17T10:00:00Z",
+        OrderAcceptanceDate: "2023-05-10T10:00:00Z",
+        OrderStatus: "Completed",
         Measurements: {
             height: null,
             weight: null,
@@ -81,34 +96,48 @@ const OrdersData = [
         },
         Catalogue: true,
         CatalogueID: 123,
-        Price: 800,
-        Title: "Formal Trousers",
-        ClothingType: "Trousers",
-        OrderStatus: "Completed",
-        CustomerID: 2,
-        CustomerContactNumber: "9876543210",
-        CustomerName: "Jane Smith",
-        TailorContactNumber: "1234567890",
-        OrderAcceptanceDate: "2023-05-10T10:00:00Z",
-        OrderDeliveryDeadline: "2023-05-17T10:00:00Z",
-        PaymentStatus: "Paid",
-        Rating: 5
     }
 ];
 
 const Orders = () => {
-  
-  const orderCards = OrdersData.map((order) => (
-    <div className="order-card" key={order.OrderID}>
-      <h2>{order.ItemTitle}</h2>
-      <p>Order ID: {order.OrderID}</p>
-      <p>Tailor: {order.TailorName}</p>
-      <p>Status: {order.OrderStatus}</p>
-      <a className="button" href={`Order?order=${encodeURIComponent(JSON.stringify(order))}`}>Details</a>
-    </div>
-  ));
+    const { user } = useContext(AuthContext);
+    const [orders, setOrders] = useState();
+    const accessToken = user.accessToken;
 
-  return <div className="orders-container">{orderCards}</div>;
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/order/getOrders", {
+                    headers: {
+                        token: "Bearer " + accessToken,
+                    },
+                });
+                setOrders(res.data);
+                console.log(res.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchOrders();
+    }, []);
+
+    const orderCards = orders ? orders.map((order) => (
+        <div className="order-card" key={order._id}>
+            <h2>{order.ItemTitle}</h2>
+            <p>Order ID: {order._id}</p>
+            {order.TailorID ? (
+                <p>Tailor: {order.TailorID.name}</p>
+            ) : (
+                <></>
+            )}
+            <p>Status: {order.OrderStatus}</p>
+            <a className="button" href={`Order?order=${encodeURIComponent(JSON.stringify(order))}`}>Details</a>
+        </div>
+    )) : null;
+
+
+    return <div className="orders-container">{orderCards}</div>;
 };
 
 export default Orders;
