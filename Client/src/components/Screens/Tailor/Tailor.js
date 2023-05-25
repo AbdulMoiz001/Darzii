@@ -70,6 +70,7 @@ const Tailor = () => {
       }
     };
     fetchTailors();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //______________________________________________________________________________
