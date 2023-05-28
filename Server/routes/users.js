@@ -11,6 +11,7 @@ import {
     DeleteRider,
     updateRider,
     updateTailor,
+    getTailor,
 } from "../controllers/users.js";
 import { verify } from "./verifyUserTokens.js";
 
@@ -33,6 +34,7 @@ routerUser.delete("/deleteRider/:id", verify, DeleteRider);
 routerUser.post("/updateRider/:id", verify, updateRider);
 
 //For user
-routerUser.get("/getTailors", verify, GetTailors);
 
+routerUser.get("/getTailors", verify, GetTailors);
+routerUser.get("/getTailor/:id", verify, getTailor);
 export default routerUser;

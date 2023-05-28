@@ -115,16 +115,29 @@ export const GetTailors = async (req, res) => {
 
 }
 
+export const getTailor = async (req, res) => {
+  try {
+    const tailorId = req.params.id;
+    const tailor = await darziSchema.findOne({ _id: tailorId });
+
+    if (tailor) {
+      res.status(200).json(tailor);
+    } else {
+      res.status(404).json({ error: "Tailor not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error" });
+  }
+};
+
 export const deleteTailor = async (req, res) => {
 
   if (req.user["roles"].includes("admin")) {
 
     try {
-      const tailorId = req.params.id; // Get the tailor ID from the request parameters
-
-      // Delete the tailor from the database
+      const tailorId = req.params.id;
       await darziSchema.findByIdAndRemove(tailorId);
-
       res.status(200).json({ message: "Tailor deleted successfully" });
     } catch (error) {
       console.error(error);

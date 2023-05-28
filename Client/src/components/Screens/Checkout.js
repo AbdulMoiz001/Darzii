@@ -17,10 +17,6 @@ function Checkout() {
         }));
         setOrders(orders_with_address);
         console.log(orders_with_address);
-        // localStorage.removeItem('cartItems');
-        // localStorage.removeItem('cartItemCount');
-        // navigate('/');
-        // window.location.reload();
     };
 
 

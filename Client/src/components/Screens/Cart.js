@@ -1,13 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Cart.css';
+import { AuthContext } from '../../context/authContext/AuthContext';
+import axios from 'axios'
 
 const CartItem = ({ item, onRemoveItem }) => {
+
+  const { user } = useContext(AuthContext);
+
+  const [tailorInCart, setTailorInCart] = useState([]);
+  const accessToken = user.accessToken;
+
+
+  useEffect(() => {
+
+    const getTailor = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/user/getTailor/${item.tailorID}`,
+          {
+            headers: {
+              token: "Bearer " + accessToken,
+            },
+          }
+        );
+
+        setTailorInCart(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+
+    };
+
+    getTailor();
+
+  }, [])
+
+
   return (
     <div className="cart-item">
       <div className='ID'>{item.local_orderID + 1}</div>
       {(item.clothImage) && <img src={item.clothImage} alt='' />}
-      {(!item.clothImage) && <img src={item.tailorImage} alt='' />}
+      {(!item.clothImage) && <img src={tailorInCart.image} alt='' />}
       <div className="item-details">
         <h3>For {item.tailorName}</h3>
         <p>Rs. {item.price}</p>
@@ -20,6 +54,8 @@ const CartItem = ({ item, onRemoveItem }) => {
 };
 
 const Cart = ({ onCartItemCountChange }) => {
+
+
   const [cartItems, setCartItems] = useState([]);
   const [cartItemCount, setCartItemCount] = useState(0);
   const location = useLocation();
