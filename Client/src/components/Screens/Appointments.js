@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import './Appointments.css';
+import { useLocation } from 'react-router-dom';
 
 const Appointments = () => {
+  const location = useLocation();
+  const order = JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('order')));
+
   const [appointmentData, setAppointmentData] = useState({
+    CustomerID:  order.CustomerID,
+    TailorID: order.TailorID,
     AppointmentDate: '',
     StartTime: '',
     EndTime: ''
@@ -22,6 +28,8 @@ const Appointments = () => {
     console.log(appointmentData);
     // Reset the form
     setAppointmentData({
+      CustomerID:  order.CustomerID,
+      TailorID: order.TailorID,
       AppointmentDate: '',
       StartTime: '',
       EndTime: ''

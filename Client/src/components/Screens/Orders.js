@@ -97,18 +97,21 @@ const OrdersData = [
 ];
 
 const Orders = () => {
-  
-  const orderCards = OrdersData.map((order) => (
-    <div className="order-card" key={order.OrderID}>
-      <h2>{order.ItemTitle}</h2>
-      <p>Order ID: {order.OrderID}</p>
-      <p>Tailor: {order.TailorName}</p>
-      <p>Status: {order.OrderStatus}</p>
-      <a className="button" href={`Order?order=${encodeURIComponent(JSON.stringify(order))}`}>Details</a>
-    </div>
-  ));
+    const handleOrderClick = (order) => {
+        const encodedOrder = encodeURIComponent(JSON.stringify(order));
+        window.location.href = `Order?order=${encodedOrder}`;
+    };
 
-  return <div className="orders-container">{orderCards}</div>;
+    const orderCards = OrdersData.map((order) => (
+        <div className="order-card" key={order.OrderID} onClick={() => handleOrderClick(order)}>
+            <h2>{order.ItemTitle}</h2>
+            <p>Order ID: {order.OrderID}</p>
+            <p>Tailor: {order.TailorName}</p>
+            <p>Status: {order.OrderStatus}</p>
+        </div>
+    ));
+
+    return <div className="orders-container">{orderCards}</div>;
 };
 
 export default Orders;
