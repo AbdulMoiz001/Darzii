@@ -1,0 +1,35 @@
+.container-request{
+    /* blue gradient */
+    /* background: linear-gradient(90deg, rgba(109,211,252,1) 35%, rgba(190,252,198,1) 100%); */
+
+    /* orange gradient */
+    background: linear-gradient(90deg, rgba(240,139,66,1) 24%, rgba(255,174,41,1) 100%);
+
+    color: white;
+    height: 100vh;
+    padding: 3em 2em;
+}
+.request-canvas{
+    backdrop-filter: blur(20px);
+    background: transparent;
+    /* border: 1px solid black; */
+    /* position: absolute; */
+}
+body,html{
+    height: 100%;
+}
+.order-card{
+    /* blue gradient */
+    /* background: linear-gradient(90deg, rgba(109,211,252,1) 35%, rgba(190,252,198,1) 100%); */
+
+    /* orange gradient */
+    background: linear-gradient(90deg, rgba(240,139,66,1) 24%, rgba(255,174,41,1) 100%);
+    border-radius: 20px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    margin-bottom: 2em;
+}
+.order-id{
+    border-bottom: 5px solid rgb(224, 65, 65);
+    width: fit-content;
+    margin-bottom: 10px;
+}
