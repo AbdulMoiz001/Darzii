@@ -13,7 +13,7 @@ function Riders() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/user/getAllTailors", {
+                const res = await axios.get("http://localhost:5000/user/getRiders", {
                     headers: {
                         token: "Bearer " + accessToken,
                     },
@@ -43,59 +43,55 @@ function Riders() {
             </div>
 
 
-            {riderInfo.map((item, index) => {
-                return (
-                    <div className="infoCard" key={index}>
-                        <div className='riderTitle'>
-                            <label>
-                                ID :
-                                {item._id}
-                            </label>
-                        </div>
-                        <div className='riderTitle'>
-                            <label>
-                                Name :
-                                {item.userName}
-                            </label>
-                        </div>
-                        <div className='riderTitle'>
-                            <label>
-                                Email :
-                                {item.email}
-                            </label>
-                        </div>
+            {
+                riderInfo ?
+                    riderInfo.map((item, index) => {
+                        return (
+                            <div className="infoCard" key={index}>
+                                <div className='riderTitle'>
+                                    <label>
+                                        ID :
+                                        {item._id}
+                                    </label>
+                                </div>
+                                <div className='riderTitle'>
+                                    <label>
+                                        Name :
+                                        {item.firstName + " " + item.lastName}
+                                    </label>
+                                </div>
+                                <div className='riderTitle'>
+                                    <label>
+                                        Email :
+                                        {item.email}
+                                    </label>
+                                </div>
 
+                                <div className='infoBox address' >
+                                    <label htmlFor="Address">Address: </label>
+                                    <span>{item.address}</span>
+                                </div>
 
-                        <div className=' infoBox'>
-                            <label htmlFor="TailorName">Tailor Name:</label>
-                            <span>
-                                {item.tailorName}
-                            </span>
+                                <div className="vehicleMake infoBox">
+                                    <label htmlFor="vehicleMake">Vehicle Make :</label>
+                                    <span>{item.vehicleMake}</span>
+                                </div>
+                                <div className="vehicleReg infoBox">
+                                    <label htmlFor="vehicleReg">Vehicle Registration :</label>
+                                    <span>{item.vehicleReg}</span>
+                                </div>
+                                <div className="vehicleModel infoBox">
+                                    <label htmlFor="vehicleModel">Vehicle Model :</label>
+                                    <span>{item.vehicleModel}</span>
+                                </div>
 
-                        </div>
-
-                        <div className='infoBox'>
-                            <label htmlFor="FirstName"> First Name: </label>
-                            <span>{item.firstName}</span>
-                        </div>
-
-                        <div className='infoBox'>
-                            <label htmlFor="LastName"> Last Name: </label>
-                            <span>{item.lastName}</span>
-                        </div>
-
-                        <div className='infoBox address' >
-                            <label htmlFor="Address">Address: </label>
-                            <span>{item.address}</span>
-
-                        </div>
-
-                        <div className='viewitem'><a href={`/rider/edit?item=${encodeURIComponent(JSON.stringify(item))}`}>View More  <FaChevronRight /></a></div>
-
-
-                    </div>
-                )
-            })}
+                                <div className='viewitem'><a href={`/rider/edit?item=${encodeURIComponent(JSON.stringify(item))}`}>View More  <FaChevronRight /></a></div>
+                            </div>
+                        )
+                    })
+                    :
+                    <></>
+            }
 
 
 

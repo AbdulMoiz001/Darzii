@@ -14,13 +14,13 @@ function DeleteRider() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/user/getAllTailors", {
+                const res = await axios.get("http://localhost:5000/user/getRiders", {
                     headers: {
                         token: "Bearer " + accessToken,
                     },
                 });
                 setRiderInfo(res.data);
-                console.log(res);
+                console.log(res.data);
             } catch (error) {
                 console.error(error);
             }
@@ -32,12 +32,11 @@ function DeleteRider() {
     const handleDelete = async (id) => {
         try {
             // Make an HTTP request to delete the item with the given ID
-            await axios.delete(`http://localhost:5000/user/deleteTailor/${id}`, {
+            await axios.delete(`http://localhost:5000/user/deleteRider/${id}`, {
                 headers: {
                     token: "Bearer " + accessToken,
                 },
             });
-
             // Update the riderInfo state by filtering out the deleted item
             setRiderInfo((prevInfo) => prevInfo.filter((item) => item._id !== id));
         } catch (error) {
@@ -64,10 +63,6 @@ function DeleteRider() {
                             <label htmlFor="id">ID : </label>
                             <label>{item._id}</label>
                         </div>
-                        <div className="rideruserName infoBox">
-                            <label htmlFor="cnic">UserName : </label>
-                            <label>{item.userName}</label>
-                        </div>
                         <div className="cnic infoBox">
                             <label htmlFor="cnic">CNIC : </label>
                             <span>{item.cnic}</span>
@@ -79,6 +74,18 @@ function DeleteRider() {
                         <div className="email infoBox">
                             <label htmlFor="email">Email :</label>
                             <span>{item.email}</span>
+                        </div>
+                        <div className="vehicleMake infoBox">
+                            <label htmlFor="vehicleMake">Vehicle Make :</label>
+                            <span>{item.vehicleMake}</span>
+                        </div>
+                        <div className="vehicleReg infoBox">
+                            <label htmlFor="vehicleReg">Vehicle Registration :</label>
+                            <span>{item.vehicleReg}</span>
+                        </div>
+                        <div className="vehicleModel infoBox">
+                            <label htmlFor="vehicleModel">Vehicle Model :</label>
+                            <span>{item.vehicleModel}</span>
                         </div>
                         <div className="deleteBox">
                             <button className="deleteButton" onClick={() => handleDelete(item._id)}>

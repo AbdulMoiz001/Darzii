@@ -37,7 +37,20 @@ const RiderSchema = new mongoose.Schema({
     assignedOrders: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Order',
+            ref: 'order',
+        },
+    ],
+    completedOrders: [
+        {
+            orderID: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'order'
+            },
+            status:
+            {
+                type: String,
+            }
+
         },
     ],
     vehicleMake: {

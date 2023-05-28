@@ -82,7 +82,7 @@ function ClothUI() {
       CustomerID: user._id,
       userEmail: user.email,
       tailorID: order.tailor._id,
-      tailorName: order.tailor.name,
+      tailorName: order.tailor.tailorName,
       tailorPrice: order.tailor.price,
       price: (order.tailor.price ?? 0) + (order.cloth?.price ?? 0),
       tailorImage: order.tailor.image,

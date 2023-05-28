@@ -21,18 +21,12 @@ const UsersInfo = [
         cName: 'card',
         total: 60,
     },
-    {
-        title: 'Warehoue Managers',
-        url: '/wh-manager',
-        cName: 'card',
-        total: 70,
-    }
 ]
 
 
 function Dashboard() {
 
-    const [totalOrders, setTotalOrders] = useState(0);
+    const [totalOrders, setTotalOrders] = useState([]);
 
 
     const { user } = useContext(AuthContext);
@@ -48,8 +42,9 @@ function Dashboard() {
                             token: "Bearer " + accessToken,
                         },
                     });
-                setTotalOrders(res.data);
+                setTotalOrders(res.data.length);
             } catch (error) {
+                console.log("here", error)
             }
         };
 
@@ -74,23 +69,25 @@ function Dashboard() {
                     </div>
                 </div>
 
-                {UsersInfo.map((item, index) => {
-                    return (
-                        <div className={item.cName} key={index}>
-                            <div className='itemTitle'>
-                                <p> Total&nbsp;{/*space*/}
-                                    {item.title}
-                                </p>
-                            </div>
-                            <div className='Nitem'>
-                                {item.total}
+                {
+                    UsersInfo.map((item, index) => {
+                        return (
+                            <div className={item.cName} key={index}>
+                                <div className='itemTitle'>
+                                    <p> Total&nbsp;{/*space*/}
+                                        {item.title}
+                                    </p>
+                                </div>
+                                <div className='Nitem'>
+                                    {item.total}
 
-                                <div className='viewitem'><a href={item.url}>View More  <FaChevronRight /></a></div>
-                            </div>
+                                    <div className='viewitem'><a href={item.url}>View More  <FaChevronRight /></a></div>
+                                </div>
 
-                        </div>
-                    )
-                })}
+                            </div>
+                        )
+                    })
+                }
             </div>
         </>
     )

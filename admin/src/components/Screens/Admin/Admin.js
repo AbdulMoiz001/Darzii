@@ -6,7 +6,7 @@ import WHManagerForm from "./Forms/WHManagerForm";
 import DarziForm from "./Forms/DarziiForm";
 import Dashboard from "./Dashboard.jsx";
 import Sidebar from "../../Sidebar/Sidebar";
-// import Topbar from "../../Topbar/Topbar";
+import Topbar from "../../Topbar/Topbar";
 import DarziInfo from "./Darzii/DarziInfo";
 import DeleteDarzi from "./Darzii/DeleteDarzii";
 import EditDarzi from "./Darzii/EditDarzi";
@@ -35,9 +35,9 @@ function Admin() {
 
       <AuthContextProvider>
         <Sidebar />
-        {/* <Topbar /> */}
+        <Topbar />
         <Routes>
-          {/* //For HR
+
           {user ?
 
             <Route
@@ -49,8 +49,8 @@ function Admin() {
               path="/"
               element={<SignInAdmin />}
             />
-          } */}
-          {/* <Route path="/" element={<Dashboard />} /> */}
+          }
+          <Route path="/" element={<Dashboard />} />
           <Route path="/rider" element={<RiderInfo />} />
           <Route path="/rider/register" element={<RiderForm />} />
           <Route path="/rider/delete" element={<DeleteRider />} />

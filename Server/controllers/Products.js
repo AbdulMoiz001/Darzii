@@ -2,13 +2,13 @@ import ProductSchema from "../models/productSchema.js";
 
 //Add New Product
 export const addNewProduct = async (req, res) => {
-  if (req.user.roles.includes("admin") || req.user.roles.includes("warehouse")) {
+  if (req.user.roles.includes("admin")) {
     const newProduct = new ProductSchema({
       name: req.body.name,
       image: req.body.image,
       category: req.body.category,
       price: req.body.price,
-      countInStock: req.body.countInStock,
+      countInStock: req.body.quantity,
       featured: req.body.featured || false,
     });
     try {
@@ -58,12 +58,12 @@ export const removeProduct = async (req, res) => {
 
 //Update Product
 export const updateProduct = async (req, res) => {
-  if (req.user.roles.includes("admin") ||  req.user.roles.includes("warehouse")) {
+  if (req.user.roles.includes("admin") || req.user.roles.includes("warehouse")) {
     const query = req.query.pid;
     console.log(query);
 
     try {
-      const updatedProd= await ProductSchema.findByIdAndUpdate(
+      const updatedProd = await ProductSchema.findByIdAndUpdate(
         query,
         {
           $set: req.body,
@@ -71,7 +71,7 @@ export const updateProduct = async (req, res) => {
         { new: true }
       );
       res.status(200).json(updatedProd);
-    } catch (error) {      
+    } catch (error) {
       res.status(500).json(error);
     }
   }

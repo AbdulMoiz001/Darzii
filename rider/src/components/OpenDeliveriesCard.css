@@ -1,0 +1,36 @@
+body{
+    background: linear-gradient(90deg, rgba(240,139,66,1) 24%, rgba(255,174,41,1) 100%);
+}
+.deliveries .card{
+    background: linear-gradient(90deg, rgba(240,139,66,1) 24%, rgba(255,174,41,1) 100%);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    border-radius: 30px;
+    display: flex;
+    transition: .75s;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+.deliveries .card.fade-out{
+    opacity: 0;
+}
+@keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+.deliveries button,.deliveries button:focus{
+    background-color: rgb(63, 59, 59);
+    box-shadow: none;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    transition: .5s;
+}
+.deliveries button:hover{
+    background-color: rgba(172, 164, 164, 0.541);
+}
