@@ -29,36 +29,19 @@
   outline: none;
 }
 
-.appointment-card .title {
-  color: #ffffff;
-  margin-bottom: 40px;
-  font-size: 30px;
-  font-weight: 400;
-}
-
-.appointment-card .row {
+.appointment-form form {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
 }
 
-.appointment-card .col {
-  width: calc((100% - 30px) / 2);
+.appointment-form .form-group {
+  margin-bottom: 15px;
 }
 
-.appointment-card .group {
-  position: relative;
-  margin-bottom: 22px;
-}
-
-.appointment-card .formLabel {
-  font-size: 16px;
-  width: 175px;
-  margin: 0px 178px;
-  color: rgb(255, 255, 255);
-  text-transform: capitalize;
-  display: block;
+.appointment-form label {
+  font-weight: bold;
   margin-bottom: 5px;
 }
 
@@ -67,12 +50,6 @@
   padding: 8px;
   /* border: 1px solid #ccc; */
   border-radius: 5px;
-  padding: 0 20px;
-  font-size: 16px;
-  color: rgb(255, 255, 255);
-  transition: all 0.4s ease;
-  border: none;
-  outline: none;
 }
 
 .appointment-form button[type="submit"] {
