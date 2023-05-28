@@ -1,0 +1,7 @@
+.navbar{
+    /* blue gradient */
+    /* background: linear-gradient(90deg, rgba(111,207,245,1) 35%, rgba(190,252,198,1) 100%); */
+    /* orange gradient */
+    background: linear-gradient(90deg, rgba(245,162,111,1) 35%, rgba(254,176,49,1) 100%);
+    position: sticky;
+}

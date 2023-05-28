@@ -1,0 +1,164 @@
+.centralize{
+    background: url(/src/assets/background-login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;  
+}
+
+.wrapper{
+    position: absolute;
+    width: 50%;
+    height: fit-content;
+    padding: 5% ;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    /* border: 2px solid black; */
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.page{
+    padding: 0;
+}
+.wrapper * {
+    color: white;
+    
+}
+
+.login-form{
+    font-size: 85%;
+    margin: 2em 0;
+    width: 100%;
+}
+@media screen and (max-width: 450px) {
+    .login-form{
+        font-size: 65%;
+    }
+}
+.form-box h2{
+    /* font-size: 50%; */
+    /* color: #162938; */
+    text-align: center;
+}
+/* .input-box{
+    position: relative;
+    width: 100%;
+    height:3em;
+    border-bottom: 2px solid #162938;
+    margin: 2em 0;
+    padding: 0 3em;
+}
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #162938 ;
+    font-size: 500;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+.input-box input:focus~label,
+.input-box input:valid~label, 
+.input-box input:not(:placeholder-shown){
+    top: -5px;
+    
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    padding-right: 25%;
+    position: absolute;
+}
+.input-box input:focus, .input-box input:not(:placeholder-shown){
+    left: -1%;
+} */
+
+.input-box {
+    position: relative;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #162938;
+
+  }
+  
+  .input-box input:focus ~ label,
+  .input-box input:valid ~ label{
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+    /* color: #888; */
+  }
+  .input-box input {
+    background-color: transparent;
+    /* Add any other desired styling for the input field */
+    border: none;
+    outline: none;
+  }
+  
+  .input-box input:focus ~ label {
+    color: white;
+  }
+  
+  .input-box label {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    transition: 0.3s;
+    pointer-events: none;
+  }
+  
+.input-box .icon{
+    position: absolute;
+    right: 1em;
+    top: -.75em;
+    font-size: 1.2em;
+    color: #162938;
+    line-height: 2.5em;
+}
+
+.remember-forgot{
+    font-size: .9em;
+    /* color: #162938; */
+    font-weight: 500;
+    margin: 1em 0;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+.remember-forgot label input{
+    /* accent-color: #162938; */
+    margin-right: .5em
+}
+
+.login-btn{
+    background: rgb(163, 162, 162);
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 0;
+} 
+.login-btn:hover{
+    
+    transition: .75s;
+    color: black;
+    background: rgb(209, 200, 200);
+}   
+.login-btn:focus{
+    box-shadow: none;
+}

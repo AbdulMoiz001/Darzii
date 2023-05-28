@@ -1,14 +1,14 @@
-.gateway {
+.appointment-card .gateway {
   padding-bottom: 20px;
   font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
 }
 
-.wrapper {
+.appointment-card .wrapper {
   margin: 0 auto;
   max-width: 680px;
 }
 
-.appointment-card {
+.appointment-card .appointment-card {
   border-radius: 10px;
   margin-top: 30px;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
@@ -19,28 +19,28 @@
   margin-right: 395px;
 }
 
-.title {
+.appointment-card .title {
   color: #ffffff;
   margin-bottom: 40px;
   font-size: 30px;
   font-weight: 400;
 }
 
-.row {
+.appointment-card .row {
   display: flex;
   justify-content: space-between;
 }
 
-.col {
+.appointment-card .col {
   width: calc((100% - 30px) / 2);
 }
 
-.group {
+.appointment-card .group {
   position: relative;
   margin-bottom: 22px;
 }
 
-.formLabel {
+.appointment-card .formLabel {
   font-size: 16px;
   width: 175px;
   margin: 0px 178px;
@@ -50,7 +50,7 @@
   margin-bottom: 5px;
 }
 
-.inputStyle {
+.appointment-card .inputStyle {
   line-height: 50px;
   width: 100%;
   margin: 0px 178px;
@@ -65,11 +65,11 @@
   outline: none;
 }
 
-.radioDiv {
+.appointment-card .radioDiv {
   padding-top: 10px;
 }
 
-.signupCard .radio-container {
+.appointment-card .signupCard .radio-container {
   display: inline-block;
   position: relative;
   padding-left: 30px;
@@ -79,21 +79,21 @@
   user-select: none;
 }
 
-.signupCard .radio-container input {
+.appointment-card .signupCard .radio-container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
 
-.signupCard .radio-container input:checked ~ .checkmark {
+.appointment-card .signupCard .radio-container input:checked ~ .checkmark {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-.signupCard .radio-container input:checked ~ .checkmark:after {
+.appointment-card .signupCard .radio-container input:checked ~ .checkmark:after {
   display: block;
 }
 
-.signupCard .radio-container .checkmark:after {
+.appointment-card .signupCard .radio-container .checkmark:after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -103,7 +103,7 @@
   background: #e4e2e2;
 }
 
-.signupCard .checkmark {
+.appointment-card .signupCard .checkmark {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -115,21 +115,21 @@
   box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
 }
 
-.signupCard .checkmark:after {
+.appointment-card .signupCard .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-.buttonDiv {
+.appointment-card .buttonDiv {
   padding-top: 15px;
 }
 
-.m-r-45 {
+.appointment-card .m-r-45 {
   margin-right: 45px;
 }
 
-.btn-form {
+.appointment-card .btn-form {
   display: inline-block;
   line-height: 50px;
   padding: 0 50px;
@@ -144,25 +144,25 @@
   border: none;
 }
 
-.btn-form:hover {
+.appointment-card .btn-form:hover {
   background: #161616;
 }
 
-.controls {
+.appointment-card .controls {
   float: right;
   display: flex;
   justify-content: space-around;
 }
 
-.loginCard {
+.appointment-card .loginCard {
   transition: all 0.3s ease-in-out;
 }
 
-.signupCard {
+.appointment-card .signupCard {
   transition: all 0.3s ease-in-out;
 }
 
-.btn-control-form {
+.appointment-card .btn-control-form {
   transition: all 0.4s ease;
   cursor: pointer;
   font-size: 15px;
@@ -177,12 +177,12 @@
   display: inline-block;
 }
 
-.btn-control-form:hover {
+.appointment-card .btn-control-form:hover {
   background-color: #161616;
   color: #ffffff;
 }
 
-.changeColor {
+.appointment-card .changeColor {
   background: linear-gradient(
     90deg,
     rgb(231, 217, 13) 0%,
@@ -194,12 +194,12 @@
   margin: 0px 178px;
 }
 
-.changeColor:hover {
+.appointment-card .changeColor:hover {
   background: #000000;
   color: #ffffff;
 }
 
-.tagline {
+.appointment-card .tagline {
   font-size: 15px;
   margin-left: 40px;
   float: right;
@@ -207,7 +207,7 @@
   margin-top: 15px;
 }
 
-.selectInput {
+.appointment-card .selectInput {
   height: 50px;
   max-width: 100%;
   background-color: rgba(255, 255, 255, 0.08);

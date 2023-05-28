@@ -206,6 +206,10 @@ const OrderCreation = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [showForm, setShowForm] = useState(false)
 
+    useEffect(()=>{
+        console.log(order);
+    },[]);
+
     const handleClothingTypeChange = (event) => {
         setClothingType(event.target.value);
         setShowSlider(clothingTypes.includes(event.target.value));
