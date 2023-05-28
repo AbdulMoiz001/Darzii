@@ -31,7 +31,7 @@ const TailorDetails = ({ tailor, onClose, cloth }) => (
         <h3>Starts at: Rs.{tailor.price}</h3>
         <div className="btn-group">
           <a className="book-btn" href={`OrderCreation?order=${encodeURIComponent(JSON.stringify({
-            tailor: { ...tailor },
+            tailor: { ...tailor, image: undefined },
             cloth: { ...cloth }
           }))}`}>Book Now</a>
         </div>

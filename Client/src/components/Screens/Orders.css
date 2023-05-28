@@ -7,14 +7,22 @@
     width: 300px;
     padding: 16px;
     margin: 16px;
-    border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #ffffff31;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(1px);
+    cursor: pointer;
+    transition: ease 0.2s;
+}
+
+.order-card:hover {
+    transform: scale(1.02);
 }
 
 .order-card h2 {
     font-size: 20px;
     margin-bottom: 8px;
+    color: #fff;
 }
 
 .order-card p {

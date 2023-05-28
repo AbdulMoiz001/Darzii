@@ -39,65 +39,71 @@ function MeasurementForm() {
     <>
       <form className="measurement-form" onSubmit={handleSubmit}>
         <h2>Body Measurements</h2>
-        <div className="form-group">
-          <div className="row">
-            <div className="col">
-              <label htmlFor="height">Height (cm):</label>
-              <input type="number" id="height" name="height" value={height} onChange={(e) => setHeight(e.target.value)} />
-            </div>
-            <div className="col">
-              <label htmlFor="weight">Weight (kg):</label>
-              <input type="number" id="weight" name="weight" value={weight} onChange={(e) => setWeight(e.target.value)} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label htmlFor="chest">Chest (cm):</label>
-              <input type="number" id="chest" name="chest" value={chest} onChange={(e) => setChest(e.target.value)} />
-            </div>
-
-            <div className="col">
-              <label htmlFor="waist">Waist (cm):</label>
-              <input type="number" id="waist" name="waist" value={waist} onChange={(e) => setWaist(e.target.value)} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label htmlFor="hips">Hips (cm):</label>
-              <input type="number" id="hips" name="hips" value={hips} onChange={(e) => setHips(e.target.value)} />
-            </div>
-            <div className="col">
-              <label htmlFor="shoulder">Shoulder (cm):</label>
-              <input type="number" id="shoulder" name="shoulder" value={shoulder} onChange={(e) => setShoulder(e.target.value)} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label htmlFor="sleeves">Sleeves (cm):</label>
-              <input type="number" id="sleeves" name="sleeves" value={sleeves} onChange={(e) => setSleeves(e.target.value)} />
-            </div>
-            <div className="col">
-              <label htmlFor="neck">Neck (cm):</label>
-              <input type="number" id="neck" name="neck" value={neck} onChange={(e) => setNeck(e.target.value)} />
-            </div>
-          </div>
-        </div>
-
-        <div className="form-group">
-          <div className="row">
-            <div className="col"></div>
-            <div className="col"></div>
-            <div className="col"></div>
-            <div className="col"></div>
-            <div className="col"><button type="submit" className='measurement-form-next'>Next &raquo;</button></div>
-          </div>
-
-
-
-
-
-
-        </div>
+        <table>
+          <tr>
+            <td>
+              <div className="form-group">
+                <label htmlFor="height">Height (cm):</label>
+                <input type="number" id="height" name="height" value={height} onChange={(e) => setHeight(e.target.value)} />
+              </div>
+            </td>
+            <td>
+              <div className="form-group">
+                <label htmlFor="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" value={weight} onChange={(e) => setWeight(e.target.value)} />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div className="form-group">
+                <label htmlFor="chest">Chest (cm):</label>
+                <input type="number" id="chest" name="chest" value={chest} onChange={(e) => setChest(e.target.value)} />
+              </div>
+            </td>
+            <td>
+              <div className="form-group">
+                <label htmlFor="waist">Waist (cm):</label>
+                <input type="number" id="waist" name="waist" value={waist} onChange={(e) => setWaist(e.target.value)} />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div className="form-group">
+                <label htmlFor="hips">Hips (cm):</label>
+                <input type="number" id="hips" name="hips" value={hips} onChange={(e) => setHips(e.target.value)} />
+              </div>
+            </td>
+            <td>
+              <div className="form-group">
+                <label htmlFor="shoulder">Shoulder (cm):</label>
+                <input type="number" id="shoulder" name="shoulder" value={shoulder} onChange={(e) => setShoulder(e.target.value)} />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div className="form-group">
+                <label htmlFor="sleeves">Sleeves (cm):</label>
+                <input type="number" id="sleeves" name="sleeves" value={sleeves} onChange={(e) => setSleeves(e.target.value)} />
+              </div>
+            </td>
+            <td>
+              <div className="form-group">
+                <label htmlFor="neck">Neck (cm):</label>
+                <input type="number" id="neck" name="neck" value={neck} onChange={(e) => setNeck(e.target.value)} />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2}>
+              <div>
+                <button type="submit" className='measurement-form-next'>Next &raquo;</button>
+              </div>
+            </td>
+          </tr>
+        </table>
       </form>
       <div className='footer'></div>
     </>

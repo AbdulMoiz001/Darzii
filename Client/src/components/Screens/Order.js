@@ -32,11 +32,9 @@ const Order = () => {
   return (
     <div className="order-details">
       <h2>{order.ItemTitle}</h2>
-      <h4><a href='/Appointments'>Request an Appointment ?</a></h4>
-      <p>Order ID: {order._id}</p>
-      {
-        order.TailorID ? <p>Tailor: {order.TailorID.tailorName}</p> : <></>
-      }
+      <h4><a href={`/Appointments?order=${encodeURIComponent(JSON.stringify(order))}`}>Request an Appointment ?</a></h4>
+      <p>Order ID: {order.OrderID}</p>
+      <p>Tailor: {order.TailorName}</p>
       <p>Size: {order.Size}</p>
       <h3>Measurements</h3>
       {renderMeasurements()}
