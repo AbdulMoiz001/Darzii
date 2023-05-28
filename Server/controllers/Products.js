@@ -44,7 +44,7 @@ export const productUpdate = async (req, res) => {
 
 //Delete a product
 export const removeProduct = async (req, res) => {
-  if (req.user.roles.includes("admin") || req.user.roles.includes("warehouse")) {
+  if (req.user.roles.includes("admin")) {
     try {
       await ProductSchema.findByIdAndDelete(req.params.id);
       res.status(200).json("Product has been Deleted");
@@ -58,13 +58,11 @@ export const removeProduct = async (req, res) => {
 
 //Update Product
 export const updateProduct = async (req, res) => {
-  if (req.user.roles.includes("admin") || req.user.roles.includes("warehouse")) {
-    const query = req.query.pid;
-    console.log(query);
-
+  if (req.user.roles.includes("admin")) {
+    const product_id = req.params.id;
     try {
       const updatedProd = await ProductSchema.findByIdAndUpdate(
-        query,
+        product_id,
         {
           $set: req.body,
         },
@@ -94,6 +92,26 @@ export const getFeaturedProducts = async (req, res) => {
   try {
     const products = await ProductSchema.find({ featured: true }).limit(10);
 
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+
+export const getAllProductsForAdmin = async (req, res) => {
+  try {
+    const products = await ProductSchema.find();
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const getProduct = async (req, res) => {
+  const product_id = req.params.id;
+  try {
+    const products = await ProductSchema.findById(product_id);
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json(error);

@@ -31,9 +31,7 @@ const CartItem = ({ item, onRemoveItem }) => {
       }
 
     };
-
     getTailor();
-
   }, [])
 
 
