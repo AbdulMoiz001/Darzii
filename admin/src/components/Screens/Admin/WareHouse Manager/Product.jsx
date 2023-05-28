@@ -220,36 +220,6 @@ const Product = () => {
         >
           Add Items
         </Button>
-
-        {/* <List className={classes.list}>
-        {clothingItems.map((item, index) => (
-          <ListItem key={index}>
-            <div style={{ display: 'flex', alignItems: 'center', marginLeft: '12rem' }}>
-              {item.image && (
-                <img
-                  src={item.image}
-                  alt="Product"
-                  style={{ maxWidth: '100px', maxHeight: '100px', marginRight: '16px' }}
-                />
-              )}
-              <ListItemText
-                primary={item.name + ' - ' + item.quantity}
-                secondary={'Product ID: ' + item.productId + ' | Price: ' + item.price}
-                primaryTypographyProps={{ noWrap: true }}
-                secondaryTypographyProps={{ noWrap: true }}
-              />
-            </div>
-            <ListItemSecondaryAction>
-              <Button color="primary" onClick={() => setUpdateIndex(index)}>
-                Update
-              </Button>
-              <Button color="secondary" onClick={() => handleDeleteItem(index)}>
-                Delete
-              </Button>
-            </ListItemSecondaryAction>
-          </ListItem>
-          ))}
-        </List> */}
       </div>
     </div>
   );

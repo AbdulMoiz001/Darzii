@@ -19,7 +19,6 @@ function App() {
     <>
       <AuthContextProvider>
         {user && user.roles.includes("admin") ? <Admin /> : <SiginInAdmin />}
-        {/* <Admin /> */}
       </AuthContextProvider>
     </>
 
