@@ -5,10 +5,11 @@ import './Cart.css';
 const CartItem = ({ item, onRemoveItem }) => {
   return (
     <div className="cart-item">
-      <div className='ID'>{item.local_orderID+1}</div>
-      <img src={item.imageSrc}/>
+      <div className='ID'>{item.local_orderID + 1}</div>
+      {(item.clothImage) && <img src={item.clothImage} alt='' />}
+      {(!item.clothImage) && <img src={item.tailorImage} alt='' />}
       <div className="item-details">
-        <h3>For {item.name}</h3>
+        <h3>For {item.tailorName}</h3>
         <p>Rs. {item.price}</p>
       </div>
       <button className="delete-button" onClick={() => onRemoveItem(item.local_orderID)}>

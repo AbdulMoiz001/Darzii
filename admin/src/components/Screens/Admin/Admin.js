@@ -6,7 +6,7 @@ import WHManagerForm from "./Forms/WHManagerForm";
 import DarziForm from "./Forms/DarziiForm";
 import Dashboard from "./Dashboard.jsx";
 import Sidebar from "../../Sidebar/Sidebar";
-import Topbar from "../../Topbar/Topbar";
+// import Topbar from "../../Topbar/Topbar";
 import DarziInfo from "./Darzii/DarziInfo";
 import DeleteDarzi from "./Darzii/DeleteDarzii";
 import EditDarzi from "./Darzii/EditDarzi";
@@ -19,6 +19,11 @@ import { AuthContextProvider } from "../../../context/authContext/AuthContext";
 import { AuthContext } from "../../../context/authContext/AuthContext";
 import { useContext } from "react";
 import SignInAdmin from "../SignIn/SignInAdmin";
+import Product from "./WareHouse Manager/Product";
+import DeleteRider from "./Rider/DeleteRider";
+import EditRider from "./Rider/EditRider";
+import RiderInfo from "./Rider/RiderInfo";
+import Riders from "./Rider/Riders";
 
 function Admin() {
   const { user } = useContext(AuthContext);
@@ -30,9 +35,9 @@ function Admin() {
 
       <AuthContextProvider>
         <Sidebar />
-        <Topbar />
+        {/* <Topbar /> */}
         <Routes>
-
+          {/* //For HR
           {user ?
 
             <Route
@@ -44,8 +49,13 @@ function Admin() {
               path="/"
               element={<SignInAdmin />}
             />
-          }
+          } */}
+          {/* <Route path="/" element={<Dashboard />} /> */}
+          <Route path="/rider" element={<RiderInfo />} />
           <Route path="/rider/register" element={<RiderForm />} />
+          <Route path="/rider/delete" element={<DeleteRider />} />
+          <Route path="/rider/users" element={<Riders />} />
+          <Route path="/rider/edit" element={<EditRider />} />
 
           <Route path="/darzii" element={<DarziInfo />} />
           <Route path="/darzii/register" element={<DarziForm />} />
@@ -54,7 +64,7 @@ function Admin() {
           <Route path="/darzii/edit" element={<EditDarzi />} />
 
           <Route path="/wh-manager" element={<WHinfo />} />
-          <Route path="/wh-manager/register" element={<WHManagerForm />} />
+          <Route path="/wh-manager/AddProduct" element={<Product />} />
           <Route path="/wh-manager/delete" element={<DeleteWH />} />
         </Routes>
       </AuthContextProvider>

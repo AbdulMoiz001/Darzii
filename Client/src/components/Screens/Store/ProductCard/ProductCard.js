@@ -5,11 +5,12 @@ import './ProductCard.css';
 
 function ProductCard(props){
     const availability = props.product.availability;
-    const productID = props.product.productID;
+    const image = props.product.imgSrc;
     const rating = props.product.rating;
     const title = props.product.title;
     const price = props.product.price;
     const reviews = props.product.reviews;
+    const onClothClick = props.onClothClick;
     
     let ratingStars = function(){
         let stars = [];
@@ -24,13 +25,13 @@ function ProductCard(props){
         return stars;
     }
 
-    let imgURL = "url(./ProductImages/pid_" + (productID) + ".png)";
+    let imgURL = "url(" +image+ ")";
     
     const imgStyle = {
         backgroundImage: imgURL
     };
     return(
-        <div className='ProductCard'>
+        <div className='ProductCard' onClick={() => onClothClick(props.product)}>
             <div className='ProductImage' style={imgStyle}>
                 <div className='card-price'>Rs.{price}</div>
             </div>

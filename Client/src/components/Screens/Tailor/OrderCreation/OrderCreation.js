@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./OrderCreation.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 const clothingTypes = ["Shirt", "Pants", "Suit", "Dress"];
 
 const options = [
@@ -198,12 +199,16 @@ const OrderCreation = () => {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const propString = new URLSearchParams(location.search).get('tailor');
-    const tailor = JSON.parse(decodeURIComponent(propString));
+    const propString = new URLSearchParams(location.search).get('order');
+    const order = JSON.parse(decodeURIComponent(propString));
     const [clothingType, setClothingType] = useState(null);
     const [showSlider, setShowSlider] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const [showForm, setShowForm] = useState(false)
+
+    useEffect(()=>{
+        console.log(order);
+    },[]);
 
     const handleClothingTypeChange = (event) => {
         setClothingType(event.target.value);
@@ -224,7 +229,7 @@ const OrderCreation = () => {
             <h1>Create Order</h1>
             <div className="form-row">
                 <label htmlFor="tailor">Tailor:</label>
-                <h2 className="tailor-title">{tailor.name}</h2>
+                <h2 className="tailor-title">{order.tailor.name}</h2>
             </div>
             <div className="order-form">
                 {!showForm && (
@@ -233,7 +238,7 @@ const OrderCreation = () => {
                             Do you want to make a custom order using ClothUI or select a design from the tailor's Catalogue ?
                         </div>
                         <div>
-                            <a className="button" href={`ClothUI?tailor=${encodeURIComponent(JSON.stringify(tailor))}`}>
+                            <a className="button" href={`ClothUI?order=${encodeURIComponent(JSON.stringify(order))}`}>
                                 ClothUI
                             </a>
                             <button className="button" onClick={() => setShowForm(true)}>

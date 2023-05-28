@@ -2,3 +2,89 @@
     display: flex;
     height: 100% !important;
 }
+
+.StoreScreen .cloth-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.StoreScreen .cloth-details {
+    position: relative;
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3); 
+    background-color: rgba(92, 91, 91, 0.781);
+    backdrop-filter: blur(1px);
+    display: flex;
+    flex-direction: row;
+}
+
+.StoreScreen .cloth-details img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.StoreScreen .cloth-details-info {
+    flex-grow: 1;
+}
+
+.StoreScreen .cloth-details-info h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.StoreScreen .cloth-details-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.StoreScreen .cloth-details-info h3 {
+    margin: 10px 0 0 0;
+    font-size: 24px;
+}
+
+.StoreScreen .btn-group {
+    margin-top: 20px;
+}
+
+.StoreScreen .book-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135.8deg, rgb(26, 26, 29) 27.1%, rgb(111, 34, 50) 77.5%);
+    color: #fcfcfc;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out;
+}
+
+.StoreScreen .book-btn:hover {
+    opacity: 0.95;
+}
+
+.StoreScreen .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    font-size: 12px;
+    padding: 2px 3px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.116);
+
+}
+
+.StoreScreen .close-btn:hover {
+    background-color: #999;
+}

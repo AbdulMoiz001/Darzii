@@ -11,8 +11,7 @@ function DesignPane({
   sleevesStyle,
   shoulderStyle,
   neckStyle,
-  lacingStyle,
-  sendToMeasurements
+  lacingStyle
 }) {
   const [showPopup, setShowPopup] = useState(false);
   const [popupImageSrc, setPopupImageSrc] = useState('');
@@ -76,7 +75,6 @@ function DesignPane({
           </td>
         </tr>
       </table>
-      <button className='cuiNext' onClick={sendToMeasurements}>Next &raquo;</button>
     </div>
   )
 }

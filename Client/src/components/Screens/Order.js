@@ -8,6 +8,7 @@ const Order = () => {
 
   const renderMeasurements = () => {
     const { Measurements } = order;
+
     const measurements = Object.entries(Measurements);
 
     return measurements.map(([key, value]) => (
@@ -32,8 +33,10 @@ const Order = () => {
     <div className="order-details">
       <h2>{order.ItemTitle}</h2>
       <h4><a href='/Appointments'>Request an Appointment ?</a></h4>
-      <p>Order ID: {order.OrderID}</p>
-      <p>Tailor: {order.TailorName}</p>
+      <p>Order ID: {order._id}</p>
+      {
+        order.TailorID ? <p>Tailor: {order.TailorID.tailorName}</p> : <></>
+      }
       <p>Size: {order.Size}</p>
       <h3>Measurements</h3>
       {renderMeasurements()}
@@ -46,7 +49,11 @@ const Order = () => {
       <p>Customer ID: {order.CustomerID}</p>
       <p>Customer Contact Number: {order.CustomerContactNumber}</p>
       <p>Customer Name: {order.CustomerName}</p>
-      <p>Tailor Contact Number: {order.TailorContactNumber}</p>
+      {order.TailorID ?
+        <p>Tailor Contact Number: {order.TailorID.phone}</p>
+        :
+        <></>
+      }
       <p>Order Acceptance Date: {order.OrderAcceptanceDate}</p>
       <p>Order Delivery Deadline: {order.OrderDeliveryDeadline}</p>
       <p>Payment Status: {order.PaymentStatus}</p>

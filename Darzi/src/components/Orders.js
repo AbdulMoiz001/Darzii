@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Orders.css';
 
-function AllOrders({Orders}) {
+function AllOrders({ Orders }) {
   const [selectedOption, setSelectedOption] = useState('All');
 
   const handleOptionChange = (event) => {
@@ -85,17 +85,17 @@ function AllOrders({Orders}) {
             </tr>
           </thead>
           <tbody>
-            {Orders.map((order) => {
+            {Orders ? Orders.map((order) => {
               if (order.OrderStatus === selectedOption || selectedOption === "All") {
                 return (
-                  <tr key={order.OrderID}>
-                    <td>{order.OrderID}</td>
+                  <tr key={order._id}>
+                    <td>{order._id}</td>
                     <td>{order.ClothingType}</td>
                     <td>{order.OrderAcceptanceDate}</td>
                     <td>{order.OrderDeliveryDeadline}</td>
                     <td>{order.OrderStatus}</td>
                     <td>{order.Price}</td>
-                    <td>{order.CustomerName}</td>
+                    <td>{order.CustomerID && order.CustomerID.firstName + " " + order.CustomerID.firstName}</td>
                     <td>
                       {!(order.OrderStatus === "Dispatched") && (
                         <a className="update-btn" href={`order?order=${encodeURIComponent(JSON.stringify(order))}`}>
@@ -108,7 +108,7 @@ function AllOrders({Orders}) {
               } else {
                 return null;
               }
-            })}
+            }) : <></>}
           </tbody>
         </table>
       </div>

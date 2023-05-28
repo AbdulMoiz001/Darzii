@@ -8,15 +8,15 @@ function WHinfo() {
             <div className='info'>Warehouse Managers</div>
             <div className='infoCard'>
                 <label>
-                    Add Warehouse Managers
+                    Add Products
                 </label>
 
-                <a className='infoL' href="/wh-manager/register"><FaChevronRight /></a>
+                <a className='infoL' href="/wh-manager/AddProduct"><FaChevronRight /></a>
 
             </div>
             <div className='infoCard'>
                 <label>
-                    Delete Warehouse Managers
+                    Manage Products
                 </label>
 
                 <a className='infoL' href="/wh-manager/delete"><FaChevronRight /></a>
@@ -25,7 +25,7 @@ function WHinfo() {
 
             <div className='infoCard'>
                 <label>
-                    Edit Warehouse Managers information
+                    Warehouse information
                 </label>
 
                 <a className='infoL' href="/wh-manager/users"><FaChevronRight /></a>

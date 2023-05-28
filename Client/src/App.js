@@ -17,6 +17,8 @@ import Checkout from './components/Screens/Checkout';
 import Orders from './components/Screens/Orders';
 import Order from './components/Screens/Order';
 import Appointments from './components/Screens/Appointments';
+import Stripe from './components/Screens/Stripe/Stripe';
+import PaymentSuccess from './components/Screens/PaymentSuccess';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -53,6 +55,8 @@ function App() {
           <Route path='/Orders' element={<Orders />} />
           <Route path='/Order' element={<Order />} />
           <Route path='/Appointments' element={<Appointments />} />
+          <Route path='/Stripe' element={<Stripe />} />
+          <Route path='/payment-success' element={<PaymentSuccess/>} />
         </Routes>
       </AuthContextProvider>
     </div >

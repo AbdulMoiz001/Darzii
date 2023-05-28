@@ -1,99 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Checkout.css';
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import Stripe from './Stripe/Stripe';
 
 function Checkout() {
     const location = useLocation();
-    const cartItems = JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('cartItems')));
     const [address, setAddress] = useState('');
-    const [cardNumber, setCardNumber] = useState('');
-    const [cardHolder, setCardHolder] = useState('');
-    const [expiryDate, setExpiryDate] = useState('');
-    const [cvv, setCVV] = useState('');
-    const [processingPayment, setProcessingPayment] = useState(false);
-    const [paymentSuccess, setPaymentSuccess] = useState(false);
-
-    const navigate = useNavigate();
-
-    const handlePayment = () => {
-        setProcessingPayment(true);
-
-        // Create a promise that resolves after the specified delay
-        const paymentPromise = new Promise((resolve) => {
-            setTimeout(() => {
-                resolve();
-            }, 2000);
-        });
-
-        // Wait for the payment processing delay
-        paymentPromise.then(() => {
-            setProcessingPayment(false);
-            setPaymentSuccess(true);
-            const orders = cartItems.map((item) => ({
-                ...item,
-                address: address,
-            }));  
-            console.log(orders);
-            // Perform the navigation
-            localStorage.removeItem('cartItems');
-            localStorage.removeItem('cartItemCount');
-            // navigate('/Store');
-            // window.location.reload();
-        });
+    const [orders, setOrders] = useState('');
+    const [cartItems, setCartItems] = useState(JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('cartItems'))));
+    
+    const addAddressAndInfo = () => {
+        const orders_with_address = cartItems.map((item) => ({
+            ...item,
+            address: address,
+            creationDate: new Date().toISOString().split('T')[0]
+        }));
+        setOrders(orders_with_address);
+        console.log(orders_with_address);
+        // localStorage.removeItem('cartItems');
+        // localStorage.removeItem('cartItemCount');
+        // navigate('/');
+        // window.location.reload();
     };
 
+
+    useEffect(() => {
+        addAddressAndInfo();
+    }, [address]);
+
     return (
-        <div className='checkout-container'>
+        <><div className='checkout-container'>
             <h2>Checkout</h2>
             <div>
                 <h2>Total: Rs. {cartItems.reduce((total, cart_item) => total + cart_item.price, 0)}</h2>
             </div>
-            <div className='address-section'>
-                <h3>Shipping Address</h3>
-                <input
-                    type='text'
-                    placeholder='Enter your address'
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                />
-            </div>
-            <div className='payment-section'>
-                <h3>Payment Information</h3>
-                <input
-                    type='text'
-                    placeholder='Card Number'
-                    value={cardNumber}
-                    onChange={(e) => setCardNumber(e.target.value)}
-                />
-                <input
-                    type='text'
-                    placeholder="Card Holder's Name"
-                    value={cardHolder}
-                    onChange={(e) => setCardHolder(e.target.value)}
-                />
-                <input
-                    type='text'
-                    placeholder='Expiry Date'
-                    value={expiryDate}
-                    onChange={(e) => setExpiryDate(e.target.value)}
-                />
-                <input
-                    type='text'
-                    placeholder='CVV'
-                    value={cvv}
-                    onChange={(e) => setCVV(e.target.value)}
-                />
-            </div>
-            <button className='checkout-button book-btn' onClick={handlePayment} disabled={processingPayment || paymentSuccess}>
-                {processingPayment ? 'Processing Payment...' : 'Proceed to Payment'}
-            </button>
-            {paymentSuccess && (
-                <div className='payment-success'>
-                    <span>Payment Successful! Your order has been placed</span>
+            <div className='parent'>
+                <div className='child'>
+                    <div className='address-section'>
+                        <h3>Shipping Address</h3>
+                        <input
+                            type='text'
+                            placeholder='Enter your address'
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)} />
+                    </div>
                 </div>
-            )}
-        </div>
+                <div className='child'>
+                    {
+                        orders ?
+                            <Stripe orders={orders} />
+                            : <></>
+                    }
+                </div>
+            </div>
+        </div><div className='footer'></div></>
     );
 }
 

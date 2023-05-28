@@ -3,22 +3,20 @@ import "./Profile.css";
 import Map from "../components/Maps/Map.jsx"
 import { useState } from "react";
 import axios from "axios"
-import { useEffect } from "react";
-
 
 const Profile = ({ tailor }) => {
 
   const [price, setPrice] = useState(tailor.price);
   const [description, setDescription] = useState(tailor.description);
-
+  const [selectedImage, setSelectedImage] = useState(tailor.image);
   const accessToken = tailor.accessToken;
 
 
 
 
   const AddPrice = async () => {
+
     try {
-      console.log(tailor)
       const res = await axios.put(
         `http://localhost:5000/darzi/setPrice/${tailor._id}`,
         {
@@ -67,13 +65,79 @@ const Profile = ({ tailor }) => {
       console.error('Error setting description:', error);
     }
   }
+  const uploadPic = async () => {
 
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/darzi/uploadPic/${tailor._id}`,
+        {
+          image: selectedImage,
+        },
+        {
+          headers: {
+            token: "Bearer " + accessToken,
+          },
+        }
+      );
+      console.log('Image set successfully:', res);
+      setSelectedImage(res.data.image);
+      tailor.image = res.data.image;
+      console.log(res.data);
+
+
+      localStorage.setItem("tailor", JSON.stringify(tailor));
+
+    } catch (error) {
+      console.error('Error setting description:', error);
+    }
+  }
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const handleImageUpload = async (event) => {
+    const file = event.target.files[0];
+    const base64 = await convertToBase64(file)
+    setSelectedImage(base64);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (selectedImage) {
+      uploadPic();
+    }
+  }
 
   return (
 
 
     <div className="tailor-card">
       <div className="tailor-info">
+        <img
+          width={"250px"}
+          src={selectedImage}
+        />
+
+        <div className="tailor-info">
+          <form onSubmit={handleSubmit}>
+            <input type="file"
+              label="Image"
+              name="myImage"
+              accept=".jpeg,.png,.jpg"
+              onChange={handleImageUpload} />
+            <button type="submit">Upload</button>
+          </form>
+        </div>
         <h2>{tailor.firstName}</h2>
         <p>
           <span>Contact:</span> {tailor.phone}
@@ -94,7 +158,7 @@ const Profile = ({ tailor }) => {
           <span>Skill:</span> {tailor.skill}
         </p>
 
-        <div class="input-box-describe">
+        <div className="input-box-describe">
           <textarea type="text" id="my-input"
             placeholder="Description"
             value={description}
@@ -108,7 +172,7 @@ const Profile = ({ tailor }) => {
 
       <div className="tailor-info">
 
-        <div class="input-box">
+        <div className="input-box">
           <input type="text" id="my-input" placeholder="SetPrice"
             value={price}
             onChange={(e) => { setPrice(e.target.value) }} />

@@ -1,14 +1,14 @@
-.gateway {
+.gateway .gateway {
   padding-bottom: 20px;
   font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
 }
 
-.wrapper {
+.gateway .wrapper {
   margin: 0 auto;
   max-width: 680px;
 }
 
-.card {
+.gateway .card {
   border-radius: 10px;
   margin-top: 30px;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
@@ -17,28 +17,28 @@
   padding: 57px 65px;
 }
 
-.title {
+.gateway .title {
   color: #ffffff;
   margin-bottom: 40px;
   font-size: 30px;
   font-weight: 400;
 }
 
-.row {
+.gateway .row {
   display: flex;
   justify-content: space-between;
 }
 
-.col {
+.gateway .col {
   width: calc((100% - 30px) / 2);
 }
 
-.group {
+.gateway .group {
   position: relative;
   margin-bottom: 22px;
 }
 
-.formLabel {
+.gateway .formLabel {
   font-size: 16px;
   color: rgb(255, 255, 255);
   text-transform: capitalize;
@@ -46,7 +46,7 @@
   margin-bottom: 5px;
 }
 
-.inputStyle {
+.gateway .inputStyle {
   line-height: 50px;
   width: 100%;
   background-color: rgba(255, 255, 255, .08);
@@ -60,11 +60,11 @@
   outline: none;
 }
 
-.radioDiv {
+.gateway .radioDiv {
   padding-top: 10px;
 }
 
-.signupCard .radio-container {
+.gateway .signupCard .radio-container {
   display: inline-block;
   position: relative;
   padding-left: 30px;
@@ -74,21 +74,21 @@
   user-select: none;
 }
 
-.signupCard .radio-container input {
+.gateway .signupCard .radio-container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
 
-.signupCard .radio-container input:checked~.checkmark {
+.gateway .signupCard .radio-container input:checked~.checkmark {
   background-color: rgba(255, 255, 255, .08);
 }
 
-.signupCard .radio-container input:checked~.checkmark:after {
+.gateway .signupCard .radio-container input:checked~.checkmark:after {
   display: block;
 }
 
-.signupCard .radio-container .checkmark:after {
+.gateway .signupCard .radio-container .checkmark:after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -98,7 +98,7 @@
   background: #e4e2e2;
 }
 
-.signupCard .checkmark {
+.gateway .signupCard .checkmark {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -110,21 +110,21 @@
   box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
 }
 
-.signupCard .checkmark:after {
+.gateway .signupCard .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-.buttonDiv {
+.gateway .buttonDiv {
   padding-top: 15px;
 }
 
-.m-r-45 {
+.gateway .m-r-45 {
   margin-right: 45px;
 }
 
-.btn-form {
+.gateway .btn-form {
   display: inline-block;
   line-height: 50px;
   padding: 0 50px;
@@ -139,25 +139,25 @@
   border: none;
 }
 
-.btn-form:hover {
+.gateway .btn-form:hover {
   background: #161616;
 }
 
-.controls {
+.gateway .controls {
   float: right;
   display: flex;
   justify-content: space-around;
 }
 
-.loginCard {
+.gateway .loginCard {
   transition: all 0.3s ease-in-out;
 }
 
-.signupCard {
+.gateway .signupCard {
   transition: all 0.3s ease-in-out;
 }
 
-.btn-control-form {
+.gateway .btn-control-form {
   transition: all 0.4s ease;
   cursor: pointer;
   font-size: 15px;
@@ -172,24 +172,24 @@
   display: inline-block;
 }
 
-.btn-control-form:hover {
+.gateway .btn-control-form:hover {
   background-color: #161616;
   color: #ffffff;
 }
 
-.changeColor {
+.gateway .changeColor {
   background: linear-gradient(90deg, rgb(231, 217, 13) 0%, rgb(231, 173, 12) 100%);
   color: #070707;
   outline: none;
   border: none;
 }
 
-.changeColor:hover {
+.gateway .changeColor:hover {
   background: #000000;
   color: #ffffff;
 }
 
-.tagline {
+.gateway .tagline {
   font-size: 15px;
   margin-left: 40px;
   float: right;
@@ -197,7 +197,7 @@
   margin-top: 15px;
 }
 
-.selectInput{
+.gateway .selectInput{
   height: 50px;
   max-width: 100%;
   background-color: rgba(255, 255, 255, .08);

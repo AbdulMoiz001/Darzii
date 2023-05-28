@@ -1,65 +1,39 @@
 
 import { AuthContext } from '../../../context/authContext/AuthContext';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from "react";
 import "./Tailor.css";
 import Map from "../Maps/Map";
 
-const tailors = [
-  {
-    id: 1,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFKDJ4mF5M_JMtbwiVQ_FK3qRB_Zma20YIeLamqETuyoeSpoqfOynWr9Z8XH3P55Xz_oo&usqp=CAU",
-    name: "Baari Tailors",
-    description: "Baari Tailors, is in the industry since 1908.",
-    price: 1099,
-    lat: 24.910461453474166,
-    lng: 67.18585718599024
-  },
-  {
-    id: 2,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjRIc9_1kP9L5V-Gl4dejhvIxNoIwcafKpjGq6kPPkIJMPsj1VWvPqkPP2QcEtTkBJwaU&usqp=CAU",
-    name: "Sartoria Tailors",
-    description: "Situated in the heart of Karachi, providing quality.",
-    price: 1599,
-    lat: 24.90702119736485,
-    lng: 66.93327386632889
-  },
-  {
-    id: 3,
-    imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsThTe1pLqospIFkZXCz6A-xxk2ARSxjaDXZP2kvSdDiwhhXCoQI7Mo3Ul6GwfhcbAfPc&usqp=CAU",
-    name: "Knockout Tailors",
-    description: "Best choice for your special occasions.",
-    price: 2099,
-
-    lat: 24.939374858646556,
-    lng: 67.15580543228663
-  }
-];
 
 const TailorCard = ({ tailor, onTailorClick }) => (
   <div className="tailor-card" onClick={() => onTailorClick(tailor)}>
-    <img src={tailor.imageSrc} alt={tailor.name} />
+    <img src={tailor.image} alt={tailor.tailorName} />
     <div className="tailor-card-info">
-      <h3>{tailor.name}</h3>
+      <h3>{tailor.tailorName}</h3>
       <p>{tailor.description}</p>
     </div>
   </div>
 );
 
 
-const TailorDetails = ({ tailor, onClose }) => (
+const TailorDetails = ({ tailor, onClose, cloth }) => (
   <div className="tailor-details-overlay">
     <div className="tailor-details">
       <button className="close-btn" onClick={onClose}>
         X
       </button>
-      <img src={tailor.imageSrc} alt={tailor.name} />
+      <img src={tailor.image} alt={tailor.tailorName} />
       <div className="tailor-details-info">
-        <h2>{tailor.name}</h2>
+        <h2>{tailor.tailorName}</h2>
         <p>{tailor.description}</p>
         <h3>Starts at: Rs.{tailor.price}</h3>
         <div className="btn-group">
-          <a className="book-btn" href={`OrderCreation?tailor=${encodeURIComponent(JSON.stringify(tailor))}`}>Book Now</a>
+          <a className="book-btn" href={`OrderCreation?order=${encodeURIComponent(JSON.stringify({
+            tailor: { ...tailor },
+            cloth: { ...cloth }
+          }))}`}>Book Now</a>
         </div>
       </div>
     </div>
@@ -72,30 +46,87 @@ const Tailor = () => {
   const accessToken = user ? user.accessToken : "";
 
   const [tailorsInfo, setTailorInfo] = useState([]);
-
+  const [userLocation, setUserLocation] = useState();
 
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchTailors = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/user/getAllTailors", {
+        const res = await axios.get("http://localhost:5000/user/getTailors", {
           headers: {
             token: "Bearer " + accessToken,
           },
         });
-        setTailorInfo(res.data);
-        console.log(res.data);
+        const updatedData = res.data.map((tailor) => ({
+          ...tailor,
+          price: Number(tailor.price),
+          lat: Number(tailor.lat),
+          lng: Number(tailor.lng),
+        }));
+
+        setTailorInfo(updatedData);
       } catch (error) {
         console.error(error);
       }
     };
-
-    fetchOrders();
+    fetchTailors();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //______________________________________________________________________________
+  //------------USER LOCATION----------------------------------------------------
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+        },
+        (error) => {
+          console.log(error.message);
+        }
+      );
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+    }
+  }, []);
+  //------------USER LOCATION----------------------------------------------------
+
+  //------------------------------------------------------radius-----------------------------------------------------
+  function calculateDistance(lat1, lng1, lat2, lng2) {
+    const R = 6371; // Radius of the Earth in kilometers
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLng = (lng2 - lng1) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLng / 2) *
+      Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Distance in kilometers
+    return distance;
+  }
+
+  const [radius, setRadius] = useState(5);
+  const handleRadiusChange = (e) => {
+    setRadius(e.target.value)
+  }
+  const tailorsWithinRadius = userLocation ? tailorsInfo.filter((tailor) => {
+    const distance = calculateDistance(
+      userLocation.lat,
+      userLocation.lng,
+      tailor.lat,
+      tailor.lng
+    );
+    return distance <= radius;
+  }) : null;
+  //------------------------------------------------------radius-----------------------------------------------------
+  //______________________________________________________________________________
 
 
 
-
+  const location = useLocation();
+  const cloth = JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('cloth')));
 
   const [selectedTailor, setSelectedTailor] = useState(null);
 
@@ -107,20 +138,32 @@ const Tailor = () => {
     setSelectedTailor(null);
   };
 
+  console.log(tailorsInfo);
+
+
   return (
     <div className="Tailor">
       <h1>Tailors</h1>
+      <div className='radiusNum'>
+        <label>1</label>
+        <input type='range' min='1' max='51' step='5' value={radius} onChange={e => handleRadiusChange(e)} />
+        <label>50</label>
+      </div>
       <div className="tailor-list">
-        {tailors.map((tailor) => (
-          <TailorCard key={tailor.id} tailor={tailor} onTailorClick={handleTailorClick} />
-        ))}
+        {tailorsInfo ? tailorsInfo.map((tailor) => (
+          <TailorCard key={tailor._id} tailor={tailor} onTailorClick={handleTailorClick} />
+        ))
+
+          :
+          <></>
+        }
       </div>
       {selectedTailor && (
-        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} />
+        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} cloth={cloth} />
       )}
 
       <div>
-        <Map tailors={tailors} />
+        <Map userLocation={userLocation} tailorsWithinRadius={tailorsWithinRadius} radius={radius} />
       </div >
     </div>
 

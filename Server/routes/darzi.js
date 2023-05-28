@@ -4,7 +4,8 @@ import {
     getAppointments,
     setDescription,
     setPrice,
-    updateAppointment
+    updateAppointment,
+    uploadPic
 } from '../controllers/darzi.js';
 
 const routerDarzi = express.Router();
@@ -16,6 +17,7 @@ routerDarzi.put("/updateAppointment", verify, updateAppointment);
 
 routerDarzi.put("/setPrice/:id", verify, setPrice);
 routerDarzi.put("/setDescription/:id", verify, setDescription);
+routerDarzi.put("/uploadPic/:id", verify, uploadPic);
 
 
 export default routerDarzi;

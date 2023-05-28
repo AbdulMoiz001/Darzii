@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Topbar.css'
 import Uimage from '../imgs/userIconImg.jpg'
 import { FaChevronDown, FaChevronUp, FaQuestionCircle } from 'react-icons/fa'
-import { AuthContext } from "../../context//authContext/AuthContext";
+import { AuthContext } from "../../context/authContext/AuthContext";
 import { useContext } from 'react';
 import { useNavigate } from "react-router-dom"
 
