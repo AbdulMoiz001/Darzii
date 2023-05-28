@@ -11,7 +11,6 @@ const ProductSchema = new mongoose.Schema({
 
   category: {
     type: String,
-    required: true,
   },
   price: {
     type: Number,
@@ -24,7 +23,6 @@ const ProductSchema = new mongoose.Schema({
   numReviews: {
     type: Number,
     default: 0,
-    required: true,
   },
 
   featured: {
