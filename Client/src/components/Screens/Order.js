@@ -54,7 +54,7 @@ const Order = () => {
   return (
     <div className="order-details">
       <div className="heading">
-        <h2>{order.ItemTitle}</h2>
+        {(order.ItemTitle) && <h2>{order.ItemTitle}</h2>}
         <h4>
           <a
             className="button-29"
@@ -65,10 +65,10 @@ const Order = () => {
           </a>
         </h4>
       </div>
-      <p className="orderID">ID# {order.OrderID}</p>
+      <p className="orderID">ID# {order._id}</p>
       <div className="dates">
-        <p>Acceptance Date: <strong>{(new Date(order.OrderAcceptanceDate)).toISOString().slice(0, 10)}</strong></p>
-        <p>Delivery Deadline: <strong>{(new Date(order.OrderDeliveryDeadline)).toISOString().slice(0, 10)}</strong></p>
+        <p>Acceptance Date: <strong>{(order.OrderAcceptanceDate) ? (new Date(order.OrderAcceptanceDate)).toISOString().slice(0, 10) : "NaN"}</strong></p>
+        <p>Delivery Deadline: <strong>{(order.OrderDeliveryDeadline) ? (new Date(order.OrderDeliveryDeadline)).toISOString().slice(0, 10) : "NaN"}</strong></p>
       </div>
       <div className="center-dash">
         <div className="design-measurement">
@@ -89,7 +89,7 @@ const Order = () => {
         </div>
         <div className="row-card">
           <div className="card-2">
-            <p>Tailor: {order.TailorName}</p>
+            <p>Tailor: {order.TailorID.tailorName}</p>
             <p>Tailor Contact Number: {order.TailorID.phone}</p>
             <p>Rating: {order.Rating}</p>
           </div>
