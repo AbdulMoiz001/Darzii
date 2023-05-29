@@ -1,0 +1,16 @@
+.productBox {
+  height: max-content;
+}
+
+.image-section{
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+input[type="file"] {
+  background-color: rgba(82, 81, 81, 0.158);
+  border-radius: 5px;
+  padding: 3px;
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-.order-details {
+.order-details{
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
     background-color: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(1px);
@@ -13,25 +13,25 @@
     transition: ease 1s !important;
 }
 
-h2 {
+.order-details h2 {
     font-size: 24px;
     margin-bottom: 10px;
     width: 100%;
     text-align: left;
 }
 
-h3 {
+.order-details h3 {
     font-size: 18px;
     margin-top: 20px;
     margin-bottom: 10px;
 }
 
-h4 {
+.order-details h4 {
     width: 30%;
     float: right;
 }
 
-.card {
+.order-details .card {
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 10px;
@@ -40,7 +40,7 @@ h4 {
     width: 100%;
 }
 
-.card-title {
+.order-details .card-title {
     font-size: 20px;
     margin-bottom: 10px;
     display: flex;
@@ -49,20 +49,20 @@ h4 {
     cursor: pointer;
 }
 
-.card-content {
+.order-details .card-content {
     font-size: 16px;
     margin-bottom: 5px;
 }
 
-.card-content.hidden {
+.order-details .card-content.hidden {
     display: none;
 }
 
-.card-title .arrow-icon {
+.order-details .card-title .arrow-icon {
     transition: transform 0.2s ease-in-out;
 }
 
-.button-29 {
+.order-details .button-29 {
     align-items: center;
     appearance: none;
     background-image: linear-gradient(90deg, rgb(231, 217, 13) 0%, rgb(231, 173, 12) 100%);
@@ -96,25 +96,25 @@ h4 {
     width: fit-content;
 }
 
-.button-29:hover {
+.order-details .button-29:hover {
     box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
         rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
         #000000 0 -3px 0 inset;
     transform: translateY(-2px);
 }
 
-.center-dash {
+.order-details .center-dash {
     width: 100%;
     display: flex;
     margin-top: 10px;
 }
 
-.design-measurement {
+.order-details .design-measurement {
     width: 40%;
     cursor: pointer;
 }
 
-.card-2 {
+.order-details .card-2 {
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 10px;
@@ -129,39 +129,39 @@ h4 {
     color: #ffffff;
 }
 
-.card-2 p {
+.order-details .card-2 p {
     margin: 8px 0;
     font-weight: bold;
 }
 
-.card-2 p:last-child {
+.order-details .card-2 p:last-child {
     margin-bottom: 0;
 }
 
-.card-2 p:not(:last-child) {
+.order-details .card-2 p:not(:last-child) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.445);
     padding-bottom: 8px;
 }
 
-.row-card {
+.order-details .row-card {
     margin-left: 10px;
     width: 20%;
     height: 170px;
 }
 
-.orderID {
+.order-details .orderID {
     width: 100%;
 }
 
-.heading {
+.order-details .heading {
     display: flex;
     width: 100%;
 }
 
-.dates {
+.order-details .dates {
     display: flex;
 }
 
-.dates p:nth-child(2) {
+.order-details .dates p:nth-child(2) {
     margin-left: 30px;
 }

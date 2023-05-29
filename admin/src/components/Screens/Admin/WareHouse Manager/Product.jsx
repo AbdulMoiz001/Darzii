@@ -3,12 +3,13 @@ import "./css/Product.css";
 import { Button, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { AuthContext } from "../../../../context/authContext/AuthContext";
+import './Product.css';
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    marginTop: "3rem",
-    marginBottom: "3rem",
+    marginTop: "1.5rem",
+    marginBottom: "1.5rem",
   },
   productContainer: {
     display: "flex",
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     marginBottom: "1rem",
-    marginLeft: "19rem",
+    marginLeft: "15.5rem",
     width: "50%",
   },
   inputRoot: {
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "16px",
   },
   addButton: {
-    marginLeft: "15rem",
+    marginLeft: "27rem",
     marginTop: "1rem",
     marginBottom: "2rem",
   },
@@ -127,33 +128,37 @@ const Product = () => {
       <Typography
         variant="h4"
         className={classes.title}
-        style={{ fontSize: "1.7rem", marginLeft: "13rem" }}
+        style={{ fontSize: "1.7rem"}}
       >
         Welcome to the Warehouse Manager Portal
       </Typography>
 
       <div className={classes.contentWrapper}>
-        <label htmlFor="upload-photo-input">
-          <input
-            type="file"
-            label="Image"
-            name="myImage"
-            accept=".jpeg,.png,.jpg"
-            onChange={handleImageUpload}
-          />
-        </label>
 
-        {previewImage && (
-          <img
-            src={previewImage}
-            alt="Product"
-            style={{
-              maxWidth: "100px",
-              maxHeight: "100px",
-              marginRight: "16px",
-            }}
-          />
-        )}
+        <div className="image-section">
+          <label htmlFor="upload-photo-input">
+            <input
+              type="file"
+              label="Image"
+              name="myImage"
+              accept=".jpeg,.png,.jpg"
+              onChange={handleImageUpload}
+            />
+          </label>
+          <br/>
+          <br/>
+          {previewImage && (
+            <img
+              src={previewImage}
+              alt="Product"
+              style={{
+                maxWidth: "100px",
+                maxHeight: "100px",
+                marginRight: "16px",
+              }}
+            />
+          )}
+        </div>
 
         <TextField
           label="Product Name"
