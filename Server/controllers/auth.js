@@ -155,9 +155,9 @@ export const registerDarzi = async (req, res) => {
 export const registerRider = async (req, res) => {
   if (req.user.roles.includes("admin")) {
     const newUser = new riderSchema({
+      address: req.body.address,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      username: req.body.username,
       email: req.body.email,
       password: CryptoJS.AES.encrypt(
         req.body.password,

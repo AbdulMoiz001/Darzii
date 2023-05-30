@@ -1,7 +1,7 @@
 import mesauremnetOrders from "../models/measurementOrderSchema.js";
 import mesauremnets from "../models/meaurementSchema.js";
 import OrderSchema from "../models/orderSchema.js";
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 export const createMeasurementOrder = async (req, res) => {
     if (req.user.id == req.params.id) {
@@ -28,19 +28,23 @@ export const createMeasurementOrder = async (req, res) => {
 
 export const createOrder = async (req, res) => {
 
-    console.log(req.body);
-
     if (req.body.CustomerID == req.user.id) {
 
         const newOrder = new OrderSchema({
+            ItemTitle: req.body.ItemTitle ? req.body.ItemTitle : "Custom Order",
+            ProductID: req.body.clothID,
+            ProductPrice: req.body.clothPrice,
             CustomerID: req.body.CustomerID,
+            TailorID: req.body.tailorID,
+            TailorPrice: req.body.tailorPrice,
+            Price: req.body.price,
             Design: req.body.Design,
             Measurements: req.body.Measurements,
             address: req.body.address,
-            creationDate: req.body.creationDate,
+            creationDate: new Date(),
             payment_intent: req.body.payment_intent,
-            Price: req.body.price,
-            TailorID: req.body.tailorID,
+            OrderStatus: "Pending",
+            PaymentStatus: "Confirmed"
         });
         try {
             const order = await newOrder.save();
@@ -64,7 +68,7 @@ export const getNumberOfOrdersForTailor = async (req, res) => {
             const orders = await OrderSchema.find({ TailorID: tailorId })
                 .populate("TailorID", "tailorName phone")
                 .populate("CustomerID", "firstName lastName phone")
-                .select("_id Measurements TailorID ClothUI Design Catalogue CatalogueID Price CustomerID OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating OrderStatus ClothingType")
+                .select("_id Measurements TailorID ClothUI Design Catalogue CatalogueID Price CustomerID OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating OrderStatus ClothingType ItemTitle")
             // console.log(orders);
             res.status(200).json(orders);
         } catch (error) {
@@ -123,21 +127,27 @@ export const getPaymentInformation = async (req, res) => {
 export const updateOrderStatus = async (req, res) => {
 
     try {
-        const order = await OrderSchema.findById(req.body.id);
-        if (order.TailorID === req.user.id) {
+        const updatedOrder = req.body.status === "Received" ? await OrderSchema.findOneAndUpdate(
+            { _id: req.body.id },
+            {
+                $set: {
+                    OrderStatus: req.body.status,
+                    OrderAcceptanceDate: req.body.OrderAcceptanceDate,
+                    OrderDeliveryDeadline: req.body.OrderDeliveryDeadline,
+                }
+            },
+            { new: true }
+        )
+            :
 
-            const updatedOrder = await OrderSchema.findOneAndUpdate(
-                { _id: req.body.id },
-                { $set: { OrderStatus: 'Received' } },
-                { new: true }
-            );
-            res.status(200).json("order update to recieved " + updatedOrder._id);
-        }
-        else {
-
-            res.status(403).json("You are not allowed");
-        }
-
+            await OrderSchema.findOneAndUpdate({ _id: req.body.id },
+                {
+                    $set: {
+                        OrderStatus: req.body.status,
+                    }
+                },
+                { new: true });
+        res.status(200).json("order update to recieved " + updatedOrder._id);
 
     } catch (error) {
         console.error(error);

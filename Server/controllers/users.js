@@ -1,7 +1,7 @@
-// import userSchema from "../models/User.js";
 import CryptoJS from "crypto-js";
 import userSchema from "../models/userShema.js";
 import darziSchema from "../models/darziSchema.js";
+import Rider from "../models/riderSchema.js";
 
 //Update
 export const userUpdate = async (req, res) => {
@@ -115,16 +115,29 @@ export const GetTailors = async (req, res) => {
 
 }
 
+export const getTailor = async (req, res) => {
+  try {
+    const tailorId = req.params.id;
+    const tailor = await darziSchema.findOne({ _id: tailorId });
+
+    if (tailor) {
+      res.status(200).json(tailor);
+    } else {
+      res.status(404).json({ error: "Tailor not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error" });
+  }
+};
+
 export const deleteTailor = async (req, res) => {
 
   if (req.user["roles"].includes("admin")) {
 
     try {
-      const tailorId = req.params.id; // Get the tailor ID from the request parameters
-
-      // Delete the tailor from the database
+      const tailorId = req.params.id;
       await darziSchema.findByIdAndRemove(tailorId);
-
       res.status(200).json({ message: "Tailor deleted successfully" });
     } catch (error) {
       console.error(error);
@@ -138,23 +151,47 @@ export const deleteTailor = async (req, res) => {
 
 
 
-export const updatTailor = async (req, res) => {
+export const updateTailor = async (req, res) => {
   if (req.user["roles"].includes("admin")) {
-
-    console.log(req.params.id);
     try {
       const tailorId = req.params.id;
+      const encryptedPassword = CryptoJS.AES.encrypt(
+        req.body.password,
+        process.env.SECRET_KEY
+      ).toString();
+
       const updatedTailor = await darziSchema.findByIdAndUpdate(
         tailorId,
         {
-          $set: req.body,
+          $set: {
+            ...req.body,
+            password: encryptedPassword,
+          },
         },
         { new: true }
       );
-      res.status(200).json(updatedTailor)
+
+      res.status(200).json(updatedTailor);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Error" });
+    }
+  } else {
+    res.status(403).json("You cannot access this data");
+  }
+};
+
+
+
+export const getRiders = async (req, res) => {
+
+  if (req.user["roles"].includes("admin")) {
+    try {
+
+      const tailor = await Rider.find();
+      res.status(200).json(tailor);
+    } catch (error) {
+      res.status(500).json(error);
     }
   }
   else {
@@ -163,3 +200,56 @@ export const updatTailor = async (req, res) => {
 
 }
 
+export const DeleteRider = async (req, res) => {
+
+  if (req.user["roles"].includes("admin")) {
+
+    try {
+      const rider = req.params.id; // Get the tailor ID from the request parameters
+
+      // Delete the tailor from the database
+      await Rider.findByIdAndRemove(rider);
+
+      res.status(200).json({ message: "Rider deleted successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred while deleting the Rider" });
+    }
+  }
+  else {
+    res.status(403).json("You cannot access this data");
+  }
+};
+
+export const updateRider = async (req, res) => {
+  if (req.user["roles"].includes("admin")) {
+    try {
+      const riderId = req.params.id;
+
+      // Encrypt the password using AES encryption
+      const encryptedPassword = CryptoJS.AES.encrypt(
+        req.body.password,
+        process.env.SECRET_KEY
+      ).toString();
+
+      // Create an updatedRider object with the updated password
+      const updatedRider = await Rider.findByIdAndUpdate(
+        riderId,
+        {
+          $set: {
+            ...req.body,
+            password: encryptedPassword,
+          },
+        },
+        { new: true }
+      );
+
+      res.status(200).json(updatedRider);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Error" });
+    }
+  } else {
+    res.status(403).json("You cannot access this data");
+  }
+};

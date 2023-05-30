@@ -25,7 +25,7 @@ routerAuth.post('/registerRider', verify, registerRider);
 routerAuth.post('/registerDarzi', verify, registerDarzi);
 
 //logIn other users {Rider, Darzi}
-routerAuth.post('/loginRide', logInRider);
+routerAuth.post('/loginRider', logInRider);
 routerAuth.post('/loginDarzi', logInDarzi);
 
 

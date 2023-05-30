@@ -75,14 +75,15 @@ function ClothUI() {
     const initialCartItems = cachedCartItems ? JSON.parse(cachedCartItems) : [];
     const orderData = {
       local_orderID: initialCartItems.length,
-      clothID: order.cloth ? order.cloth.productID : null,
+      clothID: order.cloth ? order.cloth._id : null,
       clothPrice: order.cloth ? order.cloth.price : null,
       clothImage: order.cloth ? order.cloth.image : null,
+      ItemTitle: order.cloth ? order.cloth.name : undefined,
       OrderType: "ClothUI",
       CustomerID: user._id,
       userEmail: user.email,
       tailorID: order.tailor._id,
-      tailorName: order.tailor.name,
+      tailorName: order.tailor.tailorName,
       tailorPrice: order.tailor.price,
       price: (order.tailor.price ?? 0) + (order.cloth?.price ?? 0),
       tailorImage: order.tailor.image,
@@ -99,6 +100,7 @@ function ClothUI() {
         lacingStyle,
       },
     };
+    console.log(orderData)
     navigate(`/MeasurementForm?orderData=${encodeURIComponent(JSON.stringify(orderData))}`);
   }
 

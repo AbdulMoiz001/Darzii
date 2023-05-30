@@ -3,34 +3,32 @@ import './ProductCard.css';
 
 
 
-function ProductCard(props){
+function ProductCard(props) {
     const availability = props.product.availability;
-    const image = props.product.imgSrc;
+    const image = props.product.image;
     const rating = props.product.rating;
-    const title = props.product.title;
+    const title = props.product.name;
     const price = props.product.price;
     const reviews = props.product.reviews;
     const onClothClick = props.onClothClick;
-    
-    let ratingStars = function(){
+
+    let ratingStars = function () {
         let stars = [];
-        for(let i=0;i<rating;i++)
-        {
-            stars.push(<span class="fa fa-star checked"></span>);
+        for (let i = 0; i < rating; i++) {
+            stars.push(<span className="fa fa-star checked"></span>);
         }
-        for(let i=0;i<(5-rating);i++)
-        {
-            stars.push(<span class="fa fa-star"></span>);
+        for (let i = 0; i < (5 - rating); i++) {
+            stars.push(<span className="fa fa-star"></span>);
         }
         return stars;
     }
 
-    let imgURL = "url(" +image+ ")";
-    
+    let imgURL = "url(" + image + ")";
+
     const imgStyle = {
         backgroundImage: imgURL
     };
-    return(
+    return (
         <div className='ProductCard' onClick={() => onClothClick(props.product)}>
             <div className='ProductImage' style={imgStyle}>
                 <div className='card-price'>Rs.{price}</div>
@@ -47,11 +45,11 @@ function ProductCard(props){
                     )}
                 </div>
                 <div className='Ratings'>
-                        Ratings:
-                        <div className='Stars'>
-                            <span>&#40;{reviews}&#41;&nbsp;</span>
-                            {ratingStars()}
-                        </div>
+                    Ratings:
+                    <div className='Stars'>
+                        <span>&#40;{reviews}&#41;&nbsp;</span>
+                        {ratingStars()}
+                    </div>
                 </div>
             </div>
         </div>

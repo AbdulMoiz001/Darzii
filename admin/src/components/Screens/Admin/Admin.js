@@ -2,21 +2,16 @@ import React from "react";
 import "./Admin.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RiderForm from "./Forms/RiderForm";
-import WHManagerForm from "./Forms/WHManagerForm";
 import DarziForm from "./Forms/DarziiForm";
 import Dashboard from "./Dashboard.jsx";
 import Sidebar from "../../Sidebar/Sidebar";
-// import Topbar from "../../Topbar/Topbar";
+import Topbar from "../../Topbar/Topbar";
 import DarziInfo from "./Darzii/DarziInfo";
 import DeleteDarzi from "./Darzii/DeleteDarzii";
 import EditDarzi from "./Darzii/EditDarzi";
 import Darzis from "./Darzii/Darzis";
-
 import WHinfo from "./WareHouse Manager/WHinfo";
-import DeleteWH from "./WareHouse Manager/DeleteWH";
-
-import { AuthContextProvider } from "../../../context/authContext/AuthContext";
-import { AuthContext } from "../../../context/authContext/AuthContext";
+import { AuthContextProvider, AuthContext } from "../../../context/authContext/AuthContext";
 import { useContext } from "react";
 import SignInAdmin from "../SignIn/SignInAdmin";
 import Product from "./WareHouse Manager/Product";
@@ -24,6 +19,8 @@ import DeleteRider from "./Rider/DeleteRider";
 import EditRider from "./Rider/EditRider";
 import RiderInfo from "./Rider/RiderInfo";
 import Riders from "./Rider/Riders";
+import ManageWH from "./WareHouse Manager/ManagerWH";
+import EditProduct from "./WareHouse Manager/EditProduct";
 
 function Admin() {
   const { user } = useContext(AuthContext);
@@ -35,11 +32,9 @@ function Admin() {
 
       <AuthContextProvider>
         <Sidebar />
-        {/* <Topbar /> */}
+        <Topbar />
         <Routes>
-          {/* //For HR
           {user ?
-
             <Route
               path="/"
               element={<Dashboard />}
@@ -49,8 +44,8 @@ function Admin() {
               path="/"
               element={<SignInAdmin />}
             />
-          } */}
-          {/* <Route path="/" element={<Dashboard />} /> */}
+          }
+          <Route path="/" element={<Dashboard />} />
           <Route path="/rider" element={<RiderInfo />} />
           <Route path="/rider/register" element={<RiderForm />} />
           <Route path="/rider/delete" element={<DeleteRider />} />
@@ -65,7 +60,8 @@ function Admin() {
 
           <Route path="/wh-manager" element={<WHinfo />} />
           <Route path="/wh-manager/AddProduct" element={<Product />} />
-          <Route path="/wh-manager/delete" element={<DeleteWH />} />
+          <Route path="/wh-manager/manage" element={<ManageWH />} />
+          <Route path="/wh-manager/edit" element={<EditProduct />} />
         </Routes>
       </AuthContextProvider>
     </BrowserRouter>

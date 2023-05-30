@@ -2,7 +2,12 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
   OrderType: { type: String, },
-  ItemID: { type: Number, },
+  ProductID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "product",
+  },
+  ProductPrice: { type: Number, },
+  TailorPrice: { type: Number, },
   ItemTitle: { type: String, },
   TailorID: {
     type: mongoose.Schema.Types.ObjectId,
@@ -11,6 +16,7 @@ const orderSchema = new mongoose.Schema({
 
   Size: { type: String, default: null },
   address: { type: String, default: null },
+  OrderStatus: { type: String, },
   payment_intent: { type: String, default: null },
   Measurements: {
     height: { type: Number, default: null },
@@ -35,7 +41,7 @@ const orderSchema = new mongoose.Schema({
     neckStyle: { type: String, default: null },
     lacingStyle: { type: String, default: null }
   },
-  Catalogue: { type: Boolean, default: true },
+  Catalogue: { type: Boolean, default: false },
   CatalogueID: { type: Number, default: null },
   Price: { type: Number, },
   Title: { type: String, },

@@ -36,8 +36,82 @@ const RiderSchema = new mongoose.Schema({
     },
     assignedOrders: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Order',
+            orderID: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'order',
+            },
+            from: {
+                name: {
+                    type: String,
+                },
+                contact: {
+                    type: String,
+                },
+
+                lat: {
+                    type: String,
+                },
+
+                lng: {
+                    type: String,
+                }
+            },
+            to: {
+                name: {
+                    type: String,
+                },
+                contact: {
+                    type: String,
+                },
+
+                lat: {
+                    type: String,
+                },
+
+                lng: {
+                    type: String,
+                }
+            }
+        },
+    ],
+    completedOrders: [
+        {
+            orderID: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'order',
+            },
+            from: {
+                name: {
+                    type: String,
+                },
+                contact: {
+                    type: String,
+                },
+
+                lat: {
+                    type: String,
+                },
+
+                lng: {
+                    type: String,
+                }
+            },
+            to: {
+                name: {
+                    type: String,
+                },
+                contact: {
+                    type: String,
+                },
+
+                lat: {
+                    type: String,
+                },
+
+                lng: {
+                    type: String,
+                }
+            }
         },
     ],
     vehicleMake: {

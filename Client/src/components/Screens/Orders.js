@@ -30,18 +30,24 @@ const Orders = () => {
     }, []);
 
     const orderCards = orders ? orders.map((order) => (
-        <div className="order-card" key={order._id}>
+        <div className="order-card" key={order._id} onClick={() => handleOrderClick(order)}>
             <h2>{order.ItemTitle}</h2>
             <p>Order ID: {order._id}</p>
             {order.TailorID ? (
-                <p>Tailor: {order.TailorID.name}</p>
+                <p>Tailor: {order.TailorID.tailorName}</p>
             ) : (
                 <></>
             )}
             <p>Status: {order.OrderStatus}</p>
-            <a className="button" href={`Order?order=${encodeURIComponent(JSON.stringify(order))}`}>Details</a>
+            {/* <a className="button" href={`Order?order=${encodeURIComponent(JSON.stringify(order))}`}>Details</a> */}
         </div>
     )) : null;
+
+    const handleOrderClick = (order) => {
+        const encodedOrder = encodeURIComponent(JSON.stringify(order));
+        window.location.href = `Order?order=${encodedOrder}`;
+    };
+
 
 
     return <div className="orders-container">{orderCards}</div>;

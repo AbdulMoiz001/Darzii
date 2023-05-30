@@ -11,7 +11,6 @@ const ProductSchema = new mongoose.Schema({
 
   category: {
     type: String,
-    required: true,
   },
   price: {
     type: Number,
@@ -24,13 +23,25 @@ const ProductSchema = new mongoose.Schema({
   numReviews: {
     type: Number,
     default: 0,
-    required: true,
   },
 
   featured: {
     type: Boolean,
     default: false,
   },
+  rating: {
+    type: Number,
+    default: 0,
+  },
+
+  availability: {
+    type: Boolean,
+    default: true,
+  },
+  type: {
+    type: String,
+  },
+
 
   updated: {
     type: Date,

@@ -6,8 +6,12 @@ import {
     userGet,
     userUpdate,
     deleteTailor,
-    updatTailor,
     GetTailors,
+    getRiders,
+    DeleteRider,
+    updateRider,
+    updateTailor,
+    getTailor,
 } from "../controllers/users.js";
 import { verify } from "./verifyUserTokens.js";
 
@@ -23,9 +27,14 @@ routerUser.get("/", verify, GetAll);
 //For Admin
 routerUser.get("/getAllTailors", verify, GetAllTailor);
 routerUser.delete("/deleteTailor/:id", verify, deleteTailor);
-routerUser.post("/updateTailor/:id", verify, updatTailor);
+routerUser.post("/updateTailor/:id", verify, updateTailor);
+
+routerUser.get("/getRiders", verify, getRiders);
+routerUser.delete("/deleteRider/:id", verify, DeleteRider);
+routerUser.post("/updateRider/:id", verify, updateRider);
 
 //For user
-routerUser.get("/getTailors", verify, GetTailors);
 
+routerUser.get("/getTailors", verify, GetTailors);
+routerUser.get("/getTailor/:id", verify, getTailor);
 export default routerUser;

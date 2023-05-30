@@ -1,23 +1,30 @@
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Login from './components/Login';
 import DeliveryRequest from './components/DeliveryRequest';
 import Navbar from './components/Navbar';
 import Deliveries from './components/Deliveries';
 import DeliveryMenu from './components/DeliveryMenu';
+import { AuthContext } from './context/authContext/AuthContext';
+import { useContext } from 'react';
 function App() {
+  const { user } = useContext(AuthContext);
   return (
     <>
-      <Navbar/>
+      {user && <Navbar />}
       <Routes>
-        <Route path='/' element={<Login/>}/>
-        {/* container for cards having a dummy data for delivery request, and a child component for showing the demo data */}
-        <Route path='requests' element={<DeliveryRequest/>}/>
-        {/* clickable delivery request to accept the delivery data */}
-        <Route path='deliveries' element={<Deliveries/>}/>
-        {/* a map section to show where the delivery is to be made by the rider. */}
-        <Route path='delivery' element={<DeliveryMenu/>}/>
+        {
+          !user && <Route path="/" element={<Login />} />
+        }
+        {
+          user &&
+          <>
+            <Route path='/' element={<DeliveryRequest />} />
+            <Route path='/deliveries' element={<Deliveries />} />
+          </>
+        }
+
       </Routes>
-            
+
     </>
   );
 }

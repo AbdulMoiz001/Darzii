@@ -18,8 +18,7 @@ function App() {
   return (
     <>
       <AuthContextProvider>
-        {/* {user && user.roles.includes("admin") ? <Admin /> : <SiginInAdmin />} */}
-        <Admin />
+        {user && user.roles.includes("admin") ? <Admin /> : <SiginInAdmin />}
       </AuthContextProvider>
     </>
 

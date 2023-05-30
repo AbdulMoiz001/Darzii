@@ -8,7 +8,7 @@ function Checkout() {
     const [address, setAddress] = useState('');
     const [orders, setOrders] = useState('');
     const [cartItems, setCartItems] = useState(JSON.parse(decodeURIComponent(new URLSearchParams(location.search).get('cartItems'))));
-    
+
     const addAddressAndInfo = () => {
         const orders_with_address = cartItems.map((item) => ({
             ...item,
@@ -17,16 +17,15 @@ function Checkout() {
         }));
         setOrders(orders_with_address);
         console.log(orders_with_address);
-        // localStorage.removeItem('cartItems');
-        // localStorage.removeItem('cartItemCount');
-        // navigate('/');
-        // window.location.reload();
     };
 
 
     useEffect(() => {
         addAddressAndInfo();
     }, [address]);
+    useEffect(() => {
+        console.log(cartItems);
+    },);
 
     return (
         <><div className='checkout-container'>
