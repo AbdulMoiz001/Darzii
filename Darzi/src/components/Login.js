@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import { login } from "../context/authContext/apiCalls.jsx"
 import { AuthContext } from "../context/authContext/AuthContext.jsx"
@@ -8,7 +7,6 @@ import { AuthContext } from "../context/authContext/AuthContext.jsx"
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
   const { dispatch } = useContext(AuthContext);
 

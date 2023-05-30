@@ -28,8 +28,6 @@ export const createMeasurementOrder = async (req, res) => {
 
 export const createOrder = async (req, res) => {
 
-    console.log(req.body);
-
     if (req.body.CustomerID == req.user.id) {
 
         const newOrder = new OrderSchema({
