@@ -33,6 +33,7 @@ export const createOrder = async (req, res) => {
     if (req.body.CustomerID == req.user.id) {
 
         const newOrder = new OrderSchema({
+            ItemTitle: req.body.ItemTitle ? req.body.ItemTitle : "Custom Order",
             ProductID: req.body.clothID,
             ProductPrice: req.body.clothPrice,
             CustomerID: req.body.CustomerID,
@@ -44,6 +45,8 @@ export const createOrder = async (req, res) => {
             address: req.body.address,
             creationDate: new Date(),
             payment_intent: req.body.payment_intent,
+            OrderStatus: "Pending",
+            PaymentStatus: "Confirmed"
         });
         try {
             const order = await newOrder.save();
@@ -67,7 +70,7 @@ export const getNumberOfOrdersForTailor = async (req, res) => {
             const orders = await OrderSchema.find({ TailorID: tailorId })
                 .populate("TailorID", "tailorName phone")
                 .populate("CustomerID", "firstName lastName phone")
-                .select("_id Measurements TailorID ClothUI Design Catalogue CatalogueID Price CustomerID OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating OrderStatus ClothingType")
+                .select("_id Measurements TailorID ClothUI Design Catalogue CatalogueID Price CustomerID OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating OrderStatus ClothingType ItemTitle")
             // console.log(orders);
             res.status(200).json(orders);
         } catch (error) {

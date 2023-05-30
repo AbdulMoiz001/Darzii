@@ -78,6 +78,7 @@ function ClothUI() {
       clothID: order.cloth ? order.cloth._id : null,
       clothPrice: order.cloth ? order.cloth.price : null,
       clothImage: order.cloth ? order.cloth.image : null,
+      ItemTitle: order.cloth ? order.cloth.name : undefined,
       OrderType: "ClothUI",
       CustomerID: user._id,
       userEmail: user.email,

@@ -5,7 +5,8 @@ import Store from "./Store";
 
 const ClothDetails = ({ cloth, onClose }) => {
 
-    const scloth = { ...cloth, image: undefined }
+    const scloth = { ...cloth, image: undefined, }
+    console.log(scloth);
 
     return (
         <div className="cloth-details-overlay">
@@ -13,9 +14,9 @@ const ClothDetails = ({ cloth, onClose }) => {
                 <button className="close-btn" onClick={onClose}>
                     X
                 </button>
-                <img src={cloth.image} alt={cloth.title} />
+                <img src={cloth.image} alt={cloth.name} />
                 <div className="cloth-details-info">
-                    <h2>{cloth.title}</h2>
+                    <h2>{cloth.name}</h2>
                     <p>{cloth.description}</p>
                     <h3>Rs.{cloth.price}</h3>
                     <h4>Rated {cloth.rating}/5, {cloth.reviews} Reviews</h4>
