@@ -8,7 +8,9 @@ const DeliveryRequest = () => {
         contact_delivery : '245656774',
         contact_pickup : '3443564353',
         address : 'fdgsrh ghdgagg',
-        pickup  : 'fdgfhhde  rertr' 
+        pickup  : 'fdgfhhde  rertr',
+        lat:24.926295,
+        lng:67.130499,
     };
   return (
     <>
