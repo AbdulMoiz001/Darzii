@@ -68,12 +68,31 @@ const Order = () => {
             OrderStatus: newStatus,
         }));
         try {
-            const res = await axios.post("http://localhost:5000/order/updateOrderStatus", { id: o_data._id },
+            const res = newStatus === "Received" ? await axios.post("http://localhost:5000/order/updateOrderStatus", {
+                status: newStatus,
+                id: o_data._id,
+                OrderAcceptanceDate: new Date(),
+                OrderDeliveryDeadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000),
+            },
                 {
                     headers: {
                         token: "Bearer " + accessToken,
                     },
-                });
+                })
+
+                :
+
+                await axios.post("http://localhost:5000/order/updateOrderStatus",
+                    {
+                        status: newStatus,
+                        id: o_data._id,
+                    },
+                    {
+                        headers: {
+                            token: "Bearer " + accessToken,
+                        },
+                    });
+
             console.log(res);
         } catch (error) {
         }

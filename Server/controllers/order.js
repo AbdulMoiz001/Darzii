@@ -1,7 +1,7 @@
 import mesauremnetOrders from "../models/measurementOrderSchema.js";
 import mesauremnets from "../models/meaurementSchema.js";
 import OrderSchema from "../models/orderSchema.js";
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 export const createMeasurementOrder = async (req, res) => {
     if (req.user.id == req.params.id) {
@@ -129,21 +129,27 @@ export const getPaymentInformation = async (req, res) => {
 export const updateOrderStatus = async (req, res) => {
 
     try {
-        const order = await OrderSchema.findById(req.body.id);
-        if (order.TailorID === req.user.id) {
+        const updatedOrder = req.body.status === "Received" ? await OrderSchema.findOneAndUpdate(
+            { _id: req.body.id },
+            {
+                $set: {
+                    OrderStatus: req.body.status,
+                    OrderAcceptanceDate: req.body.OrderAcceptanceDate,
+                    OrderDeliveryDeadline: req.body.OrderDeliveryDeadline,
+                }
+            },
+            { new: true }
+        )
+            :
 
-            const updatedOrder = await OrderSchema.findOneAndUpdate(
-                { _id: req.body.id },
-                { $set: { OrderStatus: 'Received' } },
-                { new: true }
-            );
-            res.status(200).json("order update to recieved " + updatedOrder._id);
-        }
-        else {
-
-            res.status(403).json("You are not allowed");
-        }
-
+            await OrderSchema.findOneAndUpdate({ _id: req.body.id },
+                {
+                    $set: {
+                        OrderStatus: req.body.status,
+                    }
+                },
+                { new: true });
+        res.status(200).json("order update to recieved " + updatedOrder._id);
 
     } catch (error) {
         console.error(error);
