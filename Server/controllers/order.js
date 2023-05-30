@@ -33,14 +33,17 @@ export const createOrder = async (req, res) => {
     if (req.body.CustomerID == req.user.id) {
 
         const newOrder = new OrderSchema({
+            ProductID: req.body.clothID,
+            ProductPrice: req.body.clothPrice,
             CustomerID: req.body.CustomerID,
+            TailorID: req.body.tailorID,
+            TailorPrice: req.body.tailorPrice,
+            Price: req.body.price,
             Design: req.body.Design,
             Measurements: req.body.Measurements,
             address: req.body.address,
-            creationDate: req.body.creationDate,
+            creationDate: new Date(),
             payment_intent: req.body.payment_intent,
-            Price: req.body.price,
-            TailorID: req.body.tailorID,
         });
         try {
             const order = await newOrder.save();

@@ -75,7 +75,7 @@ function ClothUI() {
     const initialCartItems = cachedCartItems ? JSON.parse(cachedCartItems) : [];
     const orderData = {
       local_orderID: initialCartItems.length,
-      clothID: order.cloth ? order.cloth.productID : null,
+      clothID: order.cloth ? order.cloth._id : null,
       clothPrice: order.cloth ? order.cloth.price : null,
       clothImage: order.cloth ? order.cloth.image : null,
       OrderType: "ClothUI",
@@ -99,6 +99,7 @@ function ClothUI() {
         lacingStyle,
       },
     };
+    console.log(orderData)
     navigate(`/MeasurementForm?orderData=${encodeURIComponent(JSON.stringify(orderData))}`);
   }
 

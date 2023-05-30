@@ -29,6 +29,19 @@ const ProductSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  rating: {
+    type: Number,
+    default: 0,
+  },
+
+  availability: {
+    type: Boolean,
+    default: true,
+  },
+  type: {
+    type: String,
+  },
+
 
   updated: {
     type: Date,

@@ -1,7 +1,7 @@
 import Express from "express";
 import {
-    addNewProduct, getAllProducts, removeProduct,
-    getFeaturedProducts, updateProduct, getAllProductsForAdmin, getProduct
+    addNewProduct, removeProduct,
+    getFeaturedProducts, updateProduct, getAllProductsForAdmin, getProduct, getProducts
 } from "../controllers/Products.js";
 import { verify } from "./verifyUserTokens.js";
 
@@ -19,7 +19,7 @@ routerProduct.get('/getproduct/:id', verify, getProduct);
 
 //public
 routerProduct.get('/featuredProduct', getFeaturedProducts);
-// routerProduct.get('/', getAllProducts);
+routerProduct.get('/getProducts', verify, getProducts);
 
 
 

@@ -34,7 +34,7 @@ const Orders = () => {
             <h2>{order.ItemTitle}</h2>
             <p>Order ID: {order._id}</p>
             {order.TailorID ? (
-                <p>Tailor: {order.TailorID.name}</p>
+                <p>Tailor: {order.TailorID.tailorName}</p>
             ) : (
                 <></>
             )}
@@ -48,14 +48,7 @@ const Orders = () => {
         window.location.href = `Order?order=${encodedOrder}`;
     };
 
-    // const orderCards = orders.map((order) => (
-    //     <div className="order-card" key={order.OrderID} onClick={() => handleOrderClick(order)}>
-    //         <h2>{order.ItemTitle}</h2>
-    //         <p>Order ID: {order.OrderID}</p>
-    //         <p>Tailor: {order.TailorName}</p>
-    //         <p>Status: {order.OrderStatus}</p>
-    //     </div>
-    // ));
+
 
     return <div className="orders-container">{orderCards}</div>;
 };

@@ -75,12 +75,9 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-export const getAllProducts = async (req, res) => {
-  const query = req.query.new;
+export const getProducts = async (req, res) => {
   try {
-    const products = query
-      ? await ProductSchema.find().limit(10)
-      : await ProductSchema.find();
+    const products = await ProductSchema.find();
 
     res.status(200).json(products);
   } catch (error) {
