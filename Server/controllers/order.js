@@ -1,7 +1,8 @@
 import mesauremnetOrders from "../models/measurementOrderSchema.js";
 import mesauremnets from "../models/meaurementSchema.js";
 import OrderSchema from "../models/orderSchema.js";
-import mongoose, { mongo } from "mongoose";
+import Rider from "../models/riderSchema.js";
+import mongoose from "mongoose";
 
 export const createMeasurementOrder = async (req, res) => {
     if (req.user.id == req.params.id) {
@@ -44,8 +45,11 @@ export const createOrder = async (req, res) => {
             creationDate: new Date(),
             payment_intent: req.body.payment_intent,
             OrderStatus: "Pending",
-            PaymentStatus: "Confirmed"
+            PaymentStatus: "Confirmed",
+            Ulat: req.body.Ulat,
+            Ulng: req.body.Ulng,
         });
+
         try {
             const order = await newOrder.save();
 
@@ -58,7 +62,89 @@ export const createOrder = async (req, res) => {
 
     }
 
-}
+};
+
+
+const assignRiderTailorToCustomer = async (order) => {
+    const orderDetails = await OrderSchema.findById(order._id)
+        .populate("TailorID", "tailorName phone lat lng")
+        .populate("CustomerID", "firstName lastName phone");
+
+    // Find a rider
+    Rider.findOne()
+        .sort({ assignedOrders: 1 })
+        .exec()
+        .then(async (rider) => {
+            if (rider) {
+                const orderData = {
+                    orderID: order.id,
+                    from: {
+                        name: orderDetails.TailorID.tailorName,
+                        contact: orderDetails.TailorID.phone,
+                        lat: orderDetails.TailorID.lat,
+                        lng: orderDetails.TailorID.lng,
+                    },
+                    to: {
+                        name: orderDetails.CustomerID.firstName + " " + orderDetails.CustomerID.lastName,
+                        contact: orderDetails.CustomerID.phone,
+                        lat: orderDetails.Ulat,
+                        lng: orderDetails.Ulng,
+                    },
+                };
+
+                // Update the rider's assignedOrders and save the rider
+                rider.assignedOrders.push(orderData);
+                await rider.save();
+
+            } else {
+                console.log("No riders found.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error occurred while finding riders:", error);
+        });
+};
+
+const assignRiderCustomerToTailor = async (order) => {
+    const orderDetails = await OrderSchema.findById(order._id)
+        .populate("TailorID", "tailorName phone lat lng")
+        .populate("CustomerID", "firstName lastName phone");
+
+    // Find a rider
+    Rider.findOne()
+        .sort({ assignedOrders: 1 })
+        .exec()
+        .then(async (rider) => {
+            if (rider) {
+                const orderData = {
+                    orderID: order.id,
+                    from: {
+                        name: orderDetails.CustomerID.firstName + " " + orderDetails.CustomerID.lastName,
+                        contact: orderDetails.CustomerID.phone,
+                        lat: orderDetails.Ulat,
+                        lng: orderDetails.Ulng,
+                    },
+                    to: {
+                        name: orderDetails.TailorID.tailorName,
+                        contact: orderDetails.TailorID.phone,
+                        lat: orderDetails.TailorID.lat,
+                        lng: orderDetails.TailorID.lng,
+                    },
+                };
+
+                // Update the rider's assignedOrders and save the rider
+                rider.assignedOrders.push(orderData);
+                await rider.save();
+
+            } else {
+                console.log("No riders found.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error occurred while finding riders:", error);
+        });
+};
+
 
 export const getNumberOfOrdersForTailor = async (req, res) => {
 
@@ -69,7 +155,6 @@ export const getNumberOfOrdersForTailor = async (req, res) => {
                 .populate("TailorID", "tailorName phone")
                 .populate("CustomerID", "firstName lastName phone")
                 .select("_id Measurements TailorID ClothUI Design Catalogue CatalogueID Price CustomerID OrderAcceptanceDate OrderDeliveryDeadline PaymentStatus Rating OrderStatus ClothingType ItemTitle")
-            // console.log(orders);
             res.status(200).json(orders);
         } catch (error) {
             console.error(error);
@@ -123,35 +208,75 @@ export const getPaymentInformation = async (req, res) => {
     }
 };
 
-
 export const updateOrderStatus = async (req, res) => {
-
     try {
-        const updatedOrder = req.body.status === "Received" ? await OrderSchema.findOneAndUpdate(
-            { _id: req.body.id },
-            {
-                $set: {
-                    OrderStatus: req.body.status,
-                    OrderAcceptanceDate: req.body.OrderAcceptanceDate,
-                    OrderDeliveryDeadline: req.body.OrderDeliveryDeadline,
-                }
-            },
-            { new: true }
-        )
-            :
+        const updatedOrder =
+            req.body.status === "Received"
+                ? await OrderSchema.findOneAndUpdate(
+                    { _id: req.body.id },
+                    {
+                        $set: {
+                            OrderStatus: req.body.status,
+                            OrderAcceptanceDate: req.body.OrderAcceptanceDate,
+                            OrderDeliveryDeadline: req.body.OrderDeliveryDeadline,
+                        },
+                    },
+                    { new: true }
+                )
+                : await OrderSchema.findOneAndUpdate(
+                    { _id: req.body.id },
+                    {
+                        $set: {
+                            OrderStatus: req.body.status,
+                        },
+                    },
+                    { new: true }
+                );
 
-            await OrderSchema.findOneAndUpdate({ _id: req.body.id },
-                {
-                    $set: {
-                        OrderStatus: req.body.status,
-                    }
-                },
-                { new: true });
-        res.status(200).json("order update to recieved " + updatedOrder._id);
+        if (req.body.status === "Received") {
+            await assignRiderCustomerToTailor(updatedOrder);
+        }
+        if (req.body.status === "Ready") {
+            await assignRiderTailorToCustomer(updatedOrder);
+        }
 
+        res.status(200).json("Order updated to received: " + updatedOrder._id);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: "Server error" });
     }
+};
 
-}
+
+const updateAssignedOrders = async (orderId) => {
+    try {
+        const rider = await Rider.findOneAndUpdate(
+            { "assignedOrders.orderID": orderId },
+            {
+                $pull: {
+                    assignedOrders: { orderID: orderId },
+                },
+                $push: {
+                    completedOrders: { orderID: orderId },
+                },
+            },
+            { new: true }
+        );
+
+        console.log("Rider after updating orders:", rider);
+    } catch (error) {
+        console.error("Error occurred while updating orders:", error);
+    }
+};
+
+export const processOrder = async (req, res) => {
+    const { orderId } = req.body;
+
+    try {
+        await updateAssignedOrders(orderId);
+        res.status(200).json("Order processed successfully");
+    } catch (error) {
+        console.error("Error occurred while processing order:", error);
+        res.status(500).json({ error: "Server error" });
+    }
+};

@@ -99,6 +99,9 @@ function ClothUI() {
         neckStyle,
         lacingStyle,
       },
+      Ulat: order.Ulat,
+      Ulng: order.Ulng,
+
     };
     console.log(orderData)
     navigate(`/MeasurementForm?orderData=${encodeURIComponent(JSON.stringify(orderData))}`);

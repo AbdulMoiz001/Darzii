@@ -41,9 +41,9 @@ const RiderSchema = new mongoose.Schema({
                 ref: 'order',
             },
             from: {
-                name: {
-                    type: String,
-                },
+                id: { type: String },
+                name: { type: String },
+
                 contact: {
                     type: String,
                 },
@@ -57,9 +57,9 @@ const RiderSchema = new mongoose.Schema({
                 }
             },
             to: {
-                name: {
-                    type: String,
-                },
+                id: { type: String },
+                name: { type: String },
+
                 contact: {
                     type: String,
                 },

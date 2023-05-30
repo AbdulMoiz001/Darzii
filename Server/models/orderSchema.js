@@ -51,6 +51,8 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  Ulat: { type: String },
+  Ulng: { type: String },
   OrderAcceptanceDate: { type: Date, },
   creationDate: { type: Date, },
   OrderDeliveryDeadline: { type: Date, },

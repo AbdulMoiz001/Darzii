@@ -18,7 +18,7 @@ const TailorCard = ({ tailor, onTailorClick }) => (
 );
 
 
-const TailorDetails = ({ tailor, onClose, cloth }) => (
+const TailorDetails = ({ tailor, onClose, cloth, userLocation }) => (
   <div className="tailor-details-overlay">
     <div className="tailor-details">
       <button className="close-btn" onClick={onClose}>
@@ -32,7 +32,9 @@ const TailorDetails = ({ tailor, onClose, cloth }) => (
         <div className="btn-group">
           <a className="book-btn" href={`OrderCreation?order=${encodeURIComponent(JSON.stringify({
             tailor: { ...tailor, image: undefined },
-            cloth: { ...cloth }
+            cloth: { ...cloth },
+            Ulat: userLocation.lat,
+            Ulng: userLocation.lng,
           }))}`}>Book Now</a>
         </div>
       </div>
@@ -159,7 +161,7 @@ const Tailor = () => {
         }
       </div>
       {selectedTailor && (
-        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} cloth={cloth} />
+        <TailorDetails tailor={selectedTailor} onClose={handleTailorClose} cloth={cloth} userLocation={userLocation} />
       )}
 
       <div>
