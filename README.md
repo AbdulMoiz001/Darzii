@@ -20,4 +20,3 @@ Authentication/Authorization: JWT (JSON Web Tokens)
 Contributors
 Abdul Moiz Soomro (K191104)
 Mohammad Shehryar Ahmed (K191115)
-License
